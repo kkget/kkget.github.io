@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="zhaozhenkun888.github.io">
   <title>SpringCloudAlibaba服务注册新发现 | 赵KK的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考自BliBli 2018.09.21「小马哥技术周报」- 第一期《Spring Cloud 服务发现新选择 - Alibaba Nacos Discovery》Springcloud组件现状Cloud的各种组件的停更&#x2F;升级&#x2F;更换         before                 after注册中心  Eureka     Zookeeper&#x2F;Consul(go)&#x2F;Nacos  服务">
+  <meta name="description" content="参考自BliBli 2018.09.21「小马哥技术周报」- 第一期《Spring Cloud 服务发现新选择 - Alibaba Nacos Discovery》Springcloud组件现状Cloud的各种组件的停更&#x2F;升级&#x2F;更换&amp;ensp;&amp;ensp;&amp;ensp;before&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;after注册中心  Eureka     Zookeeper&#x2F;Cons">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringCloudAlibaba服务注册新发现">
 <meta property="og:url" content="zhaozhenkun888.github.io/2020/06/02/SpringCloudAlibaba%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E6%96%B0%E5%8F%91%E7%8E%B0/index.html">
 <meta property="og:site_name" content="赵KK的个人博客">
-<meta property="og:description" content="参考自BliBli 2018.09.21「小马哥技术周报」- 第一期《Spring Cloud 服务发现新选择 - Alibaba Nacos Discovery》Springcloud组件现状Cloud的各种组件的停更&#x2F;升级&#x2F;更换         before                 after注册中心  Eureka     Zookeeper&#x2F;Consul(go)&#x2F;Nacos  服务">
+<meta property="og:description" content="参考自BliBli 2018.09.21「小马哥技术周报」- 第一期《Spring Cloud 服务发现新选择 - Alibaba Nacos Discovery》Springcloud组件现状Cloud的各种组件的停更&#x2F;升级&#x2F;更换&amp;ensp;&amp;ensp;&amp;ensp;before&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;after注册中心  Eureka     Zookeeper&#x2F;Cons">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/1.png">
 <meta property="og:image" content="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/2.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/19.png">
 <meta property="og:image" content="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/20.png">
 <meta property="article:published_time" content="2020-06-02T01:13:17.000Z">
-<meta property="article:modified_time" content="2020-06-02T01:39:55.130Z">
+<meta property="article:modified_time" content="2020-06-02T01:50:41.190Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="SpringCloudAlibaba">
 <meta name="twitter:card" content="summary">
@@ -200,9 +200,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/1.png" alt="avatar"><br><img src="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/2.png" alt="avatar"><br><img src="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/3.png" alt="avatar"><br>参考自BliBli 2018.09.21「小马哥技术周报」- 第一期《Spring Cloud 服务发现新选择 - Alibaba Nacos Discovery》<br>Springcloud组件现状<br>Cloud的各种组件的停更/升级/更换<br>         before                 after<br>注册中心  Eureka     Zookeeper/Consul(go)/Nacos </p>
+        <p><img src="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/1.png" alt="avatar"><br><img src="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/2.png" alt="avatar"><br><img src="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/3.png" alt="avatar"><br>参考自BliBli 2018.09.21「小马哥技术周报」- 第一期《Spring Cloud 服务发现新选择 - Alibaba Nacos Discovery》<br>Springcloud组件现状<br>Cloud的各种组件的停更/升级/更换<br>&ensp;&ensp;&ensp;before&ensp;&ensp;&ensp;&ensp;after<br>注册中心  Eureka     Zookeeper/Consul(go)/Nacos </p>
 <p>服务调用   Ribbon    LoadBalancer</p>
-<pre><code>Feign     OpenFeign</code></pre><p>服务降级   Hystrix   resilience4J/sentinel</p>
+<p>服务调用        Feign     OpenFeign</p>
+<p>服务降级   Hystrix   resilience4J/sentinel</p>
 <p>服务网关   zull      gateway/soul</p>
 <p>服务配置   config    apolo/nacos</p>
 <p>服务总线   bus       nacos<br><img src="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/4.png" alt="avatar"><br><img src="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/5.png" alt="avatar"><br><img src="https://github.com/zhaozhenkun888/zhaozhenkun888.github.io/blob/master/img/SpringCloudAlibaba/6.png" alt="avatar"></p>
