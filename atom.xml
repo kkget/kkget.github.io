@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>赵KK的个人博客</title>
   
-  
+  <subtitle>纠结体本体,同步记录日常笔记</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="zhaozhenkun888.github.io/"/>
