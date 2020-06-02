@@ -1,25 +1,502 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head>
+    
 
-block content
-  article#post(class="")
-    #article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      !=partial('includes/share/index', {}, {cache:theme.fragment_cache})
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>拒绝解析又臭又长的JSON | 赵KK的个人博客 | 纠结体本体,同步记录日常笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="author:赵KK  在日常工作中，不管是因为接收前端返回约定格式的JSON字符串，还是因为需要约定格式请求第三方服务，或者需要将前端画像xml解析成JSON，再或者需要接入第三方短信，供应商，数据提供商的JSON数据，或是需要提供对外暴露接口的API，可见解析JSON是一个常见操作。 JSON是一个轻量级的数据交换格式。 一：表单数据由数据库实体对象接收 常见的前后端约定字段，指定字段名称后，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拒绝解析又臭又长的JSON">
+<meta property="og:url" content="zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="赵KK的个人博客">
+<meta property="og:description" content="author:赵KK  在日常工作中，不管是因为接收前端返回约定格式的JSON字符串，还是因为需要约定格式请求第三方服务，或者需要将前端画像xml解析成JSON，再或者需要接入第三方短信，供应商，数据提供商的JSON数据，或是需要提供对外暴露接口的API，可见解析JSON是一个常见操作。 JSON是一个轻量级的数据交换格式。 一：表单数据由数据库实体对象接收 常见的前后端约定字段，指定字段名称后，">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-01T08:48:28.000Z">
+<meta property="article:modified_time" content="2020-06-02T00:14:09.715Z">
+<meta property="article:author" content="赵KK">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="赵KK的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵KK</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .post-ad!=theme.ad.post
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">拒绝解析又臭又长的JSON</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
 
-    include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-    if page.comments !== false
-      include includes/comments/index.pug
+    <div class="container fade-scale">
+        <h1 class="title">拒绝解析又臭又长的JSON</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-06-01T08:48:28.000Z" itemprop="datePublished" class="page-time">
+  2020-06-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-第一篇博客"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">拒绝解析又臭又长的JSON</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-06-01 16:48:28" datetime="2020-06-01T08:48:28.000Z"  itemprop="datePublished">2020-06-01</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>author:赵KK</p>
+<p> 在日常工作中，不管是因为接收前端返回约定格式的JSON字符串，还是因为需要约定格式请求第三方服务，或者需要将前端画像xml解析成JSON，再或者需要接入第三方短信，供应商，数据提供商的JSON数据，或是需要提供对外暴露接口的API，可见解析JSON是一个常见操作。</p>
+<p>JSON是一个轻量级的数据交换格式。</p>
+<p>一：表单数据由数据库实体对象接收</p>
+<p>常见的前后端约定字段，指定字段名称后，由数据库实体接收序列化后的表单数据，无序解析。</p>
+<p>二：JSONObject解析</p>
+<p>前后端约定格式，实体接收String类型，通过JSONObject解析JSON，JSONArray等操作</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;children&quot;: [</span><br><span class="line">            </span><br><span class="line">        ],</span><br><span class="line">        &quot;createBy&quot;: &quot;admin&quot;,</span><br><span class="line">        &quot;createTime&quot;: 1521171180000,</span><br><span class="line">        &quot;icon&quot;: &quot;fa fa-gear&quot;,</span><br><span class="line">        &quot;menuId&quot;: 1,</span><br><span class="line">        &quot;menuName&quot;: &quot;系统管理&quot;,</span><br><span class="line">        &quot;menuType&quot;: &quot;M&quot;,</span><br><span class="line">        &quot;orderNum&quot;: &quot;1&quot;,</span><br><span class="line">        &quot;params&quot;: &#123;</span><br><span class="line">            </span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;parentId&quot;: 0,</span><br><span class="line">        &quot;perms&quot;: &quot;&quot;,</span><br><span class="line">        &quot;target&quot;: &quot;&quot;,</span><br><span class="line">        &quot;url&quot;: &quot;#&quot;,</span><br><span class="line">        &quot;visible&quot;: &quot;0&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;children&quot;: [</span><br><span class="line">            </span><br><span class="line">        ],</span><br><span class="line">        &quot;createBy&quot;: &quot;admin&quot;,</span><br><span class="line">        &quot;createTime&quot;: 1521171180000,</span><br><span class="line">        &quot;icon&quot;: &quot;fa fa-video-camera&quot;,</span><br><span class="line">        &quot;menuId&quot;: 2,</span><br><span class="line">        &quot;menuName&quot;: &quot;系统监控&quot;,</span><br><span class="line">        &quot;menuType&quot;: &quot;M&quot;,</span><br><span class="line">        &quot;orderNum&quot;: &quot;2&quot;,</span><br><span class="line">        &quot;params&quot;: &#123;</span><br><span class="line">            </span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;parentId&quot;: 0,</span><br><span class="line">        &quot;perms&quot;: &quot;&quot;,</span><br><span class="line">        &quot;target&quot;: &quot;&quot;,</span><br><span class="line">        &quot;url&quot;: &quot;#&quot;,</span><br><span class="line">        &quot;visible&quot;: &quot;0&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;children&quot;: [</span><br><span class="line">            </span><br><span class="line">        ],</span><br><span class="line">        &quot;createBy&quot;: &quot;admin&quot;,</span><br><span class="line">        &quot;createTime&quot;: 1521171180000,</span><br><span class="line">        &quot;icon&quot;: &quot;fa fa-bars&quot;,</span><br><span class="line">        &quot;menuId&quot;: 3,</span><br><span class="line">        &quot;menuName&quot;: &quot;系统工具&quot;,</span><br><span class="line">        &quot;menuType&quot;: &quot;M&quot;,</span><br><span class="line">        &quot;orderNum&quot;: &quot;3&quot;,</span><br><span class="line">        &quot;params&quot;: &#123;</span><br><span class="line">            </span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;parentId&quot;: 0,</span><br><span class="line">        &quot;perms&quot;: &quot;&quot;,</span><br><span class="line">        &quot;target&quot;: &quot;&quot;,</span><br><span class="line">        &quot;url&quot;: &quot;#&quot;,</span><br><span class="line">        &quot;visible&quot;: &quot;0&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>通过JSONObject以及解析JSONArray获取<br>三：接入第三方API</p>
+<p>接入第三方API，或者按约定调用第三方服务时，你会发现约定了又臭有长的JSON格式，包含特定字段，包含token，包含秘钥，一个详细数据解析接口，上百个字段是常见的，而且多种格式嵌套解析，如果单纯将收到的字符串手动转化成JSONObject，还要判空，还要层层遍历，还要验证数据的有效性，这是在是不小的工作量。</p>
+<p>改造方法：提取最长，覆盖字段最全的作为实体列接收，含有List数据就由List接收，最外层K值由字段接收，涉及类型判断需按约定传不同数值的，定义为枚举，秘钥等特殊Key值MD5加解密传递。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果url是空，则认为是解析历史数据 不需要拼装请求</span></span><br><span class="line">        <span class="keyword">if</span> (url != <span class="keyword">null</span> &amp;&amp; !<span class="string">""</span>.equals(url)) &#123;</span><br><span class="line">            Client client = <span class="keyword">new</span> Client();</span><br><span class="line">            Map&lt;String, String&gt; params = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"mobileReli"</span>.equals(interfaceCode)) &#123; <span class="comment">//if类型判断定义为枚举      </span></span><br><span class="line">                String infoJson = String.format(<span class="string">"&#123;\"phone\":\"%s\",\"name\":\"%s\",\"curDate\":\"%s\"&#125;"</span>,</span><br><span class="line">                        applyRecord.getPhone(), applyRecord.getName(), applyRecord.getFlashblackDate());</span><br><span class="line">                StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">                <span class="keyword">long</span> time = System.currentTimeMillis();<span class="comment">//重复度高的字段由优特实体类接收</span></span><br><span class="line">                sb.append(secret + <span class="string">"!"</span> + appKey + <span class="string">"!"</span> + time + <span class="string">"!"</span> + applyRecord.getName() + <span class="string">"!"</span></span><br><span class="line">                        + applyRecord.getPhone() + <span class="string">"!"</span> + secret + <span class="string">"!"</span>);</span><br><span class="line">                sign = hdsClient.md5(sb.toString());</span><br><span class="line">                String param = String.format(<span class="string">"appKey=%s&amp;infoJson=%s&amp;sign=%s&amp;time=%s"</span>, appKey, infoJson, sign, time);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    jsonData = hdsClient.getResult(url, param);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"DSModel"</span>.equals(interfaceCode)) &#123;</span><br><span class="line">                String infoJson = String.format(<span class="string">"&#123;\"mobile\":\"%s\",\"name\":\"%s\",\"starttime\":\"%s\"&#125;"</span>,</span><br><span class="line">                        applyRecord.getPhone(), applyRecord.getName(), applyRecord.getFlashblackDate());</span><br><span class="line">                StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">                <span class="keyword">long</span> time = System.currentTimeMillis();</span><br><span class="line">                sb.append(secret + <span class="string">"!"</span> + appKey + <span class="string">"!"</span> + time + <span class="string">"!"</span> + applyRecord.getName() + <span class="string">"!"</span></span><br><span class="line">                        + applyRecord.getPhone() + <span class="string">"!"</span> + applyRecord.getFlashblackDate() + <span class="string">"!"</span> + secret + <span class="string">"!"</span>);</span><br><span class="line">                sign = hdsClient.md5(sb.toString());</span><br><span class="line">                String param = String.format(<span class="string">"appKey=%s&amp;infoJson=%s&amp;sign=%s&amp;time=%s"</span>, appKey, infoJson, sign, time);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    jsonData = hdsClient.getResult(url, param);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"addressDetection"</span>.equals(interfaceCode)) &#123;   </span><br><span class="line">                String infoJson = String.format(<span class="string">"&#123;\"phone\":\"%s\",\"address\":\"%s\",\"curDate\":\"%s\"&#125;"</span>,</span><br><span class="line">                        applyRecord.getPhone(), applyRecord.getAddress(), applyRecord.getFlashblackDate());</span><br><span class="line">                StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">                <span class="keyword">long</span> time = System.currentTimeMillis();</span><br><span class="line">                sb.append(secret + <span class="string">"!"</span> + appKey + <span class="string">"!"</span> + time + <span class="string">"!"</span> + applyRecord.getPhone() + <span class="string">"!"</span></span><br><span class="line">                        + applyRecord.getAddress() + <span class="string">"!"</span> + applyRecord.getFlashblackDate() + <span class="string">"!"</span> + secret + <span class="string">"!"</span>);</span><br><span class="line">                sign = hdsClient.md5(sb.toString());</span><br><span class="line">                String param = String.format(<span class="string">"appKey=%s&amp;infoJson=%s&amp;sign=%s&amp;time=%s"</span>, appKey, infoJson, sign, time);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    jsonData = hdsClient.getResult(url, param);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> InterfaceCodeEnum &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    InterfaceCode1(<span class="number">1</span>,<span class="string">"mobileReli"</span>),</span><br><span class="line">    InterfaceCode2(<span class="number">2</span>,<span class="string">"DSModel"</span>),</span><br><span class="line">    InterfaceCode3(<span class="number">3</span>,<span class="string">"addressDetection"</span>),</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    InterfaceCodeEnum(Integer code, String name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getNameBycode</span><span class="params">(Integer code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (code == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (InterfaceCodeEnum a : InterfaceCodeEnum.values()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a.code.equals(code)) &#123;</span><br><span class="line">                <span class="keyword">return</span> a.name;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Builder</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterfaceCodeResult</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//基础信息</span></span><br><span class="line">    <span class="keyword">private</span> Base base;</span><br><span class="line">    <span class="comment">//秘钥信息</span></span><br><span class="line">    <span class="keyword">private</span> AuthInfo authInfo;</span><br><span class="line">    <span class="comment">//外层字段封装为对象接收</span></span><br><span class="line">    <span class="keyword">private</span> AddressResult  addressResult;</span><br><span class="line">    <span class="comment">//重复多层信息List接收</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;Flashblack&gt; flashblack;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当接收到JSON字符串时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">InterfaceCodeResult codeResult=JSONObject.parseObject(InterfaceCodeResult.getRequestInfo(),InterfaceCodeResult<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"><span class="keyword">if</span>(PreInterfaceStatus.equals(codeResult.base.getTyep()))&#123;</span><br><span class="line">  <span class="keyword">return</span> JavaConvertUtil.conversion(codeResult, CodeParams<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>仅需要判断多个类型即可，对应字段会自动解析，当接收又臭又长的XML解析还需要后端验证时，需要封装Util类进行验证调用</p>
+<p>同步更新至微信公众号，请搜索:赵KK日常技术记录，不定时更新文章内容</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-06-02T00:14:09.715Z" itemprop="dateUpdated">2020-06-02 08:14:09</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="zhaozhenkun888.github.io">
+            <img src="/img/avatar.jpg" alt="赵KK">
+            赵KK
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/&title=《拒绝解析又臭又长的JSON》 — 赵KK的个人博客&pic=zhaozhenkun888.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/&title=《拒绝解析又臭又长的JSON》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《拒绝解析又臭又长的JSON》 — 赵KK的个人博客&url=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/&via=zhaozhenkun888.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/06/02/SpringCloudAlibaba%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E6%96%B0%E5%8F%91%E7%8E%B0/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SpringCloudAlibaba服务注册新发现</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>赵KK &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/&title=《拒绝解析又臭又长的JSON》 — 赵KK的个人博客&pic=zhaozhenkun888.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/&title=《拒绝解析又臭又长的JSON》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《拒绝解析又臭又长的JSON》 — 赵KK的个人博客&url=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/&via=zhaozhenkun888.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=zhaozhenkun888.github.io/2020/06/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
