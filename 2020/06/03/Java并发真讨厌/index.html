@@ -29,7 +29,7 @@
 <meta property="og:description" content="volatile 解决的是多核CPU带来的缓存与CPU之间数据的可见性 如何创建一个线程new Thread如何创建一个进程runtimeruntime.exec(“”);java无法销毁一个线程，只能改变线程状态thread.Alive() 返回false时已经被销毁thread_main_inner 2.如何通过JAVA API启动线程thread.start()3.如何指定代码执行顺序 jo">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-03T05:44:19.000Z">
-<meta property="article:modified_time" content="2020-06-03T06:09:31.003Z">
+<meta property="article:modified_time" content="2020-06-03T06:13:28.216Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="并发编程">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
 <p>如何将普通 Li s t、Set 以及 Map 转化为线程安全对象？<br>把普通的集合转为线程安全的<br>Collections.synchronizedList()方法，都被同步</p>
 <p>Vector所有方法都是同步的  返回fastfail</p>
 <p>CopyOnWriteArrayList   弱一致性的实现</p>
-<p>Arrays#asList(Object. . .) 方法是线程安全的吗？如果不是的话，如何实现替代方案？<br>并非线程安全，三种解决<br>请至少举出三种线程安全的 Set 实现？<br>synchronizedSet<br>CopyOnWriteArraySet<br>CopyOnWriteArrayList<br>CopyOnWriteArraySet<br>ConcurentSkipListSet<br>ConcurrentHashMap 与 ConcurrentSkipListMap<br>ConcurrentHashMap 加锁<br>ConcurrentSkipListMap  不需要加锁，浪费空间，</p>
+<p>Arrays#asList(Object. . .) 方法是线程安全的吗？如果不是的话，如何实现替代方案？<br>并非线程安全，三种解决<br>请至少举出三种线程安全的 Set 实现？<br>synchronizedSet<br>CopyOnWriteArraySet<br>CopyOnWriteArrayList<br>CopyOnWriteArraySet<br>ConcurentSkipListSet<br>ConcurrentHashMap 与 ConcurrentSkipListMap<br>ConcurrentHashMap 加锁<br>ConcurrentSkipListMap  不需要加锁，浪费空间，<br>从性能来说，synchronizedSet，Collections.synchronizedList()方法原理都是加了<br>synchronized关键字，性能低下，推荐ConcurrentHashMap系列</p>
 <p>java并发框架</p>
 <p>为什么会出现？<br>知识点穿插<br>reentrantLock与reentrantReadWriteLock的区别<br>不光要去看源码也要去看如何命名的?设计是一部分，<br>重进入的体现:acquire调了N次<br>2020年5月8日21:32:53   优先级<br>相似：都是可进入的，都是互斥的，都是锁<br>2020年3月3日11:04:25更新<br>[<br>都是互斥<br>lock，unlock<br>其中 arg视为信号量</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">acquire</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!tryAcquire(arg) &amp;&amp;</span><br><span class="line">        acquireQueued(addWaiter(Node.EXCLUSIVE), arg))</span><br><span class="line">        selfInterrupt();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">↓</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -266,7 +266,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-06-03T06:09:31.003Z" itemprop="dateUpdated">2020-06-03 14:09:31</time>
+    Last updated: <time datetime="2020-06-03T06:13:28.216Z" itemprop="dateUpdated">2020-06-03 14:13:28</time>
 </span><br>
 
 
