@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="问题来源https:&#x2F;&#x2F;www.bilibili.com&#x2F;read&#x2F;cv46544691.线程参数的含义？估计是想问线程池参数的含义吧                                                                                              Alt text              int corePoolSize：">
+    <meta name="description" content="问题来源https:&#x2F;&#x2F;www.bilibili.com&#x2F;read&#x2F;cv46544691.线程参数的含义？估计是想问线程池参数的含义吧                                                                                              图1              int corePoolSize：常驻线程数i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字节跳动面经个人搜索答案">
 <meta property="og:url" content="zhaozhenkun888.github.io/2020/06/15/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E9%9D%A2%E7%BB%8F%E4%B8%AA%E4%BA%BA%E6%90%9C%E7%B4%A2%E7%AD%94%E6%A1%88/index.html">
 <meta property="og:site_name" content="赵KK的个人博客">
-<meta property="og:description" content="问题来源https:&#x2F;&#x2F;www.bilibili.com&#x2F;read&#x2F;cv46544691.线程参数的含义？估计是想问线程池参数的含义吧                                                                                              Alt text              int corePoolSize：">
+<meta property="og:description" content="问题来源https:&#x2F;&#x2F;www.bilibili.com&#x2F;read&#x2F;cv46544691.线程参数的含义？估计是想问线程池参数的含义吧                                                                                              图1              int corePoolSize：常驻线程数i">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/m1.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/m2.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/m5.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/m6.png">
 <meta property="article:published_time" content="2020-06-15T02:48:11.000Z">
-<meta property="article:modified_time" content="2020-06-15T03:03:53.827Z">
+<meta property="article:modified_time" content="2020-06-15T05:39:38.471Z">
 <meta property="article:author" content="赵KK">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://47.105.116.133:8080/upload/m1.png">
@@ -199,9 +199,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m1.png" alt="Alt text" title="">
+                    <img src="http://47.105.116.133:8080/upload/m1.png" alt="图1" title="">
                 </div>
-                <div class="image-caption">Alt text</div>
+                <div class="image-caption">图1</div>
             </figure>
 <p>int corePoolSize：常驻线程数<br>int maximumPoolSize：线程池同时执行的最大线程数，&gt;=1<br>long keepAliveTime:空闲线程的存活时间<br>TimeUnit unit：keepAliveTime的单位<br>BlockingQueueworkQueue：被提交等待被执行的任务<br>ThreadFactory threadFactory：工作线程的线程工厂<br>RejectedExecutionHandler handler：线程池拒绝策略<br>–可能引申线程个数的设置分为CPU密集型和IO密集型<br>CPU密集型多为cpu运算频繁的：设置CPU核数+1<br>IO密集型：设置cpu核数</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Support class for thread pool size</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Nadeem Mohammad</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolUtil</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">ThreadPoolUtil</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Each tasks blocks 90% of the time, and works only 10% of its</span></span><br><span class="line"><span class="comment">	 *	lifetime. That is, I/O intensive pool</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> io intesive Thread pool size</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">ioIntesivePoolSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">double</span> blockingCoefficient = <span class="number">0.9</span>;</span><br><span class="line">		<span class="keyword">return</span> poolSize(blockingCoefficient);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * Number of threads = Number of Available Cores / (1 - Blocking</span></span><br><span class="line"><span class="comment">	 * Coefficient) where the blocking coefficient is between 0 and 1.</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * A computation-intensive task has a blocking coefficient of 0, whereas an</span></span><br><span class="line"><span class="comment">	 * IO-intensive task has a value close to 1,</span></span><br><span class="line"><span class="comment">	 * so we don't have to worry about the value reaching 1.</span></span><br><span class="line"><span class="comment">	 *  <span class="doctag">@param</span> blockingCoefficient the coefficient</span></span><br><span class="line"><span class="comment">	 *  <span class="doctag">@return</span> Thread pool size</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">poolSize</span><span class="params">(<span class="keyword">double</span> blockingCoefficient)</span> </span>&#123;</span><br><span class="line">           <span class="comment">//cpu核数</span></span><br><span class="line">		<span class="keyword">int</span> numberOfCores = Runtime.getRuntime().availableProcessors();</span><br><span class="line">  </span><br><span class="line">		<span class="keyword">int</span> poolSize = (<span class="keyword">int</span>) (numberOfCores / (<span class="number">1</span> - blockingCoefficient));</span><br><span class="line">		<span class="keyword">return</span> poolSize;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -220,25 +220,25 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m2.png" alt="Alt text" title="">
+                    <img src="http://47.105.116.133:8080/upload/m2.png" alt="图2" title="">
                 </div>
-                <div class="image-caption">Alt text</div>
+                <div class="image-caption">图2</div>
             </figure>
 <p>①客户端发送报文===&gt;<br>②服务端收到报文，结束监听，返回一段报文<br>③客户端确认收到TCP报文，并返回最后一段TCP报文<br>即SYN建立连接报文与ACK确认接收报文是在同一次”握手”当中传输的，所以”三次握手”不多也不少，正好让双方明确彼此信息互通<br>所谓的四次挥手即TCP连接的释放(解除)。连接的释放必须是一方主动释放，另一方被动释放<br>都是由客户端发起<br>TCP4次挥手即TCP链接的释放</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m3.png" alt="Alt text" title="">
+                    <img src="http://47.105.116.133:8080/upload/m3.png" alt="图3" title="">
                 </div>
-                <div class="image-caption">Alt text</div>
+                <div class="image-caption">图3</div>
             </figure>
 <p>①客户端想要释放链接，向服务端发送一段TCP报文<br>②服务器端接受，表示确认，进入半关闭状态，并返回一段<br>前”两次挥手”既让服务器端知道了客户端想要释放连接，也让客户端知道了服务器端了解了自己想要释放连接的请求。于是，可以确认关闭客户端到服务器端方向上的连接了<br>③服务器端确认报文，释放链接，再次向客户端发送<br>④客户端收到报文，确认准备释放，向服务端发送一段报文<br>TCP释放连接时之所以需要“四次挥手”,是因为FIN释放连接报文与ACK确认接收报文是分别由第二次和第三次”握手”传输的。为何建立连接时一起传输，释放连接时却要分开传输<br>volatile<br>1.解决的是多核CPU带来的缓存与CPU之间数据的可见性<br>JMM:java内存模型<br>1.线程解锁前，必须把共享变量刷新回主内存<br>2.线程加锁前，必须读取主内存的最新值到自己的工作内存<br>3.加锁与解锁必须是同一把锁</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m4.png" alt="Alt text" title="">
+                    <img src="http://47.105.116.133:8080/upload/m4.png" alt="图4" title="">
                 </div>
-                <div class="image-caption">Alt text</div>
+                <div class="image-caption">图4</div>
             </figure>
 <p>volatile实现内存指令重排，保证可见性和禁止指令重排，<br>可保证一段内存中一个变量的原子性，原生类型都是原子性的。所以java中  volatile long，volatile double都是线程安全的<br>9.乐观锁，悲观锁<br>悲观锁(Pessimistic Lock), 每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会block直到它拿到锁。<br>乐观锁(Optimistic Lock), 每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。<br>两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下，即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。但如果经常产生冲突，上层应用会不断的进行retry，这样反倒是降低了性能，所以这种情况下用悲观锁就比较合适<br>10.HashMap结构，是否线程安全，ConcurrentHashMap如何保证线程安全。<br>HashMap在java1.7之前底层数据结构是数组+链表，1.8之后是数组+链表+红黑树，<br>在1.7以前的put方法采用的是头插法，当hash碰撞次数到达8，且桶内元素到达64个的时候形成链表，但是在极端情况下会造成链表过长，效率变低，并且在rehash的时候，头插法会造成回环链首尾相连，形成死锁，在java1.8以后采用红黑树，除了删除效率都高，是线程不安全的，不安全示例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMapTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        HashMapThread thread0 = <span class="keyword">new</span> HashMapThread();</span><br><span class="line">        HashMapThread thread1 = <span class="keyword">new</span> HashMapThread();</span><br><span class="line">        HashMapThread thread2 = <span class="keyword">new</span> HashMapThread();</span><br><span class="line">        HashMapThread thread3 = <span class="keyword">new</span> HashMapThread();</span><br><span class="line">        HashMapThread thread4 = <span class="keyword">new</span> HashMapThread();</span><br><span class="line">        thread0.start();</span><br><span class="line">        thread1.start();</span><br><span class="line">        thread2.start();</span><br><span class="line">        thread3.start();</span><br><span class="line">        thread4.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashMapThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AtomicInteger ai = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (ai.get() &lt; <span class="number">1000000</span>) &#123;</span><br><span class="line">            map.put(ai.get(), ai.get());</span><br><span class="line">            ai.incrementAndGet();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -246,17 +246,17 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m5.png" alt="Alt text" title="">
+                    <img src="http://47.105.116.133:8080/upload/m5.png" alt="图5" title="">
                 </div>
-                <div class="image-caption">Alt text</div>
+                <div class="image-caption">图5</div>
             </figure>
 <p>ConcurrentHashMap 与 ConcurrentSkipListMap<br>ConcurrentHashMap 加锁<br>ConcurrentSkipListMap  不需要加锁，浪费空间，<br>4.ConcurrentHashMap<br>ConcurrentHashMap如何保证线程安全，在1.7以前由划分segment分段锁机制，共计16个并发级别，隔离级别太大，有很多空间就浪费了，太小就段内的元素过多<br>1.8以后是cas算法C语言写得，无锁算法，put添加的时候，链表+红黑树<br>put方法（无锁添加）</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m6.png" alt="Alt text" title="">
+                    <img src="http://47.105.116.133:8080/upload/m6.png" alt="图6" title="">
                 </div>
-                <div class="image-caption">Alt text</div>
+                <div class="image-caption">图6</div>
             </figure>
 <p>11.之前用过哪些设计模式<br>延伸设计模式的单一职责原则，开闭原则等<br>目前项目再用的是责任链设计模型，像动态代理，装饰者，工厂模式，在Spring的源码中都有体现，责任链模式指在处理请求流程的耦合<br> <a href="https://mp.weixin.qq.com/s?__biz=Mzg2ODA3NjA1MA==&mid=2247484453&idx=1&sn=3f4160943cab8fa5f22048b66f7bc588&chksm=ceb09b58f9c7124e65565183cac89fe041f8cec1e06f4e1711d614957ea2ce4bb02a16b8ff3d&token=1711145754&lang=zh_CN#rd" target="_blank" rel="noopener">责任链模式</a>.<br>二面<br>1.说一下B树和B+树的区别<br>索引结构：BTree B+Tree  B：balance<br>BTree：平衡二叉树<br>特点：1.具有数据节点<br>       2.指向下层指针<br>    3.指向数据指针<br>缺页查询,产生IO<br>B+Tree：<br>特点:1.具有数据节点<br>   2.指向下层指针<br>命中数据3层查找后查询数据指针<br>加载更快，产生更少IO<br>效率：BTree更高，但从IO角度，Mysql选择B+Tree<br>2.说一下HashMap的实现，扩容机制，扩容时如何保证操作<br>put 方法比较复杂，实现步骤大致如下：<br>1、先通过 hash 值计算出 key 映射到哪个桶。<br>2、如果桶上没有碰撞冲突，则直接插入。<br>3、如果出现碰撞冲突了，则需要处理冲突：<br>（1）如果该桶使用红黑树处理冲突，则调用红黑树的方法插入。<br>（2）否则采用传统的链式方法插入。如果链的长度到达临界值，则把链转变为红<br>黑树。<br>4、如果桶中存在重复的键，则为该键替换新值。<br>5、如果 size 大于阈值(8)，则进行扩容</p>
 <p>根据hash算法得到hash码值，也就是数组的索引值，在判断是否有对象，如果没有则放入<br>如果有则先通过equals比较两个对象的内容，如果内容一样，则覆盖value，<br>如果内容不一样，形成链表，1.7后加的放前面，这种情况叫做hash碰撞，这种情况我们是尽可能避免的，如果这里的元素过多的话，插入效率过低，为了避免的话，重写hashcode和equals方法保持一致，这种情况避免不了<br>加载因子，当到达元素个数的0.75，进行扩容，扩容则每个元素重新运算位置，，如果到达100%其他位置可能会不存入，如果太小，则频繁扩容，可浪费空间。这样碰撞的概率会降低，但是极端情况下还是需要查询每个元素比较，效率极低。<br>1.8以后，数组+链表+红黑树<br>当碰撞的个数大于8时，并且总容量大于64时，将链表转为红黑树，除了添加以外其他的效率都高，jdk1.8加到链表末尾，扩容以后不需要运行hash算法计算hashcode值。原来hash表的总长度，加上hash表的现在的位置，就放到第8个位置即可。<br>3.redis扩容机制(渐进式单线程扩容)<br>Redis是一个键值对（key-value pair）数据库服务器，Redis服务器结构是redis.h/redisServer结构表示，Redis服务器中的所有数据库保存在db数组中，数据库的结构是redis.h/redisDb，其中，redisDb结构的dict字典保存了数据库中的所有键值对，所以，说起Redis的扩容机制，指的就是字典中哈希表的rehash（重新散列）操作<br>在实际开发过程中，这个rehash 操作并不是一次性、集中式完成的，而是分多次、渐进式地完成的。<br>　　　　渐进式rehash 的详细步骤：<br>　　　　　　1、为ht[1] 分配空间，让字典同时持有ht[0]和ht[1]两个哈希表<br>　　　　　　2、在几点钟维持一个索引计数器变量rehashidx，并将它的值设置为0，表示rehash 开始<br>　　　　　　3、在rehash 进行期间，每次对字典执行CRUD操作时，程序除了执行指定的操作以外，还会将ht[0]中的数据rehash 到ht[1]表中，并且将rehashidx加一<br>　　　　　　4、当ht[0]中所有数据转移到ht[1]中时，将rehashidx 设置成-1，表示rehash 结束<br>　　　　采用渐进式rehash 的好处在于它采取分而治之的方式，避免了集中式rehash 带来的庞大计算量。<br>作者：13693160765<br>链接：<a href="https://www.jianshu.com/p/ea5a747ade5d" target="_blank" rel="noopener">https://www.jianshu.com/p/ea5a747ade5d</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
@@ -268,7 +268,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-06-15T03:03:53.827Z" itemprop="dateUpdated">2020-06-15 11:03:53</time>
+    Last updated: <time datetime="2020-06-15T05:39:38.471Z" itemprop="dateUpdated">2020-06-15 13:39:38</time>
 </span><br>
 
 
