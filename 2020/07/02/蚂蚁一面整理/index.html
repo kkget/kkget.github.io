@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>蚂蚁一面整理 | 赵KK的个人博客 | 纠结体本体,同步记录日常笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="面经">
+    <meta name="description" content="1.java的同步容器，并发容器？同步：即每次只有一个线程访问容器状态。并发：即每次可有多个线程访问容器状态。同步容器：Vector，HashTable并发容器：ConCurrentHashMap，CopeyOnwrite当并发读远多于修改的场景下需要使用List和Set时，可以考虑使用CopyOnWriteArrayList和CopyOnWriteArraySet；当需要并发使用&lt;Key,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蚂蚁一面整理">
+<meta property="og:url" content="zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/index.html">
+<meta property="og:site_name" content="赵KK的个人博客">
+<meta property="og:description" content="1.java的同步容器，并发容器？同步：即每次只有一个线程访问容器状态。并发：即每次可有多个线程访问容器状态。同步容器：Vector，HashTable并发容器：ConCurrentHashMap，CopeyOnwrite当并发读远多于修改的场景下需要使用List和Set时，可以考虑使用CopyOnWriteArrayList和CopyOnWriteArraySet；当需要并发使用&lt;Key,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-02T07:48:21.000Z">
+<meta property="article:modified_time" content="2020-07-02T07:49:17.432Z">
+<meta property="article:author" content="赵KK">
+<meta property="article:tag" content="面经">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="赵KK的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵KK</h5>
+          <a href="mailto:1462018576@qq.com" title="1462018576@qq.com" class="mail">1462018576@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://47.105.116.133:8080/upload/258.jpg" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-link"></i>
+                微信公众号
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">蚂蚁一面整理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">蚂蚁一面整理</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-07-02T07:48:21.000Z" itemprop="datePublished" class="page-time">
+  2020-07-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-蚂蚁一面整理"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">蚂蚁一面整理</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-07-02 15:48:21" datetime="2020-07-02T07:48:21.000Z"  itemprop="datePublished">2020-07-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>1.java的同步容器，并发容器？<br>同步：即每次只有一个线程访问容器状态。<br>并发：即每次可有多个线程访问容器状态。<br>同步容器：Vector，HashTable<br>并发容器：ConCurrentHashMap，CopeyOnwrite<br>当并发读远多于修改的场景下需要使用List和Set时，可以考虑使用CopyOnWriteArrayList和CopyOnWriteArraySet；<br>当需要并发使用&lt;Key, Value&gt;键值对存取数据时，可以使用ConcurrentHashMap；<br>当要保证并发&lt;Key, Value&gt;键值对有序时可以使用ConcurrentSkipListMap。<br>2.ArrayList和LinkedList的插入和访问的复杂度<br>即数组与链表的访问插入复杂度<br>1&gt;.数组在访问时可通过下标直接查询，复杂度O(1),链表复杂度O(n)<br>2&gt;.数组插入时数组下标需要移动O(n)，链表直接操作指针O(1)<br>3.反射原理？注解原理？<br>反射原理—&gt;<br>反射可动态加载外部配置对象，通过class.forName加载类信息，而forName方法就是通过反射类调用的类信息，<br>jvm加载获取到里面的classLoader，通过native方法获取类信息，最终调用invoke0()方法，反射是线程安全的，<br>loadClass方法是synchronized，找到需要的方法，都会copy一份出来，而不是使用原来的实例，从而保证数据隔离；<br>注解原理—&gt;<br>注解等同于加了标记,注解本质是一个继承了Annotation 的特殊接口，其具体实现类是Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是Java 运行时生成的动态代理对象$Proxy1。通过代理对象调用自定义注解（接口）的方法，会最终调用AnnotationInvocationHandler 的invoke 方法。该方法会从memberValues 这个Map 中索引出对应的值。而memberValues 的来源是Java 常量池<br>注解参数成员必须是public的，没有成员方法也行，但是就没得意义了<br>4.新生代分为几个区？使用什么算法进行垃圾回收？为什么使用这个算法？<br>新生代分为Eden区，幸存from区，幸存to区，大小比例8:1:1<br>新生代使用复制算法，高效，省去了标记整理的过程，新生代需要清理的对象数量巨大，复制算法浪费空间，但效率高，<br>引申<br>—&gt;jvm分区<br>堆栈方法区<br>堆管存储，类实例和数组对象存储<br>粘管运行，基础数据类型和引用，栈帧<br>1.8之前是方法区，1.8之后改为元空间，静态变量 + 常量 + 类信息(构造方法/接口定义) + 运行时常量池存在方法区中<br>—&gt;垃圾回收算法<br>复制算法，标记清除，标记压缩，引用计数算法，可达性分析算法<br>—&gt;JMM<br>java  memory model<br>—&gt;垃圾收集器<br>并行 串行 并发标记 G1 ZGC<br>G1不产生内存碎片 可精准控制停顿<br>5.如何处理接口的重复请求？不得不说他不好好问，意思就是如何保证接口的幂等性<br>分布式系统中，服务部署在不同的服务器上，但是数据要保证打到一个redis上<br>对于每个请求必须有一个唯一的标识。举个例子：订单支付请求，肯定得包含订单 id，一个订单 id 最多支付一次。<br>每次处理完请求之后，必须有一个记录标识这个请求处理过了。常见的方案是在数据库中记录个状态，比如支付之前记录一条这个订单的支付流水。<br>每次接收请求需要进行判断，判断之前是否处理过。比如说，如果有一个订单已经支付了，就已经有了一条支付流水，那么如果重复发送这个请求，则此时先插入支付流水，orderId 已经存在了，唯一键约束生效，报错插入不进去的。然后系统就不用再扣款了。<br>在网络延迟传输中，会造成消息队列重试，在充实过程中，消息会存在重复</p>
+<p>解决方案：</p>
+<p>  1.如果是数据库的插入操作，给消息做一个主键，避免出现脏数据。</p>
+<p>  2.使用第三方做消费记录，例如Redis，全局id为K，消息为V，写入到Redis，消费之前先去查Redis是否存在</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-02T07:49:17.432Z" itemprop="dateUpdated">2020-07-02 15:49:17</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/" target="_blank" rel="external">zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="zhaozhenkun888.github.io">
+            <img src="/img/avatar.jpg" alt="赵KK">
+            赵KK
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag">面经</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/&title=《蚂蚁一面整理》 — 赵KK的个人博客&pic=zhaozhenkun888.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/&title=《蚂蚁一面整理》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《蚂蚁一面整理》 — 赵KK的个人博客&url=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/&via=zhaozhenkun888.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/07/02/List%E9%81%8D%E5%8E%86%E5%88%A0%E9%99%A4/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">List遍历删除</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "5qofQKP6PLlRGj9AKdN2wFy8-gzGzoHsz",
+            appKey: "MUjdIW5XaUutRWAdIFu4IdxP",
+            avatar: "mm",
+            placeholder: "Just do it",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+			<span style="text-align: center" id="sitetime"></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>赵KK &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var t1 = Date.UTC(2018,02,13,15,00,00); //北京时间2018-2-13 00:00:00
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 本站点已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+	siteTime();
+</script>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/&title=《蚂蚁一面整理》 — 赵KK的个人博客&pic=zhaozhenkun888.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/&title=《蚂蚁一面整理》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《蚂蚁一面整理》 — 赵KK的个人博客&url=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/&via=zhaozhenkun888.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=zhaozhenkun888.github.io/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/" alt="微信分享二维码">
+</div>
+
+
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你给我回来!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+	<script type="text/javascript" src="/js/clicklove.js"></script>
+	<!--单击显示文字-->
+	<script type="text/javascript" src="/js/click_show_text.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/01/assets/haru01.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
