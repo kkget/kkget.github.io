@@ -29,8 +29,9 @@
 <meta property="og:description" content="1.java的同步容器，并发容器？同步：即每次只有一个线程访问容器状态。并发：即每次可有多个线程访问容器状态。同步容器：Vector，HashTable并发容器：ConCurrentHashMap，CopeyOnwrite–当并发读远多于修改的场景下需要使用List和Set时，可以考虑使用CopyOnWriteArrayList和CopyOnWriteArraySet；–当需要并发使用&lt;Ke">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/cms.png">
 <meta property="article:published_time" content="2020-07-02T07:48:21.000Z">
-<meta property="article:modified_time" content="2020-07-06T01:40:53.064Z">
+<meta property="article:modified_time" content="2020-07-06T01:47:56.180Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="面经">
 <meta name="twitter:card" content="summary">
@@ -215,7 +216,15 @@
 <p>   FGC ：全堆范围的gc。默认堆空间使用到达80%(可调整)的时候会触发fgc。                                                    （标记整理或者标记清除算法 —&gt; 一般适用于对象存活率高的场景）</p>
 <p>2、什么时候执行YGC和FGC</p>
 <p>   1、eden空间不足,执行 young gc</p>
-<p>   2、old空间不足，perm空间不足，调用方法System.gc() ，ygc时的悲观策略, dump live的内存信息时(jmap –dump:live)，都会执行full gc<br>3.JVM老年代和新生代的比例<br>在 Java 中，堆被划分成两个不同的区域：新生代 ( Young )、老年代 ( Old )。新生代 ( Young ) 又被划分为三个区域：Eden、From Survivor、To Survivor。<br>这样划分的目的是为了使 JVM 能够更好的管理堆内存中的对象，包括内存的分配以及回收。<br>新生代 ( Young ) 与老年代 ( Old ) 的比例的值为 1:2 ( 该值可以通过参数 –XX:NewRatio 来指定 )，即：新生代 ( Young ) = 1/3 的堆空间大小。老年代 ( Old ) = 2/3 的堆空间大小。其中，新生代 ( Young ) 被细分为 Eden 和 两个 Survivor 区域，这两个 Survivor 区域分别被命名为 from 和 to，以示区分。<br>默认的，Eden : from : to = 8 : 1 : 1 ( 可以通过参数 –XX:SurvivorRatio 来设定 )<br>—&gt;JMM<br>java  memory model<br>—&gt;垃圾收集器<br>并行 串行 并发标记 G1 ZGC<br>G1不产生内存碎片 可精准控制停顿<br>5.如何处理接口的重复请求？不得不说他不好好问，目的是问如何保证接口的幂等性?<br>分布式系统中，服务部署在不同的服务器上，但是数据要保证打到一个redis上<br>对于每个请求必须有一个唯一的标识。举个例子：订单支付请求，肯定得包含订单 id，一个订单 id 最多支付一次。<br>每次处理完请求之后，必须有一个记录标识这个请求处理过了。常见的方案是在数据库中记录个状态，比如支付之前记录一条这个订单的支付流水。<br>每次接收请求需要进行判断，判断之前是否处理过。比如说，如果有一个订单已经支付了，就已经有了一条支付流水，那么如果重复发送这个请求，则此时先插入支付流水，orderId 已经存在了，唯一键约束生效，报错插入不进去的。然后系统就不用再扣款了。<br>在网络延迟传输中，会造成消息队列重试，在充实过程中，消息会存在重复</p>
+<p>   2、old空间不足，perm空间不足，调用方法System.gc() ，ygc时的悲观策略, dump live的内存信息时(jmap –dump:live)，都会执行full gc<br>3.JVM老年代和新生代的比例<br>在 Java 中，堆被划分成两个不同的区域：新生代 ( Young )、老年代 ( Old )。新生代 ( Young ) 又被划分为三个区域：Eden、From Survivor、To Survivor。<br>这样划分的目的是为了使 JVM 能够更好的管理堆内存中的对象，包括内存的分配以及回收。<br>新生代 ( Young ) 与老年代 ( Old ) 的比例的值为 1:2 ( 该值可以通过参数 –XX:NewRatio 来指定 )，即：新生代 ( Young ) = 1/3 的堆空间大小。老年代 ( Old ) = 2/3 的堆空间大小。其中，新生代 ( Young ) 被细分为 Eden 和 两个 Survivor 区域，这两个 Survivor 区域分别被命名为 from 和 to，以示区分。<br>默认的，Eden : from : to = 8 : 1 : 1 ( 可以通过参数 –XX:SurvivorRatio 来设定 )<br>—&gt;JMM<br>java  memory model<br>—&gt;垃圾收集器<br>并行 串行 并发标记 CMS G1 ZGC<br>G1不产生内存碎片 可精准控制停顿<br>–&gt;CMS垃圾回收过程<br>1.总体介绍：<br>CMS(Concurrent Mark-Sweep)是以牺牲吞吐量为代价来获得最短回收停顿时间的垃圾回收器。对于要求服务器响应速度的应用上，这种垃圾回收器非常适合。在启动JVM参数加上-XX:+UseConcMarkSweepGC ，这个参数表示对于老年代的回收采用CMS。CMS采用的基础算法是：标记—清除。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/cms.png" alt="CMS" title="">
+                </div>
+                <div class="image-caption">CMS</div>
+            </figure>
+<p>2.CMS过程：<br>初始标记(STW initial mark)<br>并发标记(Concurrent marking)<br>并发预清理(Concurrent precleaning)<br>重新标记(STW remark)<br>并发清理(Concurrent sweeping)<br>并发重置(Concurrent reset)<br>5.如何处理接口的重复请求？不得不说他不好好问，目的是问如何保证接口的幂等性?<br>分布式系统中，服务部署在不同的服务器上，但是数据要保证打到一个redis上<br>对于每个请求必须有一个唯一的标识。举个例子：订单支付请求，肯定得包含订单 id，一个订单 id 最多支付一次。<br>每次处理完请求之后，必须有一个记录标识这个请求处理过了。常见的方案是在数据库中记录个状态，比如支付之前记录一条这个订单的支付流水。<br>每次接收请求需要进行判断，判断之前是否处理过。比如说，如果有一个订单已经支付了，就已经有了一条支付流水，那么如果重复发送这个请求，则此时先插入支付流水，orderId 已经存在了，唯一键约束生效，报错插入不进去的。然后系统就不用再扣款了。<br>在网络延迟传输中，会造成消息队列重试，在充实过程中，消息会存在重复</p>
 <p>解决方案：</p>
 <p>  1.如果是数据库的插入操作，给消息做一个主键，避免出现脏数据。</p>
 <p>  2.使用第三方做消费记录，例如Redis，全局id为K，消息为V，写入到Redis，消费之前先去查Redis是否存在<br>–&gt;引申分布式系统中如何生成高效的分布式唯一ID   雪花算法<br>可用分布式锁,redis 递增,机器的唯一码 拿出几位存为机器id,这样一来每次查询操作相对更快</p>
@@ -229,7 +238,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-07-06T01:40:53.064Z" itemprop="dateUpdated">2020-07-06 09:40:53</time>
+    Last updated: <time datetime="2020-07-06T01:47:56.180Z" itemprop="dateUpdated">2020-07-06 09:47:56</time>
 </span><br>
 
 
