@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>编程算法题 | 赵KK的个人博客 | 纠结体本体,同步记录日常笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="算法">
+    <meta name="description" content="#一：力扣第14题 编写一个函数来查找字符串数组中的最长公共前缀 官方解法：##方法一：横向扫描                                                                                                            基于该结论，可以得到一种查找字符串数组中的最长公共前缀的简单方法。依次遍历字符串数组中的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编程算法题">
+<meta property="og:url" content="zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="赵KK的个人博客">
+<meta property="og:description" content="#一：力扣第14题 编写一个函数来查找字符串数组中的最长公共前缀 官方解法：##方法一：横向扫描                                                                                                            基于该结论，可以得到一种查找字符串数组中的最长公共前缀的简单方法。依次遍历字符串数组中的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/leetcode/1.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/leetcode/2.png">
+<meta property="article:published_time" content="2020-07-08T01:36:18.000Z">
+<meta property="article:modified_time" content="2020-07-08T03:01:42.292Z">
+<meta property="article:author" content="赵KK">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://47.105.116.133:8080/upload/leetcode/1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="赵KK的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵KK</h5>
+          <a href="mailto:1462018576@qq.com" title="1462018576@qq.com" class="mail">1462018576@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://47.105.116.133:8080/upload/258.jpg" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-link"></i>
+                微信公众号
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">编程算法题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">编程算法题</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-07-08T01:36:18.000Z" itemprop="datePublished" class="page-time">
+  2020-07-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-编程算法题"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">编程算法题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-07-08 09:36:18" datetime="2020-07-08T01:36:18.000Z"  itemprop="datePublished">2020-07-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>#一：力扣第14题 编写一个函数来查找字符串数组中的最长公共前缀</p>
+<p>官方解法：<br>##方法一：<strong>横向扫描</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/leetcode/1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>基于该结论，可以得到一种查找字符串数组中的最长公共前缀的简单方法。依次遍历字符串数组中的每个字符串，对于每个遍历到的字符串，更新最长公共前缀，当遍历完所有的字符串以后，即可得到字符串数组中的最长公共前缀。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/leetcode/2.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如果在尚未遍历完所有的字符串时，最长公共前缀已经是空串，则最长公共前缀一定是空串，因此不需要继续遍历剩下的字符串，直接返回空串即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String prefix = strs[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> count = strs.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; count; i++) &#123;</span><br><span class="line">            prefix = longestCommonPrefix(prefix, strs[i]);</span><br><span class="line">            <span class="keyword">if</span> (prefix.length() == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prefix;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String str1, String str2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length = Math.min(str1.length(), str2.length());</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (index &lt; length &amp;&amp; str1.charAt(index) == str2.charAt(index)) &#123;</span><br><span class="line">            index++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str1.substring(<span class="number">0</span>, index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>复杂度分析<br>时间复杂度：O(mn)O(mn)，其中 mm 是字符串数组中的字符串的平均长度，nn 是字符串的数量。最坏情况下，字符串数组中的每个字符串的每个字符都会被比较一次。<br>空间复杂度：O(1)O(1)。使用的额外空间复杂度为常数。<br>作者：LeetCode-Solution<br>链接：<a href="https://leetcode-cn.com/problems/longest-common-prefix/solution/zui-chang-gong-gong-qian-zhui-by-leetcode-solution/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-common-prefix/solution/zui-chang-gong-gong-qian-zhui-by-leetcode-solution/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<hr>
+<p>#leetcode  用户灵魂画手<br><strong><em>思路</em></strong><br>标签：链表<br>当字符串数组长度为 0 时则公共前缀为空，直接返回<br>令最长公共前缀 ans 的值为第一个字符串，进行初始化<br>遍历后面的字符串，依次将其与 ans 进行比较，两两找出公共前缀，最终结果即为最长公共前缀<br>如果查找过程中出现了 ans 为空的情况，则公共前缀不存在直接返回<br>时间复杂度：O(s)O(s)，s 为所有字符串的长度之和<br><strong><em>代码</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(strs.length == <span class="number">0</span>) </span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        String ans = strs[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span>;i&lt;strs.length;i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(;j&lt;ans.length() &amp;&amp; j &lt; strs[i].length();j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(ans.charAt(j) != strs[i].charAt(j))</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = ans.substring(<span class="number">0</span>, j);</span><br><span class="line">            <span class="keyword">if</span>(ans.equals(<span class="string">""</span>))</span><br><span class="line">                <span class="keyword">return</span> ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>作者：guanpengchn<br>链接：<a href="https://leetcode-cn.com/problems/longest-common-prefix/solution/hua-jie-suan-fa-14-zui-chang-gong-gong-qian-zhui-b/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-common-prefix/solution/hua-jie-suan-fa-14-zui-chang-gong-gong-qian-zhui-b/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>#最易理解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        String s=<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> judge=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(strs.length==<span class="number">0</span>)&#123;<span class="comment">//数组为空直接返回""</span></span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;strs[<span class="number">0</span>].length();i++)&#123;</span><br><span class="line">            <span class="keyword">char</span> a=strs[<span class="number">0</span>].charAt(i);<span class="comment">//直接选择第一个数组元素，依次取这个字符串的字符</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;strs.length;j++)&#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(i&gt;=strs[j].length())&#123;<span class="comment">//因为每个字符串长度不同，防止溢出</span></span><br><span class="line">                    judge=<span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(a!=strs[j].charAt(i))&#123;</span><br><span class="line">                    judge=<span class="number">0</span>;<span class="comment">//只要存在不同，直接退出</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(j==strs.length-<span class="number">1</span>)&#123;</span><br><span class="line">                        s=s+a;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(judge==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">版权声明：本文为博主原创文章，遵循 CC <span class="number">4.0</span> BY-SA 版权协议，转载请附上原文出处链接和本声明。</span><br><span class="line">本文链接：https:<span class="comment">//blog.csdn.net/shancx/article/details/82746264</span></span><br></pre></td></tr></table></figure>
+<p>#二：未排序正整数数组中累加和为给定值的最长子数组长度<br>给定一个数组arr，该数组无序，每个数正数，给定一个K，求arr的所有子数组中所有元素相加和为k的最长子数组的长度。</p>
+<p>例如：arr=[1,2,1,1,1],k=3</p>
+<p>结果是3，[1,1,1]的长度。</p>
+<p>思路：</p>
+<p>首先用两个位置来标记子数组左右两头，记为left与right，开始的时候都在数组的最左边即left=right=0，过程如下：</p>
+<p>1，开始变量left=0，right=0，代表子数组arr[left,right];</p>
+<p>2，变量sum始终表示子数组arr[left,right]的和，开始的时候sum= arr[0],即是arr[0,0]的和；</p>
+<p>3，变量len一直记录累加和为k的所有子数组中最大子数组的长度，开始的时候len=0;</p>
+<p>4，根据sum与k的比较结果决定是left移动还right移动。若干sum==K，说明arr[left,right]累加和为k,如果长度大于len，更新len</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Array;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wuxiaosi on 2017/9/24.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">getMaxLength</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> k=<span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span>[] arr=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line">        System.out.println(getMaxLengthK(arr,k));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMaxLengthK</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(arr==<span class="keyword">null</span>||arr.length==<span class="number">0</span>||k&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>  <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> sum=arr[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> len=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(right&lt;arr.length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(sum==k)&#123;</span><br><span class="line">                len = Math.max(len,right-left+<span class="number">1</span>);</span><br><span class="line">                sum=sum-arr[left++];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(sum&lt;k)&#123;</span><br><span class="line">                right++;<span class="comment">//向右移动</span></span><br><span class="line">                <span class="keyword">if</span>(right==arr.length)&#123;<span class="comment">//right到数组边界长度，就break</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                sum=sum+arr[right];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                sum=sum-arr[left++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「wuxiaosi808」的原创文章，遵循CC <span class="number">4.0</span> BY-SA版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/wuxiaosi808/article/details/78079574</span></span><br></pre></td></tr></table></figure>
+<p>#三 有两个整数数组A1，A2，设计函数求其两个数组的最大值和第二大的值<br>思路一：</p>
+<p>1.获取最值需要进行比较，每一次比较都会有一个较大的值，因为该值的不确定性，通过一个变量进行临时存储。</p>
+<p>2.让数组中的每一个元素都和这个变量中的值进行比较，如果大于变量中的值，就用该变量记录较大值。</p>
+<p>3.当所有的元素都比较完成，那么该变量中的存储就是数组中的最大值了。</p>
+<p>步骤：</p>
+<p>1.定义变量，初始化为数组中的任意一个元素。</p>
+<p>2.通过循环语句对数组进行遍历。</p>
+<p>3.在变量过程中定义判断条件，如果遍历到的元素比变量中的元素大，就赋值给该变量。</p>
+<p>注意：</p>
+<p>通过定义一个功能来完成，以便提高代码的复用性。该功能结果为数组中的最大元素，未知内容为数组。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr1 = &#123;<span class="number">9</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">7</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> max1 = getMax(arr1);</span><br><span class="line">		System.out.println(<span class="string">"max1="</span>+max1);</span><br><span class="line">		<span class="keyword">double</span>[] arr2 = &#123;<span class="number">9.0</span>,<span class="number">5.0</span>,<span class="number">6.0</span>,<span class="number">3.0</span>,<span class="number">1.0</span>,<span class="number">2.0</span>,<span class="number">8.0</span>,<span class="number">7.0</span>&#125;;</span><br><span class="line">		<span class="keyword">double</span> max2 = getMax(arr2);</span><br><span class="line">		System.out.println(<span class="string">"max2="</span>+max2);</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//获取int类型数组最大值</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMax</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> max = arr[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[i]&gt;max)</span><br><span class="line">				max = arr[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> max;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//获取double类型数组最大值，功能相似，以重载的形式存在</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getMax</span><span class="params">(<span class="keyword">double</span>[] arr)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">double</span> max = arr[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[i]&gt;max)</span><br><span class="line">				max = arr[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> max;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>思路二：</p>
+<p>1.定义变量，初始化为数组角标0。</p>
+<p>2.通过循环语句对数组进行遍历。</p>
+<p>3.在变量过程中定义判断条件，如果遍历到的元素比角标所在的元素中的数值大，就将较大值的角标赋值给变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr1 = &#123;<span class="number">9</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">7</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> max1 = getMax(arr1);</span><br><span class="line">		System.out.println(<span class="string">"max1="</span>+max1);</span><br><span class="line">		<span class="keyword">double</span>[] arr2 = &#123;<span class="number">9.0</span>,<span class="number">5.0</span>,<span class="number">6.0</span>,<span class="number">3.0</span>,<span class="number">1.0</span>,<span class="number">2.0</span>,<span class="number">8.0</span>,<span class="number">7.0</span>&#125;;</span><br><span class="line">		<span class="keyword">double</span> max2 = getMax(arr2);</span><br><span class="line">		System.out.println(<span class="string">"max2="</span>+max2);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//获取int类型数组最大值</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMax</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[i]&gt;arr[max])</span><br><span class="line">				max = i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> arr[max];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//获取double类型数组最大值，功能相似，以重载的形式存在</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getMax</span><span class="params">(<span class="keyword">double</span>[] arr)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">double</span> max = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[i]&gt;arr[max])</span><br><span class="line">				max = i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> arr[max];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>————————————————<br>版权声明：本文为CSDN博主「Destiny_lt」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/ytu_lt/article/details/70160598" target="_blank" rel="noopener">https://blog.csdn.net/ytu_lt/article/details/70160598</a></p>
+<p>#四 翻转单词顺序列（I am a student.-&gt;student. a am I）<br>输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串”I am a student. “，则输出”student. a am I”<br>方法一：双指针<br>算法解析：<br>倒序遍历字符串 ss ，记录单词左右索引边界 ii , jj ；<br>每确定一个单词的边界，则将其添加至单词列表 resres ；<br>最终，将单词列表拼接为字符串，并返回即可。<br>复杂度分析：<br>时间复杂度 O(N)O(N) ： 其中 NN 为字符串 ss 的长度，线性遍历字符串。<br>空间复杂度 O(N)O(N) ： 新建的 list(Python) 或 StringBuilder(Java) 中的字符串总长度 \leq N≤N ，占用 O(N)O(N) 大小的额外空间。<br><strong><em>代码</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        s = s.trim(); <span class="comment">// 删除首尾空格</span></span><br><span class="line">        <span class="keyword">int</span> j = s.length() - <span class="number">1</span>, i = j;</span><br><span class="line">        StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; s.charAt(i) != <span class="string">' '</span>) i--; <span class="comment">// 搜索首个空格</span></span><br><span class="line">            res.append(s.substring(i + <span class="number">1</span>, j + <span class="number">1</span>) + <span class="string">" "</span>); <span class="comment">// 添加单词</span></span><br><span class="line">            <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; s.charAt(i) == <span class="string">' '</span>) i--; <span class="comment">// 跳过单词间空格</span></span><br><span class="line">            j = i; <span class="comment">// j 指向下个单词的尾字符</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toString().trim(); <span class="comment">// 转化为字符串并返回</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法二：分割 + 倒序<br>利用 “字符串分割”、“列表倒序” 的内置函数 （面试时不建议使用） ，可简便地实现本题的字符串翻转要求<br>复杂度分析：<br>时间复杂度 O(N)O(N) ： 总体为线性时间复杂度，各函数时间复杂度和参考资料链接如下。<br>split() 方法： 为 O(N)O(N) ；<br>trim() 和 strip() 方法： 最差情况下（当字符串全为空格时），为 O(N)O(N) ；<br>join() 方法： 为 O(N)O(N) ；<br>reverse() 方法： 为 O(N)O(N) ；<br>空间复杂度 O(N)O(N) ： 单词列表 strsstrs 占用线性大小的额外空间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        String[] strs = s.trim().split(<span class="string">" "</span>); <span class="comment">// 删除首尾空格，分割字符串</span></span><br><span class="line">        StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = strs.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123; <span class="comment">// 倒序遍历单词列表</span></span><br><span class="line">            <span class="keyword">if</span>(strs[i].equals(<span class="string">""</span>)) <span class="keyword">continue</span>; <span class="comment">// 遇到空单词则跳过</span></span><br><span class="line">            res.append(strs[i] + <span class="string">" "</span>); <span class="comment">// 将单词拼接至 StringBuilder</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toString().trim(); <span class="comment">// 转化为字符串，删除尾部空格，并返回</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：jyd</span><br><span class="line">链接：https:<span class="comment">//leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/solution/mian-shi-ti-58-i-fan-zhuan-dan-ci-shun-xu-shuang-z/</span></span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+<p>方法二</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">ReverseSentence</span><span class="params">(String str)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//先单个单词反转,再整体反转。I am a student.》》I ma a .tneduts 》》student. a am I</span></span><br><span class="line">        <span class="keyword">if</span>(str.length()==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span>[]chs=str.toCharArray();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//对单个字符数组元素进行反转</span></span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;<span class="comment">//定义两个指针进行遍历</span></span><br><span class="line">        <span class="keyword">while</span>(j&lt;=str.length())&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//以空格作为区分，对每个单词进行反转</span></span><br><span class="line">            <span class="keyword">if</span>(j==str.length()||chs[j]==<span class="string">' '</span>)&#123;<span class="comment">//j==str.length()不要忘记</span></span><br><span class="line">                reverse(chs,i,j-<span class="number">1</span>);</span><br><span class="line">                i=j+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果chs[j]!=' '那么继续遍历直到找到空格</span></span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//整体字符串反转</span></span><br><span class="line">        reverse(chs,<span class="number">0</span>,str.length()-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(chs);<span class="comment">//学习</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">char</span>[]ch,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">            <span class="comment">//反转交换,代码是一样的</span></span><br><span class="line">            <span class="keyword">char</span> temp=ch[i];</span><br><span class="line">            ch[i]=ch[j];</span><br><span class="line">            ch[j]=temp;</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">版权声明：本文为博主原创文章，遵循 CC <span class="number">4.0</span> BY-SA 版权协议，转载请附上原文出处链接和本声明。</span><br><span class="line">本文链接：https:<span class="comment">//blog.csdn.net/hefenglian/article/details/79932709</span></span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「洞玄之境」的原创文章，遵循CC <span class="number">4.0</span> BY-SA版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/hefenglian/article/details/79932709</span></span><br></pre></td></tr></table></figure>
+<p>#最牛逼的解法：JavaScript<br>解法：先用trim()把字符串两端空格去掉，split(‘ ‘)把字符串切割成以空格为界限的单词块，filter()过滤掉数组中的纯空格，reverse()进行数组反转，join(‘ ‘)把数组变成中间只带一个空格的字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> str = s.trim().split(<span class="string">' '</span>).filter(<span class="function"><span class="params">item</span> =&gt;</span> item!=<span class="string">''</span>).reverse().join(<span class="string">' '</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(str)</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">作者：CHH_</span><br><span class="line">链接：https:<span class="comment">//leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/solution/yi-xing-dai-ma-jie-jue-suo-you-by-chen-1wz/</span></span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+
+<p>暴力求解法(百度百科)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">暴力求解法, 又名直接带入法（Directly Calculating）它是已知最古老的算法之一，与&quot;直观目测法&quot;，&quot;心灵感应法&quot;并称世界三大不可思议数学计算法则， 其可追溯至3200年前，古老的埃及人便开始使用象形文字进行复杂的数学演算。它首次的文本出现是欧几里德的《几何原本》（第V卷，命题i和ii）中，而在中国则可以追溯至宋朝末年出现的沈括《梦溪笔谈》</span><br></pre></td></tr></table></figure>
+<p>暴力求解法的由来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在汉高祖时期有一个有趣的小故事是这样的:</span><br><span class="line">“高祖年间,大将军韩信征讨突厥得胜,七月七日凯旋而归，其时举国腾。信进宫，高祖曰:’淮阴侯乃真人也，战无不功克，朕三年尝闻智勇，招为爱卿，果其然，甚好甚慰。’信曰:’大王聪明仁惠，敬贤礼士，江表英豪贤归附，臣听闻蜀地龙光射牛斗之墟，人杰多地灵，又适王举兵招马，无怪骏才星驰。’高祖对曰:’今汝方成大业，且问卿求?’信:’乃望众亲赐匹布，以二渐累。’回:’善，明日使文库之卿，方得人数。’隔日使返，帝问:”需布甚许?”曰:”臣不才，方得淮阴侯亲友八十五者，食客则七百七十六人之众，臣斗胆以树枝编排数之方得须七三万千三百二十馀一匹”帝惊道:”甚许!乃至库之空不能所期，淮阴岂谋他意?”遂隔日将信斩之，不知了了。”</span><br></pre></td></tr></table></figure>
+<p>暴力求解法的演算<br>1.例题:在地面上的同一1地点分别以速率V1、V2先后竖直像上抛出两个可视为质点的小球。第二个小球抛出后经过T时间与第一个小球相遇。改变两小球抛出的时间间隔，若V1&lt;V2，不计空气阻力，则T的最大值为<strong><strong><strong>__</strong></strong></strong><br>解:依照暴力求解法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">设第一小球抛出后t0时间与第二小球相遇 (此时第二小球已运动T,T&lt;t0)</span><br><span class="line">因为 h1 &#x3D; h2</span><br><span class="line">v1t0 - 1&#x2F;2g(t0)^2 &#x3D; v2T -1&#x2F;2gT^2</span><br><span class="line">所以 T &#x3D; (v2+√(v2^2-2g(v1t0 - 1&#x2F;2g(t0)^2))) &#x2F; g</span><br><span class="line">又 T &lt; v2&#x2F;g</span><br><span class="line">根据复杂计算</span><br><span class="line">可得 T &#x3D; (v2-√v2^2-v1^2) &#x2F; g</span><br><span class="line">所以 Tmax &#x3D; (v2-√v2^2-v1^2) &#x2F; g</span><br></pre></td></tr></table></figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-08T03:01:42.292Z" itemprop="dateUpdated">2020-07-08 11:01:42</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/" target="_blank" rel="external">zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="zhaozhenkun888.github.io">
+            <img src="/img/avatar.jpg" alt="赵KK">
+            赵KK
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/&title=《编程算法题》 — 赵KK的个人博客&pic=zhaozhenkun888.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/&title=《编程算法题》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《编程算法题》 — 赵KK的个人博客&url=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/&via=zhaozhenkun888.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/07/02/%E8%9A%82%E8%9A%81%E4%B8%80%E9%9D%A2%E6%95%B4%E7%90%86/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">蚂蚁一面整理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "5qofQKP6PLlRGj9AKdN2wFy8-gzGzoHsz",
+            appKey: "MUjdIW5XaUutRWAdIFu4IdxP",
+            avatar: "mm",
+            placeholder: "Just do it",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+			<span style="text-align: center" id="sitetime"></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>赵KK &copy; 2018 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var t1 = Date.UTC(2018,02,13,15,00,00); //北京时间2018-2-13 00:00:00
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 本站点已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+	siteTime();
+</script>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/&title=《编程算法题》 — 赵KK的个人博客&pic=zhaozhenkun888.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/&title=《编程算法题》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《编程算法题》 — 赵KK的个人博客&url=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/&via=zhaozhenkun888.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=zhaozhenkun888.github.io/2020/07/08/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95%E9%A2%98/" alt="微信分享二维码">
+</div>
+
+
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你给我回来!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+	<script type="text/javascript" src="/js/clicklove.js"></script>
+	<!--单击显示文字-->
+	<script type="text/javascript" src="/js/click_show_text.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/01/assets/haru01.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
