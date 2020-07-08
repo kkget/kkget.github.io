@@ -31,8 +31,9 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/cms.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/redis.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/mysql.png">
 <meta property="article:published_time" content="2020-07-02T07:48:21.000Z">
-<meta property="article:modified_time" content="2020-07-08T07:31:08.051Z">
+<meta property="article:modified_time" content="2020-07-08T07:38:16.119Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="面经">
 <meta name="twitter:card" content="summary">
@@ -249,7 +250,16 @@
 <p>—redis的过期策略以及内存淘汰机制</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis采用的是定期删除+惰性删除+内存淘汰策略。</span><br><span class="line">[2020年6月29日17:25:36在平时的项目中测试，不定期会产生无用token的key数据，平时可以进行模糊删除]</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">缓存穿透，即黑客故意去请求缓存中不存在的数据，导致所有的请求都怼到数据库上，从而数据库连接异常。</span><br><span class="line"></span><br><span class="line">解决方案:</span><br><span class="line">(一)利用互斥锁，缓存失效的时候，先去获得锁，得到锁了，再去请求数据库。没得到锁，则休眠一段时间重试</span><br><span class="line">(二)采用异步更新策略，无论key是否取到值，都直接返回。value值中维护一个缓存失效时间，缓存如果过期，</span><br><span class="line">异步起一个线程去读数据库，更新缓存。需要做缓存预热(项目启动前，先加载缓存)操作。</span><br><span class="line">(三)提供一个能迅速判断请求是否有效的拦截机制，比如，利用布隆过滤器，内部维护一系列合法有效的key。</span><br><span class="line">迅速判断出，请求所携带的Key是否合法有效。如果不合法，则直接返回。</span><br><span class="line"></span><br><span class="line">缓存雪崩，即缓存同一时间大面积的失效，这个时候又来了一波请求，结果请求都怼到数据库上，从而导致数据库连接异常。</span><br><span class="line"></span><br><span class="line">解决方案:</span><br><span class="line">(一)给缓存的失效时间，加上一个随机值，避免集体失效。</span><br><span class="line">(二)使用互斥锁，但是该方案吞吐量明显下降了。</span><br><span class="line">(三)双缓存。我们有两个缓存，缓存A和缓存B。缓存A的失效时间为20分钟，缓存B不设失效时间。</span><br><span class="line">自己做缓存预热操作。然后细分以下几个小点</span><br><span class="line">1 从缓存A读数据库，有则直接返回</span><br><span class="line">2 A没有数据，直接从B读数据，直接返回，并且异步启动一个更新线程。</span><br><span class="line">3 更新线程同时更新缓存A和缓存B。</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">8、如何解决redis的并发竞争key问题</span><br><span class="line"> </span><br><span class="line">分析:这个问题大致就是，同时有多个子系统去set一个key。这个时候要注意什么呢？大家思考过么。</span><br><span class="line">需要说明一下，博主提前百度了一下，发现答案基本都是推荐用redis事务机制。博主不推荐使用redis的事务机制。</span><br><span class="line">因为我们的生产环境，基本都是redis集群环境，做了数据分片操作。你一个事务中有涉及到多个key操作的时候，</span><br><span class="line">这多个key不一定都存储在同一个redis-server上。因此，redis的事务机制，十分鸡肋。</span><br><span class="line"></span><br><span class="line">回答:如下所示</span><br><span class="line">(1)如果对这个key操作，不要求顺序</span><br><span class="line">这种情况下，准备一个分布式锁，大家去抢锁，抢到锁就做set操作即可，比较简单。</span><br><span class="line">(2)如果对这个key操作，要求顺序</span><br><span class="line">假设有一个key1,系统A需要将key1设置为valueA,系统B需要将key1设置为valueB,系统C需要将key1设置为valueC.</span><br><span class="line">期望按照key1的value值按照 valueA--&gt;valueB--&gt;valueC的顺序变化。这种时候我们在数据写入数据库的时候，</span><br><span class="line">需要保存一个时间戳。假设时间戳如下</span><br><span class="line">系统A key 1 &#123;valueA  3:00&#125;</span><br><span class="line">系统B key 1 &#123;valueB  3:05&#125;</span><br><span class="line">系统C key 1 &#123;valueC  3:10&#125;</span><br><span class="line">那么，假设这会系统B先抢到锁，将key1设置为&#123;valueB 3:05&#125;。接下来系统A抢到锁，发现自己的valueA的时间戳早于缓存中的时间戳，那就不做set操作了。以此类推。</span><br></pre></td></tr></table></figure>
-<p>===============================</p>
+<hr>
+<p>#mysql 执行一个 sql 的过程<br>执行完毕之后有一个缓存的过程</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/mysql.png" alt="mysql" title="">
+                </div>
+                <div class="image-caption">mysql</div>
+            </figure>
+<p><a href="https://www.cnblogs.com/luoying/p/12073812.html" target="_blank" rel="noopener">https://www.cnblogs.com/luoying/p/12073812.html</a></p>
 
         </div>
 
@@ -258,7 +268,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-07-08T07:31:08.051Z" itemprop="dateUpdated">2020-07-08 15:31:08</time>
+    Last updated: <time datetime="2020-07-08T07:38:16.119Z" itemprop="dateUpdated">2020-07-08 15:38:16</time>
 </span><br>
 
 
