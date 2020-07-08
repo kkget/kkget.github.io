@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/cms.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/redis.png">
 <meta property="article:published_time" content="2020-07-02T07:48:21.000Z">
-<meta property="article:modified_time" content="2020-07-07T07:09:01.301Z">
+<meta property="article:modified_time" content="2020-07-08T07:31:08.051Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="面经">
 <meta name="twitter:card" content="summary">
@@ -212,12 +212,15 @@
 <p>引用计数法：循环引用不可回收，不推荐</p>
 <p>GCRoot：可达性分析算法</p>
 <p>从根集对象向下搜索，如果一个对象没有任何链相连时，则说明对象不可用。</p>
-<p>哪些可以作为GC root的对象<br>1.虚拟机栈中的引用对象<br>2.方法区中的类静态属性引用的对象<br>3.方法去中常量引用的对象<br>4.本地方法栈中引用的对象<br>如何确定垃圾？<br>已经不再被内存使用到的空间<br>JVM虚拟机 YGC和FGC发生的具体场景<br>1、YGC和FGC是什么 </p>
-<p>YGC ：对新生代堆进行gc。频率比较高，因为大部分对象的存活寿命较短，在新生代里被回收。性能耗费较小。         （复制算法 —&gt; 一般适用对象存活率低的场景）</p>
+<p>哪些可以作为GC root的对象<br>1.虚拟机栈中的引用对象<br>2.方法区中的类静态属性引用的对象<br>3.方法去中常量引用的对象<br>4.本地方法栈中引用的对象<br>如何确定垃圾？<br>已经不再被内存使用到的空间<br>JVM虚拟机 YGC和FGC发生的具体场景<br>1、YGC和FGC是什么<br>YGC ：对新生代堆进行gc。频率比较高，因为大部分对象的存活寿命较短，在新生代里被回收。性能耗费较小。         （复制算法 —&gt; 一般适用对象存活率低的场景）</p>
 <p>FGC ：全堆范围的gc。默认堆空间使用到达80%(可调整)的时候会触发fgc。                                                    （标记整理或者标记清除算法 —&gt; 一般适用于对象存活率高的场景）</p>
 <p>2、什么时候执行YGC和FGC</p>
 <p>1、eden空间不足,执行 young gc</p>
-<p>2、old空间不足，perm空间不足，调用方法System.gc() ，ygc时的悲观策略,<br> dump live的内存信息时(jmap –dump:live)，都会执行full gc<br>3.JVM老年代和新生代的比例<br>在 Java 中，堆被划分成两个不同的区域：新生代 ( Young )、老年代 ( Old )。新生代 ( Young ) 又被划分为三个区域：Eden、From Survivor、To Survivor。<br>这样划分的目的是为了使 JVM 能够更好的管理堆内存中的对象，包括内存的分配以及回收。<br>新生代 ( Young ) 与老年代 ( Old ) 的比例的值为 1:2 ( 该值可以通过参数 –XX:NewRatio 来指定 )，即：新生代 ( Young ) = 1/3 的堆空间大小。老年代 ( Old ) = 2/3 的堆空间大小。其中，新生代 ( Young ) 被细分为 Eden 和 两个 Survivor 区域，这两个 Survivor 区域分别被命名为 from 和 to，以示区分。<br>默认的，Eden : from : to = 8 : 1 : 1 ( 可以通过参数 –XX:SurvivorRatio 来设定 )<br>—&gt;JMM<br>java  memory model<br>—&gt;垃圾收集器<br>并行 串行 并发标记 CMS G1 ZGC<br>G1不产生内存碎片 可精准控制停顿<br>–&gt;CMS垃圾回收过程<br>1.总体介绍：<br>CMS(Concurrent Mark-Sweep)是以牺牲吞吐量为代价来获得最短回收停顿时间的垃圾回收器。对于要求服务器响应速度的应用上，这种垃圾回收器非常适合。在启动JVM参数加上-XX:+UseConcMarkSweepGC ，这个参数表示对于老年代的回收采用CMS。CMS采用的基础算法是：标记—清除。</p>
+<p>2、old空间不足，perm空间不足，调用方法System.gc() ，ygc时的悲观策略,<br> dump live的内存信息时(jmap –dump:live)，都会执行full gc<br>3.JVM老年代和新生代的比例<br>在 Java 中，堆被划分成两个不同的区域：新生代 ( Young )、老年代 ( Old )。新生代 ( Young ) 又被划分为三个区域：Eden、From Survivor、To Survivor。<br>这样划分的目的是为了使 JVM 能够更好的管理堆内存中的对象，包括内存的分配以及回收。<br>新生代 ( Young ) 与老年代 ( Old ) 的比例的值为 1:2 ( 该值可以通过参数 –XX:NewRatio 来指定 )，即：新生代 ( Young ) = 1/3 的堆空间大小。老年代 ( Old ) = 2/3 的堆空间大小。其中，新生代 ( Young ) 被细分为 Eden 和 两个 Survivor 区域，这两个 Survivor 区域分别被命名为 from 和 to，以示区分。<br>默认的，Eden : from : to = 8 : 1 : 1 ( 可以通过参数 –XX:SurvivorRatio 来设定 )<br>&lt;<br>#频繁 fullgc 的排查<br>full gc产生场景如上叙述一下<br>其次猜测一下大概产生原因<br>尤其是大对象，80%以上的情况就是他。  那么大对象从哪里来的：<br>【1】数据库（包括 Mysql和 Mongodb等 NOSql数据库），结果集太大；<br>【2】第三方接口传输的大对象；<br>【3】消息队列，消息太大；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">排查步骤----&gt;</span><br><span class="line">	(1):打印GCdetail</span><br><span class="line">	-XX:+PrintGCDtails</span><br><span class="line">	(2):生成dump文件  注意:dump操作的时候是会发生stop the word事件的，也就是说此时所有的用户线程都会暂停运行</span><br><span class="line">	开启XX:+HeapDumpBeforeFullGC</span><br><span class="line">	使用jvisualvm查看</span><br></pre></td></tr></table></figure>
+<blockquote>
+</blockquote>
+<p>&lt;关于top k 问题已经在实际解决Linux  阿里云服务器问题应用&gt;<br>—&gt;JMM<br>java  memory model<br>—&gt;垃圾收集器<br>并行 串行 并发标记 CMS G1 ZGC<br>G1不产生内存碎片 可精准控制停顿<br>–&gt;CMS垃圾回收过程<br>1.总体介绍：<br>CMS(Concurrent Mark-Sweep)是以牺牲吞吐量为代价来获得最短回收停顿时间的垃圾回收器。对于要求服务器响应速度的应用上，这种垃圾回收器非常适合。在启动JVM参数加上-XX:+UseConcMarkSweepGC ，这个参数表示对于老年代的回收采用CMS。CMS采用的基础算法是：标记—清除。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -255,7 +258,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-07-07T07:09:01.301Z" itemprop="dateUpdated">2020-07-07 15:09:01</time>
+    Last updated: <time datetime="2020-07-08T07:31:08.051Z" itemprop="dateUpdated">2020-07-08 15:31:08</time>
 </span><br>
 
 
