@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/redis.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/mysql.png">
 <meta property="article:published_time" content="2020-07-02T07:48:21.000Z">
-<meta property="article:modified_time" content="2020-07-13T06:24:28.593Z">
+<meta property="article:modified_time" content="2020-07-13T06:26:16.296Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="面经">
 <meta name="twitter:card" content="summary">
@@ -195,17 +195,9 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>1.java的同步容器，并发容器？<br>同步：即每次只有一个线程访问容器状态。<br>并发：即每次可有多个线程访问容器状态。<br>同步容器：Vector，HashTable<br>并发容器：ConCurrentHashMap，CopeyOnwrite<br>–当并发读远多于修改的场景下需要使用List和Set时，可以考虑使用CopyOnWriteArrayList和CopyOnWriteArraySet；<br>–当需要并发使用&lt;Key, Value&gt;键值对存取数据时，可以使用ConcurrentHashMap；<br>–当要保证并发&lt;Key, Value&gt;键值对有序时可以使用ConcurrentSkipListMap。<br>2.ArrayList和LinkedList的插入和访问的复杂度<br>即数组与链表的访问插入复杂度<br>1&gt;.数组在访问时可通过下标直接查询，复杂度O(1),链表复杂度O(n)<br>2&gt;.数组插入时数组下标需要移动O(n)，链表直接操作指针O(1)<br>反射原理—&gt;</p>
-<hr>
-<blockquote>
-<p>反射可动态加载外部配置对象，通过class.forName加载类信息，而forName方法就是通过反射类调用的类信息，<br>jvm加载获取到里面的classLoader，通过native方法获取类信息，最终调用invoke0()方法，反射是线程安全的，<br>因为loadClass方法是synchronized修饰的，找到需要的方法，都会copy一份出来，而不是使用原来的实例，从而保证数据隔离；</p>
-</blockquote>
-<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;反射可动态加载外部配置对象，通过class.forName加载类信息，而forName方法就是通过反射类调用的类信息，</span><br><span class="line">jvm加载获取到里面的classLoader，通过native方法获取类信息，最终调用invoke0()方法，反射是线程安全的，</span><br><span class="line">因为loadClass方法是synchronized修饰的，找到需要的方法，都会copy一份出来，而不是使用原来的实例，从而保证数据隔离；</span><br></pre></td></tr></table></figure>
 <p>注解原理—&gt;</p>
-<hr>
-<blockquote>
-<p>注解等同于加了标记,注解本质是一个继承了Annotation的特殊接口，其具体实现类是Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是Java 运行时生成的动态代理对象$Proxy1。通过代理对象调用自定义注解（接口）的方法，会最终调用AnnotationInvocationHandler 的invoke 方法。该方法会从memberValues 这个Map 中索引出对应的值。而memberValues 的来源是Java 常量池<br>注解参数成员必须是public的，没有成员方法也行，但是就没得意义了</p>
-</blockquote>
-<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;注解等同于加了标记,注解本质是一个继承了Annotation的特殊接口，其具体实现类是Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是Java 运行时生成的动态代理对象$Proxy1。通过代理对象调用自定义注解（接口）的方法，会最终调用AnnotationInvocationHandler 的invoke 方法。该方法会从memberValues 这个Map 中索引出对应的值。而memberValues 的来源是Java 常量池</span><br><span class="line">注解参数成员必须是public的，没有成员方法也行，但是就没得意义了</span><br></pre></td></tr></table></figure>
 <p>4.新生代分为几个区？使用什么算法进行垃圾回收？为什么使用这个算法？<br>新生代分为Eden区，幸存from区，幸存to区，大小比例8:1:1<br>新生代使用复制算法，高效，省去了标记整理的过程，新生代需要清理的对象数量巨大，复制算法浪费空间，但效率高，<br>–&gt;引申<br>MinorGC的过程(复制-&gt;清空-&gt;互换)<br>1:Eden,SurvivorFrom复制到SurvivorTo，年龄+1</p>
 <p>首先，当Eden区满的时候会触发第一次GC,把还活着的对象拷贝到SurvivorFrom区，当Eden区再次出发GC的时候会扫描Eden区和form区，对这个区域进行垃圾回收，经过这次回收还活着的，复制到To区，对象年龄+1</p>
 <p>2:清空Eden区、SurvivorFrom</p>
@@ -283,7 +275,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-07-13T06:24:28.593Z" itemprop="dateUpdated">2020-07-13 14:24:28</time>
+    Last updated: <time datetime="2020-07-13T06:26:16.296Z" itemprop="dateUpdated">2020-07-13 14:26:16</time>
 </span><br>
 
 
