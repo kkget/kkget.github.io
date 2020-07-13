@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/redis.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/mysql.png">
 <meta property="article:published_time" content="2020-07-02T07:48:21.000Z">
-<meta property="article:modified_time" content="2020-07-13T02:03:42.956Z">
+<meta property="article:modified_time" content="2020-07-13T06:24:28.593Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="面经">
 <meta name="twitter:card" content="summary">
@@ -197,13 +197,16 @@
             <p>1.java的同步容器，并发容器？<br>同步：即每次只有一个线程访问容器状态。<br>并发：即每次可有多个线程访问容器状态。<br>同步容器：Vector，HashTable<br>并发容器：ConCurrentHashMap，CopeyOnwrite<br>–当并发读远多于修改的场景下需要使用List和Set时，可以考虑使用CopyOnWriteArrayList和CopyOnWriteArraySet；<br>–当需要并发使用&lt;Key, Value&gt;键值对存取数据时，可以使用ConcurrentHashMap；<br>–当要保证并发&lt;Key, Value&gt;键值对有序时可以使用ConcurrentSkipListMap。<br>2.ArrayList和LinkedList的插入和访问的复杂度<br>即数组与链表的访问插入复杂度<br>1&gt;.数组在访问时可通过下标直接查询，复杂度O(1),链表复杂度O(n)<br>2&gt;.数组插入时数组下标需要移动O(n)，链表直接操作指针O(1)<br>反射原理—&gt;</p>
 <hr>
 <blockquote>
-<p>反射可动态加载外部配置对象，通过class.forName加载类信息，而forName方法就是通过反射类调用的类信息，<br>jvm加载获取到里面的classLoader，通过native方法获取类信息，最终调用invoke0()方法，反射是线程安全的，<br>因为loadClass方法是synchronized修饰的，找到需要的方法，都会copy一份出来，而不是使用原来的实例，从而保证数据隔离；<br>注解原理—&gt;</p>
+<p>反射可动态加载外部配置对象，通过class.forName加载类信息，而forName方法就是通过反射类调用的类信息，<br>jvm加载获取到里面的classLoader，通过native方法获取类信息，最终调用invoke0()方法，反射是线程安全的，<br>因为loadClass方法是synchronized修饰的，找到需要的方法，都会copy一份出来，而不是使用原来的实例，从而保证数据隔离；</p>
 </blockquote>
 <hr>
+<p>注解原理—&gt;</p>
+<hr>
 <blockquote>
-<p>注解等同于加了标记,注解本质是一个继承了Annotation的特殊接口，其具体实现类是Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是Java 运行时生成的动态代理对象$Proxy1。通过代理对象调用自定义注解（接口）的方法，会最终调用AnnotationInvocationHandler 的invoke 方法。该方法会从memberValues 这个Map 中索引出对应的值。而memberValues 的来源是Java 常量池<br>注解参数成员必须是public的，没有成员方法也行，但是就没得意义了<br>4.新生代分为几个区？使用什么算法进行垃圾回收？为什么使用这个算法？<br>新生代分为Eden区，幸存from区，幸存to区，大小比例8:1:1<br>新生代使用复制算法，高效，省去了标记整理的过程，新生代需要清理的对象数量巨大，复制算法浪费空间，但效率高，<br>–&gt;引申<br>MinorGC的过程(复制-&gt;清空-&gt;互换)</p>
+<p>注解等同于加了标记,注解本质是一个继承了Annotation的特殊接口，其具体实现类是Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是Java 运行时生成的动态代理对象$Proxy1。通过代理对象调用自定义注解（接口）的方法，会最终调用AnnotationInvocationHandler 的invoke 方法。该方法会从memberValues 这个Map 中索引出对应的值。而memberValues 的来源是Java 常量池<br>注解参数成员必须是public的，没有成员方法也行，但是就没得意义了</p>
 </blockquote>
-<p>1:Eden,SurvivorFrom复制到SurvivorTo，年龄+1</p>
+<hr>
+<p>4.新生代分为几个区？使用什么算法进行垃圾回收？为什么使用这个算法？<br>新生代分为Eden区，幸存from区，幸存to区，大小比例8:1:1<br>新生代使用复制算法，高效，省去了标记整理的过程，新生代需要清理的对象数量巨大，复制算法浪费空间，但效率高，<br>–&gt;引申<br>MinorGC的过程(复制-&gt;清空-&gt;互换)<br>1:Eden,SurvivorFrom复制到SurvivorTo，年龄+1</p>
 <p>首先，当Eden区满的时候会触发第一次GC,把还活着的对象拷贝到SurvivorFrom区，当Eden区再次出发GC的时候会扫描Eden区和form区，对这个区域进行垃圾回收，经过这次回收还活着的，复制到To区，对象年龄+1</p>
 <p>2:清空Eden区、SurvivorFrom</p>
 <p>然后清空Eden区和SurvivorFrom区的对象，谁空谁是to。</p>
@@ -240,7 +243,8 @@
 <p>2.CMS过程：<br>初始标记(STW initial mark)<br>并发标记(Concurrent marking)<br>并发预清理(Concurrent precleaning)<br>重新标记(STW remark)<br>并发清理(Concurrent sweeping)<br>并发重置(Concurrent reset)<br>5.如何处理接口的重复请求？不得不说他不好好问，目的是问如何保证接口的幂等性?<br>分布式系统中，服务部署在不同的服务器上，但是数据要保证打到一个redis上<br>对于每个请求必须有一个唯一的标识。举个例子：订单支付请求，肯定得包含订单 id，一个订单 id 最多支付一次。<br>每次处理完请求之后，必须有一个记录标识这个请求处理过了。常见的方案是在数据库中记录个状态，比如支付之前记录一条这个订单的支付流水。<br>每次接收请求需要进行判断，判断之前是否处理过。比如说，如果有一个订单已经支付了，就已经有了一条支付流水，那么如果重复发送这个请求，则此时先插入支付流水，orderId 已经存在了，唯一键约束生效，报错插入不进去的。然后系统就不用再扣款了。<br>在网络延迟传输中，会造成消息队列重试，在重试过程中，消息会存在重复</p>
 <p>解决方案：</p>
 <p>  1.如果是数据库的插入操作，给消息做一个主键，避免出现脏数据。<br>  2.使用第三方做消费记录，例如Redis，全局id为K，消息为V，写入到Redis，消费之前先去查Redis是否存在<br>–&gt;引申分布式系统中如何生成高效的分布式唯一ID   雪花算法<br>可用分布式锁,redis 递增,机器的唯一码 拿出几位存为机器id,这样一来每次查询操作相对更快</p>
-<p>九：Http与Https的区别？<br>博客:<a href="https://blog.csdn.net/guolin_blog/article/details/104546558" target="_blank" rel="noopener">https://blog.csdn.net/guolin_blog/article/details/104546558</a><br>总结：首先回答对称加密以及非对称加密的区别。<br>对称加密比较简单，就是客户端和服务器共用同一个密钥，该密钥可以用于加密一段内容，同时也可以用于解密这段内容。对称加密的优点是加解密效率高，但是在安全性方面可能存在一些问题，因为密钥存放在客户端有被窃取的风险。对称加密的代表算法有：AES、DES等。</p>
+<p>G1回收器有个非常好的特性就是会不断的帮助JVM调整策略， 会根据实际的GC情况调整年轻代和老年代的比例大小，默认情况下，年轻代最多可以占用60%的堆内存。这其实就是GC的灵活性。</p>
+<p>G1的另一个显著特点他能够让用户设置应用的暂停时间，通过参数：-XX:MaxGCPauseMillis来指定，为什么G1能做到这一点呢？也许你已经注意到了，G1回收的第4步，它是“选择一些内存块”，而不是整代内存来回收，这是G1跟其它GC非常不同的一点，其它GC每次回收都会回收整个Generation的内存(Eden, Old), 而回收内存所需的时间就取决于内存的大小，以及实际垃圾的多少，所以垃圾回收时间是不可控的；而G1每次并不会回收整代内存，到底回收多少内存就看用户配置的暂停时间，配置的时间短就少回收点，配置的时间长就多回收点，伸缩自如<br>九：Http与Https的区别？<br>博客:<a href="https://blog.csdn.net/guolin_blog/article/details/104546558" target="_blank" rel="noopener">https://blog.csdn.net/guolin_blog/article/details/104546558</a><br>总结：首先回答对称加密以及非对称加密的区别。<br>对称加密比较简单，就是客户端和服务器共用同一个密钥，该密钥可以用于加密一段内容，同时也可以用于解密这段内容。对称加密的优点是加解密效率高，但是在安全性方面可能存在一些问题，因为密钥存放在客户端有被窃取的风险。对称加密的代表算法有：AES、DES等。</p>
 <p>而非对称加密则要复杂一点，它将密钥分成了两种：公钥和私钥。公钥通常存放在客户端，私钥通常存放在服务器。使用公钥加密的数据只有用私钥才能解密，反过来使用私钥加密的数据也只有用公钥才能解密。非对称加密的优点是安全性更高，因为客户端发送给服务器的加密信息只有用服务器的私钥才能解密，因此不用担心被别人破解，但缺点是加解密的效率相比于对称加密要差很多。非对称加密的代表算法有：RSA、ElGamal等。<br>关键词：CA机构<br>个人理解：https使用的是对称加密与非对称加密相结合的方式。首先双端通信使用非对称加密，客户端加密传输时先请求第三方CA机构，CA加密处理完返回给服务器端，证书中加入了网站的域名，</p>
 <hr>
 <p><strong>redis掀桌连问</strong></p>
@@ -279,7 +283,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-07-13T02:03:42.956Z" itemprop="dateUpdated">2020-07-13 10:03:42</time>
+    Last updated: <time datetime="2020-07-13T06:24:28.593Z" itemprop="dateUpdated">2020-07-13 14:24:28</time>
 </span><br>
 
 
