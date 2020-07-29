@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/complete3.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/complete4.png">
 <meta property="article:published_time" content="2020-07-29T07:04:59.000Z">
-<meta property="article:modified_time" content="2020-07-29T08:08:51.257Z">
+<meta property="article:modified_time" content="2020-07-29T08:14:38.394Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="CompletableFuture">
 <meta name="twitter:card" content="summary">
@@ -205,8 +205,8 @@
 <p>async和await的使用其实就只有两点：</p>
 <p>await关键字必须在async函数内部使用<br>调用async函数必须使用await关键字</p>
 <p>Dart(释义：镖)异步<br>Dart是单线程模型，是一种Event-Looper以及Event-Queue的模型，所有的事件都是通过EventLooper的依次执行。</p>
-<p>$\color{red}{个人问题点就在这里}$，Event-Looper与Netty的NioEventLoopGroup异曲同工，都是线程模型</p>
-<p>单线程模型<br>所谓单线程，就是一旦一个函数开始执行，就必须将这个函数执行完，才能去执行其他函数</p>
+<p>Event-Looper与Netty的NioEventLoopGroup异曲同工，都是线程模型</p>
+<p>作者：zhaoolee<br>链接：<a href="https://www.jianshu.com/p/aefd0e50b802" target="_blank" rel="noopener">https://www.jianshu.com/p/aefd0e50b802</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br>单线程模型<br>所谓单线程，就是一旦一个函数开始执行，就必须将这个函数执行完，才能去执行其他函数</p>
 <p>作者：MakerChin<br>链接：<a href="https://www.jianshu.com/p/890df7ea8f87" target="_blank" rel="noopener">https://www.jianshu.com/p/890df7ea8f87</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br>Future接口的方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Future</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//取消任务。参数:是否立即中断任务执行，或者等等任务结束</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">cancel</span><span class="params">(<span class="keyword">boolean</span> mayInterruptIfRunning)</span></span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//任务是否已经取消，若已取消，返回true</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isCancelled</span><span class="params">()</span></span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//任务是否已经完成。包括任务正常完成、抛出异常或被取消，都返回true</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isDone</span><span class="params">()</span></span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*等待任务执行结束，获得V类型的结果。InterruptedException: 线程被中断异常， ExecutionException: 任务执行异常，如果任务被取消，还会抛出CancellationException*/</span></span><br><span class="line">    <span class="function">V <span class="title">get</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException, ExecutionException</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*参数timeout指定超时时间，uint指定时间的单位，在枚举类TimeUnit中有相关的定义。如果计算超时，将抛出TimeoutException*/</span></span><br><span class="line">    <span class="function">V <span class="title">get</span><span class="params">(<span class="keyword">long</span> timeout, TimeUnit unit)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> InterruptedException, ExecutionException, TimeoutException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>调用不带参数的get方法的调用被阻塞，直到计算完成。如果在计算完成之前，调用带参get()方法超时时，会抛出TimeoutException异常。若运行该计算的线程被中断，两种get()方法都会抛出InterruptedException。如果计算已经完成，那么get方法立即返回。<br>若计算还在进行，isDone方法返回false；如果完成了，则返回true。<br>调用cancel()时，若计算还没有开始，它被取消且不再开始。若计算处于运行之中，那么如果mayInterrupt参数为true，它就被中断。<br>相比future.get()，其实更推荐使用get (long timeout, TimeUnit unit) 方法，因为设置了超时时间可以防止程序无限制的等待future的返回结果。<br>FutureTask源码解析<br>构造方法：</p>
@@ -339,7 +339,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-07-29T08:08:51.257Z" itemprop="dateUpdated">2020-07-29 16:08:51</time>
+    Last updated: <time datetime="2020-07-29T08:14:38.394Z" itemprop="dateUpdated">2020-07-29 16:14:38</time>
 </span><br>
 
 
