@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="kkget.github.io/"/>
-  <updated>2020-08-18T01:24:38.085Z</updated>
+  <updated>2020-08-20T02:03:17.982Z</updated>
   <id>kkget.github.io/</id>
   
   <author>
@@ -21,15 +21,16 @@
     <link href="kkget.github.io/2020/08/17/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%BC%E8%87%B4%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA/"/>
     <id>kkget.github.io/2020/08/17/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%BC%E8%87%B4%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA/</id>
     <published>2020-08-17T02:13:48.000Z</published>
-    <updated>2020-08-18T01:24:38.085Z</updated>
+    <updated>2020-08-20T02:03:17.982Z</updated>
     
-    <content type="html"><![CDATA[<p>由于阿里云服务器出现流量计算费用问题，暂时关闭图片服务器，导致部分图片不显示，尽快修复</p>]]></content>
+    <content type="html"><![CDATA[<p>由于阿里云服务器出现流量计算费用问题，暂时关闭图片服务器，导致部分图片不显示，尽快修复</p><p>关闭实例无性能约束模式即可不产生费用，图片亦能正常显示</p>]]></content>
     
     <summary type="html">
     
       
       
         &lt;p&gt;由于阿里云服务器出现流量计算费用问题，暂时关闭图片服务器，导致部分图片不显示，尽快修复&lt;/p&gt;
+&lt;p&gt;关闭实例无性能约束模式即可不产生费用，图片亦能正常显示&lt;/p&gt;
 
       
     
