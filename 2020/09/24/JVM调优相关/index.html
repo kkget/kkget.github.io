@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="JVM">
-    <meta name="description" content="1、线上系统CPU，内存与磁盘IO暴增，你会如何调优？①.首先top命令确定到具体线程，将内存与io异常的线程记录②.查看磁盘IO  123456sar -d -p 1 209:51:48 AM       DEV       tps     rkB&#x2F;s     wkB&#x2F;s   areq-sz    aqu-sz     await     svctm     %util09:51:49 AM">
+    <meta name="description" content="#线上系统CPU，内存与磁盘IO暴增，你会如何调优？①首先top命令确定到具体线程，将内存与io异常的线程记录②查看磁盘IO  123456sar -d -p 1 209:51:48 AM       DEV       tps     rkB&#x2F;s     wkB&#x2F;s   areq-sz    aqu-sz     await     svctm     %util09:51:49 AM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM调优相关">
 <meta property="og:url" content="kkget.github.io/2020/09/24/JVM%E8%B0%83%E4%BC%98%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="赵KK的个人博客">
-<meta property="og:description" content="1、线上系统CPU，内存与磁盘IO暴增，你会如何调优？①.首先top命令确定到具体线程，将内存与io异常的线程记录②.查看磁盘IO  123456sar -d -p 1 209:51:48 AM       DEV       tps     rkB&#x2F;s     wkB&#x2F;s   areq-sz    aqu-sz     await     svctm     %util09:51:49 AM">
+<meta property="og:description" content="#线上系统CPU，内存与磁盘IO暴增，你会如何调优？①首先top命令确定到具体线程，将内存与io异常的线程记录②查看磁盘IO  123456sar -d -p 1 209:51:48 AM       DEV       tps     rkB&#x2F;s     wkB&#x2F;s   areq-sz    aqu-sz     await     svctm     %util09:51:49 AM">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/1.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/2.png">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/7.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/8.png">
 <meta property="article:published_time" content="2020-09-24T02:35:48.000Z">
-<meta property="article:modified_time" content="2020-09-24T07:03:53.688Z">
+<meta property="article:modified_time" content="2020-09-25T01:04:44.881Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -198,15 +198,14 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>1、线上系统CPU，内存与磁盘IO暴增，你会如何调优？<br>①.首先top命令确定到具体线程，将内存与io异常的线程记录<br>②.查看磁盘IO </p>
+            <p>#线上系统CPU，内存与磁盘IO暴增，你会如何调优？<br>①首先top命令确定到具体线程，将内存与io异常的线程记录<br>②查看磁盘IO </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sar -d -p <span class="number">1</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="number">09</span>:<span class="number">51</span>:<span class="number">48</span> AM       DEV       tps     rkB/s     wkB/s   areq-sz    aqu-sz     await     svctm     %util</span><br><span class="line"><span class="number">09</span>:<span class="number">51</span>:<span class="number">49</span> AM       vda      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">09</span>:<span class="number">51</span>:<span class="number">50</span> AM       vda      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line">Average:          vda      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span>      <span class="number">0.00</span></span><br></pre></td></tr></table></figure>
-<p>其中， “-d”参数代表查看磁盘性能，“-p”参数代表将 dev 设备按照 sda，sdb……名称显示，“1”代表每隔1s采取一次数值，“2”代表总共采取2次数值。<br>await：平均每次设备 I/O 操作的等待时间（以毫秒为单位）。<br>svctm：平均每次设备 I/O 操作的服务时间（以毫秒为单位）。<br>%util：一秒中有百分之几的时间用于 I/O 操作</p>
-<p>磁盘IO标准:<br>正常情况下 svctm 应该是小于 await 值的，而 svctm 的大小和磁盘性能有关，CPU 、内存的负荷也会对 svctm 值造成影响，过多的请求也会间接的导致 svctm 值的增加。<br>await 值的大小一般取决与 svctm 的值和 I/O 队列长度以 及I/O 请求模式，如果 svctm 的值与 await 很接近，表示几乎没有 I/O 等待，磁盘性能很好，如果 await 的值远高于 svctm 的值，则表示 I/O 队列等待太长，系统上运行的应用程序将变慢，此时可以通过更换更快的硬盘来解决问题。<br>%util 项的值也是衡量磁盘 I/O 的一个重要指标，如果 %util 接近 100% ，表示磁盘产生的 I/O 请求太多，I/O 系统已经满负荷的在工作，该磁盘可能存在瓶颈。长期下去，势必影响系统的性能，可以通过优化程序或者通过更换更高、更快的磁盘来解决此问题<br>③.确定好具体线程后定位具体代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep 2588|grep -v grep</span><br></pre></td></tr></table></figure>
+<p>其中， “-d”参数代表查看磁盘性能，“-p”参数代表将 dev 设备按照 sda，sdb……名称显示，“1”代表每隔1s采取一次数值，“2”代表总共采取2次数值。<br>await：平均每次设备 I/O 操作的等待时间（以毫秒为单位）。<br>svctm：平均每次设备 I/O 操作的服务时间（以毫秒为单位）。<br>%util：一秒中有百分之几的时间用于 I/O 操作<br>磁盘IO标准:<br>正常情况下 svctm 应该是小于 await 值的，而 svctm 的大小和磁盘性能有关，CPU 、内存的负荷也会对 svctm 值造成影响，过多的请求也会间接的导致 svctm 值的增加。<br>await 值的大小一般取决与 svctm 的值和 I/O 队列长度以 及I/O 请求模式，如果 svctm 的值与 await 很接近，表示几乎没有 I/O 等待，磁盘性能很好，如果 await 的值远高于 svctm 的值，则表示 I/O 队列等待太长，系统上运行的应用程序将变慢，此时可以通过更换更快的硬盘来解决问题。<br>%util 项的值也是衡量磁盘 I/O 的一个重要指标，如果 %util 接近 100% ，表示磁盘产生的 I/O 请求太多，I/O 系统已经满负荷的在工作，该磁盘可能存在瓶颈。长期下去，势必影响系统的性能，可以通过优化程序或者通过更换更高、更快的磁盘来解决此问题<br>③.确定好具体线程后定位具体代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep <span class="number">2588</span>|grep -v grep</span><br></pre></td></tr></table></figure>
 <p>④定位</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -mp 2588 -o THREAD,tid,time</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -mp <span class="number">2588</span> -o THREAD,tid,time</span><br></pre></td></tr></table></figure>
 <p>⑤换算16进制后</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack 2588 |grep a1d -A60</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack <span class="number">2588</span> |grep a1d -A60</span><br></pre></td></tr></table></figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -214,7 +213,6 @@
                 </div>
                 <div class="image-caption">图1</div>
             </figure>
-
 <p>接下来就处理是逻辑问题，还是代码，还是数据库问题了<br>2、你们JVM线上使用的什么垃圾回收器？CMS还是G1？<br>我们线上由于使用的java8，默认垃圾回收器G1，如果不知道，可以打印下GC，-XX:PrintGCDetails,<br>windows查看收集器</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -282,7 +280,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-09-24T07:03:53.688Z" itemprop="dateUpdated">2020-09-24 15:03:53</time>
+    Last updated: <time datetime="2020-09-25T01:04:44.881Z" itemprop="dateUpdated">2020-09-25 09:04:44</time>
 </span><br>
 
 
