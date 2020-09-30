@@ -40,7 +40,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/10.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/11.png">
 <meta property="article:published_time" content="2020-09-24T02:35:48.000Z">
-<meta property="article:modified_time" content="2020-09-30T03:02:01.049Z">
+<meta property="article:modified_time" content="2020-09-30T03:06:41.101Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -184,7 +184,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线上系统CPU，内存与磁盘IO暴增，你会如何调优？"><span class="post-toc-number">1.</span> <span class="post-toc-text">线上系统CPU，内存与磁盘IO暴增，你会如何调优？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#你们JVM线上使用的什么垃圾回收器？CMS还是G1？"><span class="post-toc-number">2.</span> <span class="post-toc-text">你们JVM线上使用的什么垃圾回收器？CMS还是G1？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#垃圾收集器种类"><span class="post-toc-number">3.</span> <span class="post-toc-text">垃圾收集器种类</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CMS的并发更新失败是怎么回事？如何优化？"><span class="post-toc-number">4.</span> <span class="post-toc-text">CMS的并发更新失败是怎么回事？如何优化？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#JVM是任何时刻都可以STW吗？为什么？"><span class="post-toc-number">5.</span> <span class="post-toc-text">JVM是任何时刻都可以STW吗？为什么？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线上系统GC问题如何快速定位与分析？阿里巴巴的Arthas用过吗？"><span class="post-toc-number">6.</span> <span class="post-toc-text">线上系统GC问题如何快速定位与分析？阿里巴巴的Arthas用过吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#单机几十万并发的系统JVM如何优化？"><span class="post-toc-number">7.</span> <span class="post-toc-text">单机几十万并发的系统JVM如何优化？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#高并发系统为何建议选择G1垃圾收集器？"><span class="post-toc-number">8.</span> <span class="post-toc-text">高并发系统为何建议选择G1垃圾收集器？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#能说说Mysql索引底层B-树结构与算法吗？"><span class="post-toc-number">9.</span> <span class="post-toc-text">能说说Mysql索引底层B+树结构与算法吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#聚集索引与覆盖索引与索引下推到底是什么？"><span class="post-toc-number">10.</span> <span class="post-toc-text">聚集索引与覆盖索引与索引下推到底是什么？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#聚集索引"><span class="post-toc-number">11.</span> <span class="post-toc-text">聚集索引</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#组合索引-覆盖索引"><span class="post-toc-number">12.</span> <span class="post-toc-text">组合索引(覆盖索引)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#索引下推-Index-Condition-Pushdown"><span class="post-toc-number">13.</span> <span class="post-toc-text">索引下推 Index Condition Pushdown</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#能说说Mysql并发支撑底层Buffer-Pool机制吗？"><span class="post-toc-number">14.</span> <span class="post-toc-text">能说说Mysql并发支撑底层Buffer Pool机制吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一线互联网公司的数据库架构是如何设计的"><span class="post-toc-number">15.</span> <span class="post-toc-text">一线互联网公司的数据库架构是如何设计的?</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#记录表等多次查询的字段建索引"><span class="post-toc-number">16.</span> <span class="post-toc-text">记录表等多次查询的字段建索引</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#动态链接与常量池"><span class="post-toc-number">17.</span> <span class="post-toc-text">:动态链接与常量池</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线上系统CPU，内存与磁盘IO暴增，你会如何调优？"><span class="post-toc-number">1.</span> <span class="post-toc-text">线上系统CPU，内存与磁盘IO暴增，你会如何调优？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#你们JVM线上使用的什么垃圾回收器？CMS还是G1？"><span class="post-toc-number">2.</span> <span class="post-toc-text">你们JVM线上使用的什么垃圾回收器？CMS还是G1？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#垃圾收集器种类"><span class="post-toc-number">3.</span> <span class="post-toc-text">垃圾收集器种类</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CMS的并发更新失败是怎么回事？如何优化？"><span class="post-toc-number">4.</span> <span class="post-toc-text">CMS的并发更新失败是怎么回事？如何优化？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#JVM是任何时刻都可以STW吗？为什么？"><span class="post-toc-number">5.</span> <span class="post-toc-text">JVM是任何时刻都可以STW吗？为什么？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线上系统GC问题如何快速定位与分析？阿里巴巴的Arthas用过吗？"><span class="post-toc-number">6.</span> <span class="post-toc-text">线上系统GC问题如何快速定位与分析？阿里巴巴的Arthas用过吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#单机几十万并发的系统JVM如何优化？"><span class="post-toc-number">7.</span> <span class="post-toc-text">单机几十万并发的系统JVM如何优化？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#高并发系统为何建议选择G1垃圾收集器？"><span class="post-toc-number">8.</span> <span class="post-toc-text">高并发系统为何建议选择G1垃圾收集器？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#能说说Mysql索引底层B-树结构与算法吗？"><span class="post-toc-number">9.</span> <span class="post-toc-text">能说说Mysql索引底层B+树结构与算法吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#聚集索引与覆盖索引与索引下推到底是什么？"><span class="post-toc-number">10.</span> <span class="post-toc-text">聚集索引与覆盖索引与索引下推到底是什么？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#聚集索引"><span class="post-toc-number">11.</span> <span class="post-toc-text">聚集索引</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#组合索引-覆盖索引"><span class="post-toc-number">12.</span> <span class="post-toc-text">组合索引(覆盖索引)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#索引下推-Index-Condition-Pushdown"><span class="post-toc-number">13.</span> <span class="post-toc-text">索引下推 Index Condition Pushdown</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#能说说Mysql并发支撑底层Buffer-Pool机制吗？"><span class="post-toc-number">14.</span> <span class="post-toc-text">能说说Mysql并发支撑底层Buffer Pool机制吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一线互联网公司的数据库架构是如何设计的"><span class="post-toc-number">15.</span> <span class="post-toc-text">一线互联网公司的数据库架构是如何设计的?</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#记录表等多次查询的字段建索引"><span class="post-toc-number">16.</span> <span class="post-toc-text">记录表等多次查询的字段建索引</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#动态链接与常量池"><span class="post-toc-number">17.</span> <span class="post-toc-text">动态链接与常量池</span></a></li></ol>
         </nav>
     </aside>
 
@@ -311,7 +311,7 @@
                 </div>
                 <div class="image-caption">图</div>
             </figure>
-<h1 id="动态链接与常量池"><a href="#动态链接与常量池" class="headerlink" title=":动态链接与常量池"></a>:动态链接与常量池</h1><p>大部分字节码质量在执行的时候，都需要常量池的访问<br>指向运行时常量池的方法引用<br>方法的绑定机制<br>静态链接:编译期可确定</p>
+<h1 id="动态链接与常量池"><a href="#动态链接与常量池" class="headerlink" title="动态链接与常量池"></a>动态链接与常量池</h1><p>大部分字节码质量在执行的时候，都需要常量池的访问<br>指向运行时常量池的方法引用<br>方法的绑定机制<br>静态链接:编译期可确定</p>
 <p>动态链接:编译期无法确定</p>
 <p>早期绑定:同</p>
 <p>晚期绑定:同理</p>
@@ -323,8 +323,6 @@
                 </div>
                 <div class="image-caption">图</div>
             </figure>
-<p>14：</p>
-
         </div>
 
         <blockquote class="post-copyright">
@@ -332,7 +330,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-09-30T03:02:01.049Z" itemprop="dateUpdated">2020-09-30 11:02:01</time>
+    Last updated: <time datetime="2020-09-30T03:06:41.101Z" itemprop="dateUpdated">2020-09-30 11:06:41</time>
 </span><br>
 
 
