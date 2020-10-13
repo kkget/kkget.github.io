@@ -29,13 +29,12 @@
 <meta property="og:description" content="虚拟机规范https:&#x2F;&#x2F;docs.oracle.com&#x2F;javase&#x2F;specs&#x2F;index.html操作系统不识别字节码指令，虚拟机将其编译为机器指令第一次编译将代码编译成字节码第二次将字节码编译成机器指令并缓存进方法区类加载器分类：启动类加载器，拓展类加载器，应用类加载器双亲委派机制：沙箱安全：GC发生在方法区和堆年轻代：复制算法，幸存者0-1区eden区满时触发第一次GC(Yong GC">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/1.png">
-<meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/2.png">
 <meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/3.png">
 <meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/4.png">
 <meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/5.png">
 <meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/6.png">
 <meta property="article:published_time" content="2020-10-13T03:36:03.000Z">
-<meta property="article:modified_time" content="2020-10-13T03:40:29.953Z">
+<meta property="article:modified_time" content="2020-10-13T05:43:28.962Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -201,9 +200,7 @@
 <p>GC Roots对象</p>
 <p>JVM调优<br>标配: -version<br>-X：<br>-XX：+/-   开启关闭<br>查看jvm参数细节<br>jps -l<br>jinfo<br>jinfo -flag PrintGCDetails 15460是否开启<br>K V 设值<br>-XX:MetaspaceSize=<br>-XX:MaxTenuringThreshold=15<br>永久区几乎不会被回收，但不是不回收<br>只是回收的条件比较苛刻</p>
 <p>虚拟机栈  局部变量，操作数栈，动态链接<br>java指令是基于栈设计的<br>每个线程创建时都会创建一个虚拟机栈<br>》线程私有<br>》保存的一个个栈帧</p>
-<p>方法与栈帧一对一<br>方法执行：<br>1.正常结束<br>2.抛异常<br>javp -v xx.class  此处没有分号<br>反编译时，方法需是public得<br>返回值是int  ireturn<br>方法虽然是void，但是可以写return，底层指令是存在的<br>47:栈帧的内部结构</p>
-<img src="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/2.png" class title="This is an example image">
-<p>一共五部分<br>局部变量表+操作数栈的大小影响单个栈帧的大小，单个栈帧的大小影响栈的大小，以及何时出现异常<br>48:局部变量表</p>
+<p>方法与栈帧一对一<br>方法执行：<br>1.正常结束<br>2.抛异常<br>javp -v xx.class  此处没有分号<br>反编译时，方法需是public得<br>返回值是int  ireturn<br>方法虽然是void，但是可以写return，底层指令是存在的<br>47:栈帧的内部结构<br>一共五部分<br>局部变量表+操作数栈的大小影响单个栈帧的大小，单个栈帧的大小影响栈的大小，以及何时出现异常<br>48:局部变量表</p>
 <p> 编译器确定，一但确定不会被更改</p>
 <p>Specific info<br>java代码 与字节码指令的对应关系  Slot 变量槽<br>占两个变量槽时，使用起始索引</p>
 <p>静态方法中不能引用this，因为this也是一个变量不存在与当前方法的局部变量表中<br>变量的分类</p>
@@ -244,7 +241,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-10-13T03:40:29.953Z" itemprop="dateUpdated">2020-10-13 11:40:29</time>
+    Last updated: <time datetime="2020-10-13T05:43:28.962Z" itemprop="dateUpdated">2020-10-13 13:43:28</time>
 </span><br>
 
 
