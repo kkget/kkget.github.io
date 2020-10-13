@@ -24,7 +24,7 @@
     <meta name="description" content="sortedMap，NavigableMap，TreeMap，ConcurrentSkipListMap主要看下ConcurrentSkipListMap 12public class ConcurrentSkipListMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;    implements ConcurrentNavigableMap&lt;K,V">
 <meta property="og:type" content="article">
 <meta property="og:title" content="有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。">
-<meta property="og:url" content="kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/index.html">
+<meta property="og:url" content="http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/index.html">
 <meta property="og:site_name" content="赵KK的个人博客">
 <meta property="og:description" content="sortedMap，NavigableMap，TreeMap，ConcurrentSkipListMap主要看下ConcurrentSkipListMap 12public class ConcurrentSkipListMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;    implements ConcurrentNavigableMap&lt;K,V">
 <meta property="og:locale" content="en_US">
@@ -226,12 +226,12 @@
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" target="_blank" rel="external">kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" target="_blank" rel="external">http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/</a>
         
     </div>
     
     <footer>
-        <a href="kkget.github.io">
+        <a href="http://kkget.github.io">
             <img src="/img/avatar.jpg" alt="赵KK">
             赵KK
         </a>
@@ -253,7 +253,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&title=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&pic=kkget.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&title=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -263,22 +263,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&title=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&title=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&url=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&via=kkget.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&url=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&via=http://kkget.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -446,7 +446,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&title=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&pic=kkget.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&title=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -456,22 +456,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&title=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&title=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&url=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&via=kkget.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。》 — 赵KK的个人博客&url=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/&via=http://kkget.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -482,7 +482,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kkget.github.io/2020/08/05/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84Map%E5%AE%9E%E7%8E%B0%E7%B1%BB%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E4%BB%96%E4%BB%AC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E7%9A%84%E3%80%82/" alt="微信分享二维码">
 </div>
 
 

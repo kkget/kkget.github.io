@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JVM从入门到放弃 | 赵KK的个人博客 | 纠结体本体,同步记录日常笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JVM">
+    <meta name="description" content="虚拟机规范https:&#x2F;&#x2F;docs.oracle.com&#x2F;javase&#x2F;specs&#x2F;index.html操作系统不识别字节码指令，虚拟机将其编译为机器指令第一次编译将代码编译成字节码第二次将字节码编译成机器指令并缓存进方法区类加载器分类：启动类加载器，拓展类加载器，应用类加载器双亲委派机制：沙箱安全：GC发生在方法区和堆年轻代：复制算法，幸存者0-1区eden区满时触发第一次GC(Yong GC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM从入门到放弃">
+<meta property="og:url" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/index.html">
+<meta property="og:site_name" content="赵KK的个人博客">
+<meta property="og:description" content="虚拟机规范https:&#x2F;&#x2F;docs.oracle.com&#x2F;javase&#x2F;specs&#x2F;index.html操作系统不识别字节码指令，虚拟机将其编译为机器指令第一次编译将代码编译成字节码第二次将字节码编译成机器指令并缓存进方法区类加载器分类：启动类加载器，拓展类加载器，应用类加载器双亲委派机制：沙箱安全：GC发生在方法区和堆年轻代：复制算法，幸存者0-1区eden区满时触发第一次GC(Yong GC">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/1.png">
+<meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/2.png">
+<meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/3.png">
+<meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/4.png">
+<meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/5.png">
+<meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/6.png">
+<meta property="article:published_time" content="2020-10-13T03:36:03.000Z">
+<meta property="article:modified_time" content="2020-10-13T03:40:29.953Z">
+<meta property="article:author" content="赵KK">
+<meta property="article:tag" content="JVM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="赵KK的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵KK</h5>
+          <a href="mailto:1462018576@qq.com" title="1462018576@qq.com" class="mail">1462018576@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://47.105.116.133:8080/upload/258.jpg" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                微信公众号
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JVM从入门到放弃</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JVM从入门到放弃</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-10-13T03:36:03.000Z" itemprop="datePublished" class="page-time">
+  2020-10-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-JVM从入门到放弃"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JVM从入门到放弃</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-10-13 11:36:03" datetime="2020-10-13T03:36:03.000Z"  itemprop="datePublished">2020-10-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <img src="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/1.png" class title="This is an example image">
+<p>虚拟机规范<br><a href="https://docs.oracle.com/javase/specs/index.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/specs/index.html</a><br>操作系统不识别字节码指令，虚拟机将其编译为机器指令<br>第一次编译将代码编译成字节码<br>第二次将字节码编译成机器指令并缓存进方法区<br>类加载器分类：启动类加载器，拓展类加载器，应用类加载器<br>双亲委派机制：<br>沙箱安全：<br>GC发生在方法区和堆<br>年轻代：复制算法，幸存者0-1区<br>eden区满时触发第一次GC(Yong GC)，把活着的对象拷贝到SurvivorFrom区，当eden区再次触发GC(Full  GC)的时候，会扫描Eden区和from区进行垃圾回收，经过这次回收还活着的复制到To区，对象年龄+1<br>复制次数到达15次还活下来的存入老年代<br>优点：无内存碎片<br>缺点：浪费空间<br>标记清除：mark–&gt;sweep<br>优点：<br>缺点：会产生磁盘碎片<br>标记压缩：<br>缺点：移动对象需要成本<br>分代收集：<br>GCroot:<br>1.垃圾回收的时候如何确定垃圾？什么是GC Roots<br>可达性分析算法：从GC Roots对象向下搜索，如果遍历对象到GC Roots没有任何引用，则说明此对象不可用<br>2.那些对象可以作为GC Roots</p>
+<p>GC Roots对象</p>
+<p>JVM调优<br>标配: -version<br>-X：<br>-XX：+/-   开启关闭<br>查看jvm参数细节<br>jps -l<br>jinfo<br>jinfo -flag PrintGCDetails 15460是否开启<br>K V 设值<br>-XX:MetaspaceSize=<br>-XX:MaxTenuringThreshold=15<br>永久区几乎不会被回收，但不是不回收<br>只是回收的条件比较苛刻</p>
+<p>虚拟机栈  局部变量，操作数栈，动态链接<br>java指令是基于栈设计的<br>每个线程创建时都会创建一个虚拟机栈<br>》线程私有<br>》保存的一个个栈帧</p>
+<p>方法与栈帧一对一<br>方法执行：<br>1.正常结束<br>2.抛异常<br>javp -v xx.class  此处没有分号<br>反编译时，方法需是public得<br>返回值是int  ireturn<br>方法虽然是void，但是可以写return，底层指令是存在的<br>47:栈帧的内部结构</p>
+<img src="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/2.png" class title="This is an example image">
+<p>一共五部分<br>局部变量表+操作数栈的大小影响单个栈帧的大小，单个栈帧的大小影响栈的大小，以及何时出现异常<br>48:局部变量表</p>
+<p> 编译器确定，一但确定不会被更改</p>
+<p>Specific info<br>java代码 与字节码指令的对应关系  Slot 变量槽<br>占两个变量槽时，使用起始索引</p>
+<p>静态方法中不能引用this，因为this也是一个变量不存在与当前方法的局部变量表中<br>变量的分类</p>
+<p>操作数栈Operand Stack<br>栈访问数据只能通过入栈出栈来访问<br>上来放的就是1的位置，因为非静态方法，0放入this<br> i++和++i区别</p>
+<p>栈顶缓存<br>将栈顶元素缓存到CPU中，提高执行引擎效率<br>动态链接与常量池</p>
+<p>大部分字节码质量在执行的时候，都需要常量池的访问<br>指向运行时常量池的方法引用</p>
+<img src="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/3.png" class title="This is an example image">
+<p>方法的绑定机制<br>静态链接:编译期可确定</p>
+<p>动态链接:编译期无法确定</p>
+<p>早期绑定:</p>
+<p>晚期绑定:</p>
+<p>方法调用指令区分虚方法与非虚方法</p>
+<p>invokeinterface  虚方法<br>invokedynamic指令 java7<br>动态类型语言vs静态类型语言</p>
+<p>java仍然是静态的<br>方法重写本质</p>
+<p>虚方法表<br>非虚方法不需要，因为已经确定了哪个方法<br>方法返回地址</p>
+<p>本地方法接口，本地方法库</p>
+<p>一个进程对应一个jvm实例，一个jvm实例对应一个运行时数据区，包含多个进程所以堆方法区共享<br>jvm启动的时候就被创建了，大小也就确定了<br>物理上不连续，逻辑上连续<br>TLAB是私有的</p>
+<p>几乎所有的对象实例都是这里分配内存<br>GC频率过高，影响用户线程，stop the world<br>堆得细分结构</p>
+<p>分代收集<br>jvisualvm</p>
+<p>-Xms： X 参数<br>     ms ：memory start<br>查看某个进程或服务的GC情况<br>jps<br>jmap -heap 2082460</p>
+<p>对象分解过程</p>
+<p>YGC   STW</p>
+<img src="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/4.png" class title="This is an example image">
+<p>对象分配    老年代 ↓</p>
+<img src="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/5.png" class title="This is an example image">
+<p>Promotion   晋升 </p>
+<img src="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/6.png" class title="This is an example image">
+
+<p>from 区存在垃圾回收，但不触发minor Gc<br>养老区的Major Gc都无法保存的对象触发OOM<br>minor GC老年代回收Full gc还是整堆回收</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    ArrayList&lt;MessageServiceImpl&gt; list = <span class="keyword">new</span> ArrayList&lt;MessageServiceImpl&gt;();</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">        list.add(<span class="keyword">new</span> MessageServiceImpl());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">           Thread.sleep(<span class="number">10</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Minor GC会触发STW</p>
+<p>内存分配自适应<br>TLAB:Thread Local Allotion Buffer 线程本地分配缓冲区</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-10-13T03:40:29.953Z" itemprop="dateUpdated">2020-10-13 11:40:29</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" target="_blank" rel="external">http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://kkget.github.io">
+            <img src="/img/avatar.jpg" alt="赵KK">
+            赵KK
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/&title=《JVM从入门到放弃》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/&title=《JVM从入门到放弃》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JVM从入门到放弃》 — 赵KK的个人博客&url=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/&via=http://kkget.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%B3%BB%E5%88%97%5BMycat+Sharding-Sphere%5D/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">数据库中间件系列[Mycat+Sharding-Sphere]</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "5qofQKP6PLlRGj9AKdN2wFy8-gzGzoHsz",
+            appKey: "MUjdIW5XaUutRWAdIFu4IdxP",
+            avatar: "mm",
+            placeholder: "Just do it",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+			<span style="text-align: center" id="sitetime"></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>赵KK &copy; 2018 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var t1 = Date.UTC(2018,02,13,15,00,00); //北京时间2018-2-13 00:00:00
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 本站点已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+	siteTime();
+</script>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/&title=《JVM从入门到放弃》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/&title=《JVM从入门到放弃》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JVM从入门到放弃》 — 赵KK的个人博客&url=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/&via=http://kkget.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" alt="微信分享二维码">
+</div>
+
+
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你给我回来!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+	<script type="text/javascript" src="/js/clicklove.js"></script>
+	<!--单击显示文字-->
+	<script type="text/javascript" src="/js/click_show_text.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/01/assets/haru01.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
