@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="kkget.github.io/"/>
-  <updated>2020-10-12T01:14:26.003Z</updated>
+  <updated>2020-10-13T03:09:11.627Z</updated>
   <id>kkget.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试图片</title>
+    <link href="kkget.github.io/2020/10/13/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87/"/>
+    <id>kkget.github.io/2020/10/13/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87/</id>
+    <published>2020-10-13T03:08:25.000Z</published>
+    <updated>2020-10-13T03:09:11.627Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2020/10/13/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87/1.jpg" class title="This is an example image">]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;img src=&quot;/2020/10/13/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87/1.jpg&quot; class title=&quot;This is an example image&quot;&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>数据库中间件系列[Mycat+Sharding-Sphere]</title>
