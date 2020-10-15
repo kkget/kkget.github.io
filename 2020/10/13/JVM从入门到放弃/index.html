@@ -39,8 +39,9 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/13.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/14.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/15.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/16.png">
 <meta property="article:published_time" content="2020-10-13T03:36:03.000Z">
-<meta property="article:modified_time" content="2020-10-15T08:48:13.527Z">
+<meta property="article:modified_time" content="2020-10-15T08:50:12.431Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -184,7 +185,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#堆空间一定是共享的吗？"><span class="post-toc-number">1.</span> <span class="post-toc-text">堆空间一定是共享的吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何解决OOM"><span class="post-toc-number">2.</span> <span class="post-toc-text">如何解决OOM</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#方法区的内部结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">方法区的内部结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么要替换元空间？"><span class="post-toc-number">4.</span> <span class="post-toc-text">为什么要替换元空间？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么字符常量池和静态变量发生了变化？"><span class="post-toc-number">5.</span> <span class="post-toc-text">为什么字符常量池和静态变量发生了变化？</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#堆空间一定是共享的吗？"><span class="post-toc-number">1.</span> <span class="post-toc-text">堆空间一定是共享的吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何解决OOM"><span class="post-toc-number">2.</span> <span class="post-toc-text">如何解决OOM</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#方法区的内部结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">方法区的内部结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么要替换元空间？"><span class="post-toc-number">4.</span> <span class="post-toc-text">为什么要替换元空间？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么字符常量池和静态变量发生了变化？"><span class="post-toc-number">5.</span> <span class="post-toc-text">为什么字符常量池和静态变量发生了变化？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#对象实例化的几种方式"><span class="post-toc-number">6.</span> <span class="post-toc-text">对象实例化的几种方式</span></a></li></ol>
         </nav>
     </aside>
 
@@ -277,6 +278,14 @@
                 </div>
                 <div class="image-caption">jvm分区</div>
             </figure>
+<p>方法区存在垃圾回收，只不过是回收的条件比较苛刻</p>
+<h1 id="对象实例化的几种方式"><a href="#对象实例化的几种方式" class="headerlink" title="对象实例化的几种方式"></a>对象实例化的几种方式</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/jvm/16.png" alt="jvm分区" title>
+                </div>
+                <div class="image-caption">jvm分区</div>
+            </figure>
         </div>
 
         <blockquote class="post-copyright">
@@ -284,7 +293,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-10-15T08:48:13.527Z" itemprop="dateUpdated">2020-10-15 16:48:13</time>
+    Last updated: <time datetime="2020-10-15T08:50:12.431Z" itemprop="dateUpdated">2020-10-15 16:50:12</time>
 </span><br>
 
 
