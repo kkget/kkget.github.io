@@ -36,8 +36,10 @@
 <meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/7.png">
 <meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/8.png">
 <meta property="og:image" content="http://kkget.github.io/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/9.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/13.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/jvm/14.png">
 <meta property="article:published_time" content="2020-10-13T03:36:03.000Z">
-<meta property="article:modified_time" content="2020-10-15T01:31:24.509Z">
+<meta property="article:modified_time" content="2020-10-15T07:42:36.461Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -181,7 +183,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#堆空间一定是共享的吗？"><span class="post-toc-number">1.</span> <span class="post-toc-text">堆空间一定是共享的吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何解决OOM"><span class="post-toc-number">2.</span> <span class="post-toc-text">如何解决OOM</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#方法区的内部结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">方法区的内部结构</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#堆空间一定是共享的吗？"><span class="post-toc-number">1.</span> <span class="post-toc-text">堆空间一定是共享的吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何解决OOM"><span class="post-toc-number">2.</span> <span class="post-toc-text">如何解决OOM</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#方法区的内部结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">方法区的内部结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么要替换元空间？"><span class="post-toc-number">4.</span> <span class="post-toc-text">为什么要替换元空间？</span></a></li></ol>
         </nav>
     </aside>
 
@@ -248,7 +250,24 @@
 <h1 id="如何解决OOM"><a href="#如何解决OOM" class="headerlink" title="如何解决OOM"></a>如何解决OOM</h1><img src="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/7.png" class title="This is an example image">
 <h1 id="方法区的内部结构"><a href="#方法区的内部结构" class="headerlink" title="方法区的内部结构"></a>方法区的内部结构</h1><img src="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/8.png" class title="This is an example image">
 <img src="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/9.png" class title="This is an example image">
-<p>涉及类得加载器也存在与方法区<br>记录方法信息的各个信息<br>异常信息</p>
+<p>涉及类得加载器也存在与方法区<br>记录方法信息的各个信息<br>异常信息<br>运行时常量池:包含字面量，类型，属性，方法的符号引用<br>字节以符号出现<br>#15   都是使用常量池里的<br>“count =” +count  底层会new StringBuilder<br>运行时常量池:动态性，字节码加载时的动态表现形式<br>方法区的演进</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/jvm/13.png" alt="jvm分区](http://47.105.116.133:8080/upload/jvm/12.png)![jvm分区" title>
+                </div>
+                <div class="image-caption">jvm分区](http://47.105.116.133:8080/upload/jvm/12.png)![jvm分区</div>
+            </figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//openjdk.java.net/jeps/122</span></span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/jvm/14.png" alt="jvm分区" title>
+                </div>
+                <div class="image-caption">jvm分区</div>
+            </figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Motivation</span><br><span class="line">This is part of the JRockit and Hotspot convergence effort. <span class="function">JRockit customers <span class="keyword">do</span> not need to configure the permanent <span class="title">generation</span> <span class="params">(since JRockit does not have a permanent generation)</span> and are accustomed to not configuring the permanent generation.</span></span><br><span class="line"><span class="function">因为别人没有   我也没有</span></span><br></pre></td></tr></table></figure>
+<h1 id="为什么要替换元空间？"><a href="#为什么要替换元空间？" class="headerlink" title="为什么要替换元空间？"></a>为什么要替换元空间？</h1><p>1.永久代设置空间大小很难确定，动态还是不动态都很难<br>2.对永久代调优很困难</p>
 
         </div>
 
@@ -257,7 +276,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-10-15T01:31:24.509Z" itemprop="dateUpdated">2020-10-15 09:31:24</time>
+    Last updated: <time datetime="2020-10-15T07:42:36.461Z" itemprop="dateUpdated">2020-10-15 15:42:36</time>
 </span><br>
 
 
