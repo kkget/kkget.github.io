@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/shell/1.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/shell/2.png">
 <meta property="article:published_time" content="2020-10-19T01:26:10.000Z">
-<meta property="article:modified_time" content="2020-10-19T03:04:45.240Z">
+<meta property="article:modified_time" content="2020-10-19T06:47:51.903Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="不务正业之大数据自学">
 <meta name="twitter:card" content="summary">
@@ -233,7 +233,12 @@ Shell工具（重点）</li>
 </ol>
 <p>-f 列号，提取第几列<br>-d 分隔符，按照指定分隔符分割列</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">由于vi编辑器不能使用鼠标，所以一个大文件如果要到最后一行只用键盘下键的话会是一个很痛苦的过程，还好有各种比较快捷的方法归我们使用：</span><br><span class="line"><span class="number">1</span>. vi 编辑器中跳到文件的第一行：</span><br><span class="line">　　 a  输入 :<span class="number">0</span> 或者 :<span class="number">1</span>   回车</span><br><span class="line">　　 b  键盘按下 小写 gg</span><br><span class="line"> </span><br><span class="line"><span class="number">2</span>.vi 编辑器跳到文件最后一行：</span><br><span class="line">　　 a 输入 :$   回车</span><br><span class="line">　　 b 键盘按下大写 G</span><br><span class="line">　　 c 键盘按 shift + g    (其实和第二种方法一样)</span><br><span class="line"></span><br><span class="line">Vim快速移动光标至行首和行尾</span><br><span class="line"></span><br><span class="line">  <span class="number">1</span>、 需要按行快速移动光标时，可以使用键盘上的编辑键Home，快速将光标移动至当前行的行首。除此之外，也可以在命令模式中使用快捷键<span class="string">"^"</span>（即Shift+<span class="number">6</span>）或<span class="number">0</span>（数字<span class="number">0</span>）。</span><br><span class="line">  <span class="number">2</span>、 如果要快速移动光标至当前行的行尾，可以使用编辑键End。也可以在命令模式中使用快捷键<span class="string">"$"</span>（Shift+<span class="number">4</span>）。与快捷键<span class="string">"^"</span>和<span class="number">0</span>不同，快捷键<span class="string">"$"</span>前可以加上数字表示移动的行数。例如使用<span class="string">"1$"</span>表示当前行的行尾，<span class="string">"2$"</span>表示当前行的下一行的行尾。</span><br></pre></td></tr></table></figure>
-
+<p>将passwd文件中的用户id增加数值1并输出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F : -v i=<span class="number">1</span> <span class="string">'&#123;print $3+i&#125;'</span> passwd</span><br></pre></td></tr></table></figure>
+<p>统计当月销量的最高TOP10<br>ETL<br>使用Linux命令查询file1中空行所在的行号</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@zhaokk ~]# awk '/^$/&#123;print NR&#125;' cut.txt </span><br><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p>Shell脚本里如何检查一个文件是否存在？如果不存在该如何处理？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@zhaokk ~]# touch check.sh</span><br><span class="line">[root@zhaokk ~]# vim check.sh </span><br><span class="line">#!/bin/bash</span><br><span class="line"><span class="keyword">if</span> [ -f file.txt ]</span><br><span class="line">then</span><br><span class="line">        echo <span class="string">"文件存在"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        echo <span class="string">"文件不存在"</span></span><br><span class="line">fi</span><br><span class="line">[root@zhaokk ~]# chmod 777 check.sh </span><br><span class="line">[root@zhaokk ~]# ./check.sh </span><br><span class="line">文件不存在</span><br></pre></td></tr></table></figure>
         </div>
 
         <blockquote class="post-copyright">
@@ -241,7 +246,7 @@ Shell工具（重点）</li>
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-10-19T03:04:45.240Z" itemprop="dateUpdated">2020-10-19 11:04:45</time>
+    Last updated: <time datetime="2020-10-19T06:47:51.903Z" itemprop="dateUpdated">2020-10-19 14:47:51</time>
 </span><br>
 
 
