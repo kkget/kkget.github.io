@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Shell脚本 | 赵KK的个人博客 | 纠结体本体,同步记录日常笔记，收藏永不停止，实践从未开始</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="不务正业之大数据自学">
+    <meta name="description" content="1234ll |grep bashecho $SHELLtouch helloword.sh脚本以#!&#x2F;bin&#x2F;bash开头（指定解析器） 脚本的常用执行方式1.第一种：采用bash或sh+脚本的相对路径或绝对路径（不用赋予脚本+x权限）2.第二种：采用输入脚本的绝对路径或相对路径执行脚本（必须具有可执行权限+x）chmod 777 helloworld.sh Linux&#x2F;Unix 的文件调用权限">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell脚本">
+<meta property="og:url" content="http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:site_name" content="赵KK的个人博客">
+<meta property="og:description" content="1234ll |grep bashecho $SHELLtouch helloword.sh脚本以#!&#x2F;bin&#x2F;bash开头（指定解析器） 脚本的常用执行方式1.第一种：采用bash或sh+脚本的相对路径或绝对路径（不用赋予脚本+x权限）2.第二种：采用输入脚本的绝对路径或相对路径执行脚本（必须具有可执行权限+x）chmod 777 helloworld.sh Linux&#x2F;Unix 的文件调用权限">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-19T01:26:10.000Z">
+<meta property="article:modified_time" content="2020-10-19T02:57:48.123Z">
+<meta property="article:author" content="赵KK">
+<meta property="article:tag" content="不务正业之大数据自学">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="赵KK的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵KK</h5>
+          <a href="mailto:1462018576@qq.com" title="1462018576@qq.com" class="mail">1462018576@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://47.105.116.133:8080/upload/258.jpg" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                微信公众号
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Shell脚本</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Shell脚本</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-10-19T01:26:10.000Z" itemprop="datePublished" class="page-time">
+  2020-10-19
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#权限-rwx-二进制"><span class="post-toc-number">1.</span> <span class="post-toc-text">权限 rwx 二进制</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#可把变量提升为全局环境变量，可供其他Shell程序使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">可把变量提升为全局环境变量，可供其他Shell程序使用</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Shell脚本"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Shell脚本</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-10-19 09:26:10" datetime="2020-10-19T01:26:10.000Z"  itemprop="datePublished">2020-10-19</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ll |grep bash</span><br><span class="line">echo $SHELL</span><br><span class="line">touch helloword.sh</span><br><span class="line">脚本以#!/bin/bash开头（指定解析器）</span><br></pre></td></tr></table></figure>
+<p>脚本的常用执行方式<br>1.第一种：采用bash或sh+脚本的相对路径或绝对路径（不用赋予脚本+x权限）<br>2.第二种：采用输入脚本的绝对路径或相对路径执行脚本（必须具有可执行权限+x）<br>chmod 777 helloworld.sh</p>
+<p>Linux/Unix 的文件调用权限分为三级 : 文件所有者（Owner）、用户组（Group）、其它用户（Other Users）。</p>
+<p>只有文件所有者和超级用户可以修改文件或目录的权限。可以使用绝对模式（八进制数字模式），符号模式指定文件的权限。</p>
+<p>使用权限 : 所有使用者<br>八进制语法<br>chmod命令可以使用八进制数来指定权限。文件或目录的权限位是由9个权限位来控制，每三位为一组，它们分别是文件所有者（User）的读、写、执行，用户组（Group）的读、写、执行以及其它用户（Other）的读、写、执行。历史上，文件权限被放在一个比特掩码中，掩码中指定的比特位设为1，用来说明一个类具有相应的优先级。</p>
+<h1 id="权限-rwx-二进制"><a href="#权限-rwx-二进制" class="headerlink" title="权限 rwx 二进制"></a>权限 rwx 二进制</h1><p>7 读 + 写 + 执行 rwx 111<br>6 读 + 写 rw- 110<br>5 读 + 执行 r-x 101<br>4 只读 r– 100<br>3 写 + 执行 -wx 011<br>2 只写 -w- 010<br>1 只执行 –x 001<br>0 无 — 000</p>
+<ol>
+<li>常用系统变量<br>$HOME、$PWD、$SHELL、$USER等<br>自定义变量<br>1．基本语法<br>（1）定义变量：变量=值 等号两边没有空格<br>（2）撤销变量：unset 变量<br>（3）声明静态变量：readonly变量，注意：不能unset<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhaokk ~]# readonly B=3</span><br><span class="line">[root@zhaokk ~]# echo $B</span><br><span class="line"><span class="number">3</span></span><br><span class="line">[root@zhaokk ~]# unset B</span><br><span class="line">-bash: unset: B: cannot unset: readonly variable</span><br></pre></td></tr></table></figure>
+2．变量定义规则<br>（1）变量名称可以由字母、数字和下划线组成，但是不能以数字开头，环境变量名建议大写。<br>（2）等号两侧不能有空格<br>（3）在bash中，变量默认类型都是字符串类型，无法直接进行数值运算。<br>（4）变量的值如果有空格，需要使用双引号或单引号括起来。<h1 id="可把变量提升为全局环境变量，可供其他Shell程序使用"><a href="#可把变量提升为全局环境变量，可供其他Shell程序使用" class="headerlink" title="可把变量提升为全局环境变量，可供其他Shell程序使用"></a>可把变量提升为全局环境变量，可供其他Shell程序使用</h1>export 变量名<br>特殊变量：$n<br>1．基本语法<br>$n （功能描述：n为数字，$0代表该脚本名称，$1-$9代表第一到第九个参数，十以上的参数，十以上的参数需要用大括号包含，如${10}),脚本尽量不能超过5</li>
+<li>4 特殊变量：$#<br>1．基本语法<br>$# （功能描述：获取所有输入参数个数，常用于循环）</li>
+<li>5 特殊变量：$<em>、$@<br>1．基本语法<br>$</em> （功能描述：这个变量代表命令行中所有的参数，$*把所有的参数看成一个整体）<br>$@ （功能描述：这个变量也代表命令行中所有的参数，不过$@把每个参数区分对待）</li>
+<li>6 特殊变量：$？<br>1．基本语法<br>$？ （功能描述：最后一次执行的命令的返回状态。如果这个变量的值为0，证明上一个命令正确执行；如果这个变量的值为非0（具体是哪个数，由命令自己来决定），则证明上一个命令执行不正确了。）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@zhaokk ~]# echo $?</span><br><span class="line"><span class="number">127</span></span><br><span class="line">[root@zhaokk ~]# ./helloword.sh </span><br><span class="line">helloworld</span><br><span class="line"></span><br><span class="line">[root@zhaokk ~]# echo $?</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+运算  expr 运算符间有空格<br>条件判断<br>1．基本语法<br>[ condition ]（注意condition前后要有空格）<br>注意：条件非空即为true，[ atguigu ]返回true，[] 返回false。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ 23 -ge 22 ]</span><br><span class="line">[atguigu@hadoop101 datas]$ echo $? 0</span><br></pre></td></tr></table></figure>
+Shell工具（重点）</li>
+<li>1 cut<br>cut的工作就是“剪”，具体的说就是在文件中负责剪切数据用的。cut 命令从文件的每一行剪切字节、字符和字段并将这些字节、字符和字段输出。</li>
+<li>基本用法<br>cut [选项参数]  filename<br>说明：默认分隔符是制表符</li>
+<li>选项参数说明<br>表1-55<br>选项参数 功能</li>
+</ol>
+<p>-f 列号，提取第几列<br>-d 分隔符，按照指定分隔符分割列</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">由于vi编辑器不能使用鼠标，所以一个大文件如果要到最后一行只用键盘下键的话会是一个很痛苦的过程，还好有各种比较快捷的方法归我们使用：</span><br><span class="line"><span class="number">1</span>. vi 编辑器中跳到文件的第一行：</span><br><span class="line">　　 a  输入 :<span class="number">0</span> 或者 :<span class="number">1</span>   回车</span><br><span class="line">　　 b  键盘按下 小写 gg</span><br><span class="line"> </span><br><span class="line"><span class="number">2</span>.vi 编辑器跳到文件最后一行：</span><br><span class="line">　　 a 输入 :$   回车</span><br><span class="line">　　 b 键盘按下大写 G</span><br><span class="line">　　 c 键盘按 shift + g    (其实和第二种方法一样)</span><br><span class="line"></span><br><span class="line">Vim快速移动光标至行首和行尾</span><br><span class="line"></span><br><span class="line">  <span class="number">1</span>、 需要按行快速移动光标时，可以使用键盘上的编辑键Home，快速将光标移动至当前行的行首。除此之外，也可以在命令模式中使用快捷键<span class="string">"^"</span>（即Shift+<span class="number">6</span>）或<span class="number">0</span>（数字<span class="number">0</span>）。</span><br><span class="line">  <span class="number">2</span>、 如果要快速移动光标至当前行的行尾，可以使用编辑键End。也可以在命令模式中使用快捷键<span class="string">"$"</span>（Shift+<span class="number">4</span>）。与快捷键<span class="string">"^"</span>和<span class="number">0</span>不同，快捷键<span class="string">"$"</span>前可以加上数字表示移动的行数。例如使用<span class="string">"1$"</span>表示当前行的行尾，<span class="string">"2$"</span>表示当前行的下一行的行尾。</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-10-19T02:57:48.123Z" itemprop="dateUpdated">2020-10-19 10:57:48</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/10/19/Shell%E8%84%9A%E6%9C%AC/" target="_blank" rel="external">http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://kkget.github.io">
+            <img src="/img/avatar.jpg" alt="赵KK">
+            赵KK
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E4%B9%8B%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%87%AA%E5%AD%A6/" rel="tag">不务正业之大数据自学</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/&title=《Shell脚本》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/&title=《Shell脚本》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Shell脚本》 — 赵KK的个人博客&url=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/&via=http://kkget.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/10/13/JVM%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JVM从入门到放弃</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "5qofQKP6PLlRGj9AKdN2wFy8-gzGzoHsz",
+            appKey: "MUjdIW5XaUutRWAdIFu4IdxP",
+            avatar: "mm",
+            placeholder: "Just do it",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+			<span style="text-align: center" id="sitetime"></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>赵KK &copy; 2018 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var t1 = Date.UTC(2018,02,13,15,00,00); //北京时间2018-2-13 00:00:00
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 本站点已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+	siteTime();
+</script>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/&title=《Shell脚本》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/&title=《Shell脚本》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Shell脚本》 — 赵KK的个人博客&url=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/&via=http://kkget.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/" alt="微信分享二维码">
+</div>
+
+
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你给我回来!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+	<script type="text/javascript" src="/js/clicklove.js"></script>
+	<!--单击显示文字-->
+    <script type="text/javascript" src="/js/clicksocialvalue.js"></script>
+	<script type="text/javascript" src="/js/click_show_text.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/01/assets/haru01.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

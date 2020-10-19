@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kkget.github.io/"/>
-  <updated>2020-10-16T00:49:56.142Z</updated>
+  <updated>2020-10-19T02:57:48.123Z</updated>
   <id>http://kkget.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Shell脚本</title>
+    <link href="http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/"/>
+    <id>http://kkget.github.io/2020/10/19/Shell%E8%84%9A%E6%9C%AC/</id>
+    <published>2020-10-19T01:26:10.000Z</published>
+    <updated>2020-10-19T02:57:48.123Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ll |grep bash</span><br><span class="line">echo $SHELL</span><br><span class="line">touch helloword.sh</span><br><span class="line">脚本以#!/bin/bash开头（指定解析器）</span><br></pre></td></tr></table></figure><p>脚本的常用执行方式<br>1.第一种：采用bash或sh+脚本的相对路径或绝对路径（不用赋予脚本+x权限）<br>2.第二种：采用输入脚本的绝对路径或相对路径执行脚本（必须具有可执行权限+x）<br>chmod 777 helloworld.sh</p><p>Linux/Unix 的文件调用权限分为三级 : 文件所有者（Owner）、用户组（Group）、其它用户（Other Users）。</p><p>只有文件所有者和超级用户可以修改文件或目录的权限。可以使用绝对模式（八进制数字模式），符号模式指定文件的权限。</p><p>使用权限 : 所有使用者<br>八进制语法<br>chmod命令可以使用八进制数来指定权限。文件或目录的权限位是由9个权限位来控制，每三位为一组，它们分别是文件所有者（User）的读、写、执行，用户组（Group）的读、写、执行以及其它用户（Other）的读、写、执行。历史上，文件权限被放在一个比特掩码中，掩码中指定的比特位设为1，用来说明一个类具有相应的优先级。</p><h1 id="权限-rwx-二进制"><a href="#权限-rwx-二进制" class="headerlink" title="权限 rwx 二进制"></a>权限 rwx 二进制</h1><p>7 读 + 写 + 执行 rwx 111<br>6 读 + 写 rw- 110<br>5 读 + 执行 r-x 101<br>4 只读 r– 100<br>3 写 + 执行 -wx 011<br>2 只写 -w- 010<br>1 只执行 –x 001<br>0 无 — 000</p><ol><li>常用系统变量<br>$HOME、$PWD、$SHELL、$USER等<br>自定义变量<br>1．基本语法<br>（1）定义变量：变量=值 等号两边没有空格<br>（2）撤销变量：unset 变量<br>（3）声明静态变量：readonly变量，注意：不能unset<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhaokk ~]# readonly B=3</span><br><span class="line">[root@zhaokk ~]# echo $B</span><br><span class="line"><span class="number">3</span></span><br><span class="line">[root@zhaokk ~]# unset B</span><br><span class="line">-bash: unset: B: cannot unset: readonly variable</span><br></pre></td></tr></table></figure>2．变量定义规则<br>（1）变量名称可以由字母、数字和下划线组成，但是不能以数字开头，环境变量名建议大写。<br>（2）等号两侧不能有空格<br>（3）在bash中，变量默认类型都是字符串类型，无法直接进行数值运算。<br>（4）变量的值如果有空格，需要使用双引号或单引号括起来。<h1 id="可把变量提升为全局环境变量，可供其他Shell程序使用"><a href="#可把变量提升为全局环境变量，可供其他Shell程序使用" class="headerlink" title="可把变量提升为全局环境变量，可供其他Shell程序使用"></a>可把变量提升为全局环境变量，可供其他Shell程序使用</h1>export 变量名<br>特殊变量：$n<br>1．基本语法<br>$n （功能描述：n为数字，$0代表该脚本名称，$1-$9代表第一到第九个参数，十以上的参数，十以上的参数需要用大括号包含，如${10}),脚本尽量不能超过5</li><li>4 特殊变量：$#<br>1．基本语法<br>$# （功能描述：获取所有输入参数个数，常用于循环）</li><li>5 特殊变量：$<em>、$@<br>1．基本语法<br>$</em> （功能描述：这个变量代表命令行中所有的参数，$*把所有的参数看成一个整体）<br>$@ （功能描述：这个变量也代表命令行中所有的参数，不过$@把每个参数区分对待）</li><li>6 特殊变量：$？<br>1．基本语法<br>$？ （功能描述：最后一次执行的命令的返回状态。如果这个变量的值为0，证明上一个命令正确执行；如果这个变量的值为非0（具体是哪个数，由命令自己来决定），则证明上一个命令执行不正确了。）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@zhaokk ~]# echo $?</span><br><span class="line"><span class="number">127</span></span><br><span class="line">[root@zhaokk ~]# ./helloword.sh </span><br><span class="line">helloworld</span><br><span class="line"></span><br><span class="line">[root@zhaokk ~]# echo $?</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>运算  expr 运算符间有空格<br>条件判断<br>1．基本语法<br>[ condition ]（注意condition前后要有空格）<br>注意：条件非空即为true，[ atguigu ]返回true，[] 返回false。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ 23 -ge 22 ]</span><br><span class="line">[atguigu@hadoop101 datas]$ echo $? 0</span><br></pre></td></tr></table></figure>Shell工具（重点）</li><li>1 cut<br>cut的工作就是“剪”，具体的说就是在文件中负责剪切数据用的。cut 命令从文件的每一行剪切字节、字符和字段并将这些字节、字符和字段输出。</li><li>基本用法<br>cut [选项参数]  filename<br>说明：默认分隔符是制表符</li><li>选项参数说明<br>表1-55<br>选项参数 功能</li></ol><p>-f 列号，提取第几列<br>-d 分隔符，按照指定分隔符分割列</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">由于vi编辑器不能使用鼠标，所以一个大文件如果要到最后一行只用键盘下键的话会是一个很痛苦的过程，还好有各种比较快捷的方法归我们使用：</span><br><span class="line"><span class="number">1</span>. vi 编辑器中跳到文件的第一行：</span><br><span class="line">　　 a  输入 :<span class="number">0</span> 或者 :<span class="number">1</span>   回车</span><br><span class="line">　　 b  键盘按下 小写 gg</span><br><span class="line"> </span><br><span class="line"><span class="number">2</span>.vi 编辑器跳到文件最后一行：</span><br><span class="line">　　 a 输入 :$   回车</span><br><span class="line">　　 b 键盘按下大写 G</span><br><span class="line">　　 c 键盘按 shift + g    (其实和第二种方法一样)</span><br><span class="line"></span><br><span class="line">Vim快速移动光标至行首和行尾</span><br><span class="line"></span><br><span class="line">  <span class="number">1</span>、 需要按行快速移动光标时，可以使用键盘上的编辑键Home，快速将光标移动至当前行的行首。除此之外，也可以在命令模式中使用快捷键<span class="string">"^"</span>（即Shift+<span class="number">6</span>）或<span class="number">0</span>（数字<span class="number">0</span>）。</span><br><span class="line">  <span class="number">2</span>、 如果要快速移动光标至当前行的行尾，可以使用编辑键End。也可以在命令模式中使用快捷键<span class="string">"$"</span>（Shift+<span class="number">4</span>）。与快捷键<span class="string">"^"</span>和<span class="number">0</span>不同，快捷键<span class="string">"$"</span>前可以加上数字表示移动的行数。例如使用<span class="string">"1$"</span>表示当前行的行尾，<span class="string">"2$"</span>表示当前行的下一行的行尾。</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line
+      
+    
+    </summary>
+    
+    
+    
+      <category term="不务正业之大数据自学" scheme="http://kkget.github.io/tags/%E4%B8%8D%E5%8A%A1%E6%AD%A3%E4%B8%9A%E4%B9%8B%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%87%AA%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>JVM从入门到放弃</title>
