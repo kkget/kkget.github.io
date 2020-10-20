@@ -30,8 +30,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/shell/1.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/shell/2.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/shell/3.png">
 <meta property="article:published_time" content="2020-10-19T01:26:10.000Z">
-<meta property="article:modified_time" content="2020-10-19T06:47:51.903Z">
+<meta property="article:modified_time" content="2020-10-20T01:51:46.263Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="不务正业之大数据自学">
 <meta name="twitter:card" content="summary">
@@ -218,7 +219,13 @@
             </figure>
 <p>只有文件所有者和超级用户可以修改文件或目录的权限。可以使用绝对模式（八进制数字模式），符号模式指定文件的权限。</p>
 <p>使用权限 : 所有使用者<br>八进制语法<br>chmod命令可以使用八进制数来指定权限。文件或目录的权限位是由9个权限位来控制，每三位为一组，它们分别是文件所有者（User）的读、写、执行，用户组（Group）的读、写、执行以及其它用户（Other）的读、写、执行。历史上，文件权限被放在一个比特掩码中，掩码中指定的比特位设为1，用来说明一个类具有相应的优先级。</p>
-<h1 id="权限-rwx-二进制"><a href="#权限-rwx-二进制" class="headerlink" title="权限 rwx 二进制"></a>权限 rwx 二进制</h1><p>7 读 + 写 + 执行 rwx 111<br>6 读 + 写 rw- 110<br>5 读 + 执行 r-x 101<br>4 只读 r– 100<br>3 写 + 执行 -wx 011<br>2 只写 -w- 010<br>1 只执行 –x 001<br>0 无 — 000</p>
+<h1 id="权限-rwx-二进制"><a href="#权限-rwx-二进制" class="headerlink" title="权限 rwx 二进制"></a>权限 rwx 二进制</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/shell/3.png" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <ol>
 <li>常用系统变量<br>$HOME、$PWD、$SHELL、$USER等<br>自定义变量<br>1．基本语法<br>（1）定义变量：变量=值 等号两边没有空格<br>（2）撤销变量：unset 变量<br>（3）声明静态变量：readonly变量，注意：不能unset<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhaokk ~]# readonly B=3</span><br><span class="line">[root@zhaokk ~]# echo $B</span><br><span class="line"><span class="number">3</span></span><br><span class="line">[root@zhaokk ~]# unset B</span><br><span class="line">-bash: unset: B: cannot unset: readonly variable</span><br></pre></td></tr></table></figure>
 2．变量定义规则<br>（1）变量名称可以由字母、数字和下划线组成，但是不能以数字开头，环境变量名建议大写。<br>（2）等号两侧不能有空格<br>（3）在bash中，变量默认类型都是字符串类型，无法直接进行数值运算。<br>（4）变量的值如果有空格，需要使用双引号或单引号括起来。<h1 id="可把变量提升为全局环境变量，可供其他Shell程序使用"><a href="#可把变量提升为全局环境变量，可供其他Shell程序使用" class="headerlink" title="可把变量提升为全局环境变量，可供其他Shell程序使用"></a>可把变量提升为全局环境变量，可供其他Shell程序使用</h1>export 变量名<br>特殊变量：$n<br>1．基本语法<br>$n （功能描述：n为数字，$0代表该脚本名称，$1-$9代表第一到第九个参数，十以上的参数，十以上的参数需要用大括号包含，如${10}),脚本尽量不能超过5</li>
@@ -246,7 +253,7 @@ Shell工具（重点）</li>
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-10-19T06:47:51.903Z" itemprop="dateUpdated">2020-10-19 14:47:51</time>
+    Last updated: <time datetime="2020-10-20T01:51:46.263Z" itemprop="dateUpdated">2020-10-20 09:51:46</time>
 </span><br>
 
 
