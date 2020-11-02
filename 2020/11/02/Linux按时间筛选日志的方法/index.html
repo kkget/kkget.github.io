@@ -21,15 +21,15 @@
     
     
     <meta name="keywords" content="Linux">
-    <meta name="description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？ 筛选15:05–15:10期间的日志 使用sed 1sed -n &#39;&#x2F;Apr 22 15:05&#x2F;,&#x2F;Apr 22 15:10&#x2F;p&#39; syslog &gt; test使用grep，与sed提取的行数有差异，待查验。 1grep -E &#39;^Apr 22 15:05|^Apr 22 15:06|^Apr 22 15:07|^Apr 22 15:">
+    <meta name="description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、gawk和sed。 日志筛选需求描述：从2017年12月22日的日志文件中，统计时间段13:30~18:00之间包含筛选词“open.app”的日志行数。 123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux按时间筛选日志的方法">
 <meta property="og:url" content="http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="赵KK的个人博客">
-<meta property="og:description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？ 筛选15:05–15:10期间的日志 使用sed 1sed -n &#39;&#x2F;Apr 22 15:05&#x2F;,&#x2F;Apr 22 15:10&#x2F;p&#39; syslog &gt; test使用grep，与sed提取的行数有差异，待查验。 1grep -E &#39;^Apr 22 15:05|^Apr 22 15:06|^Apr 22 15:07|^Apr 22 15:">
+<meta property="og:description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、gawk和sed。 日志筛选需求描述：从2017年12月22日的日志文件中，统计时间段13:30~18:00之间包含筛选词“open.app”的日志行数。 123">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-02T07:21:03.000Z">
-<meta property="article:modified_time" content="2020-11-02T07:22:33.908Z">
+<meta property="article:modified_time" content="2020-11-02T07:33:08.999Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -189,17 +189,30 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？</p>
-<p>筛选15:05–15:10期间的日志<br> 使用sed<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'/Apr 22 15:05/,/Apr 22 15:10/p'</span> syslog &gt; test</span><br></pre></td></tr></table></figure><br>使用grep，与sed提取的行数有差异，待查验。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E <span class="string">'^Apr 22 15:05|^Apr 22 15:06|^Apr 22 15:07|^Apr 22 15:08|^Apr 22 15:09|^Apr 22 15:10'</span></span><br></pre></td></tr></table></figure>
-<p>使用awk，跟grep提取行数一致，不过会因为分隔符原因，时间戳格式被修改，需要额外辨别，待完善。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F<span class="string">'[:]'</span> <span class="string">'$1 = 15 &amp;&amp; $2 &gt;=5 &amp;&amp; $2 &lt;= 10 &#123;print $0&#125;'</span> syslog</span><br></pre></td></tr></table></figure>
-
-
-<p>linux下使用awk命令按时间段筛选日志</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zcat com.log20160529.gz | grep <span class="string">'dianping_reply'</span>| </span><br><span class="line">awk <span class="string">'&#123;split($4,array,"[");if(array[2]&gt;="29/May/2016:00:00:26" &amp;&amp; array[2]&lt;="29/May/2016:00:01:14")&#123;print $0&#125;&#125;'</span></span><br></pre></td></tr></table></figure>
-<p>扫描gz压缩文件，从中寻找带有<code>dianping_reply</code>的行，将改行按照<code>[</code>进行拆分，然后直接使用if条件进行判断，比较，最终输出想要的结果。<br>zcat 直接读取压缩文件的内容<br>grep用来过滤特定字符的行<br>awk 用来执行命令<br>split用来切分字符串</p>
-
+            <p>日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？<br>在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、gawk和sed。</p>
+<p>日志筛选需求描述：从2017年12月22日的日志文件中，统计时间段13:30~18:00之间包含筛选词“open.app”的日志行数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">本系统后台日志格式如下图所示：</span><br><span class="line">从图中可以看出每行日志以“yyyy-MM-dd HH:mm:ss”开头，故要筛选一段时间的日志，就要匹配该日志的时间前缀。</span><br><span class="line">接下来文章分别介绍使用grep、gawk和sed命令，如何进行相关的Shell脚本（命令）的编写。</span><br><span class="line">  </span><br><span class="line">1grep命令</span><br><span class="line"> </span><br><span class="line">在日志筛选、搜索中，grep是使用频率较高的命令。对于grep命令来说，如果筛选一段时间的日志，需要进行多条件相并过滤，使用正则表达式进行处理。对于13:30~18:00时间段来说，可以转化为下面表格多个时间相并。</span><br><span class="line">序号 筛选条件 筛选时间段</span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line">1 2017-12-22 13:3 13:30:00~13:39:59</span><br><span class="line">2 2017-12-22 13:4 13:40:00~13:49:59</span><br><span class="line">3 2017-12-22 13:5 13:50:00~13:59:59</span><br><span class="line">4 2017-12-22 14 14:00:00~14:59:59</span><br><span class="line">5 2017-12-22 15 15:00:00~15:59:59</span><br><span class="line">6 2017-12-22 16 16:00:00~16:59:59</span><br><span class="line">7 2017-12-22 17 17:00:00~17:59:59</span><br></pre></td></tr></table></figure>
+<p>命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E &#39;^2017-12-22  13:3|^2017-12-22 13:4|^2017-12-22 13:5|^2017-12-22 14|^2017-12-22  15|^2017-12-22 16|^2017-12-22 17&#39; 2017-12-22.log.txt | grep  &#39;open.app&#39; | wc -l</span><br></pre></td></tr></table></figure>
+<p>运行结果如下图：<br>共检索筛选到71314条。<br>上述命令条件可以使用正则表达式进行缩减，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">grep -E &#39;^2017-12-22  13:[3,4,5]|^2017-12-22 1[4,5,6,7]&#39; 2017-12-22.log.txt | grep  &#39;open.app&#39; | wc -l</span><br><span class="line">运行结果如下图所示：</span><br><span class="line">检索筛选到71314条，和上述命令一致。</span><br><span class="line">  </span><br><span class="line">2gawk命令</span><br><span class="line"> </span><br><span class="line">gawk命令是功能强大、可编程的Linux命令。使用gawk命令筛选一段时间的日志，其思路是首先截取出每行日志的“yyyy-MM-dd HH:mm:ss”19位时间前缀，然后将该前缀字符串与“2017-12-22 13:30:00”、“2017-12-22 18:00:00”进行比较，不在该范围的日志则丢弃。</span><br><span class="line">命令脚本如下所示：</span><br></pre></td></tr></table></figure>
+<p>cat 2017-12-22.log.txt  | gawk ‘{    time = substr($0, 1, 19);         if((‘2017-12-22 13:30:00’ &lt;= time)=”” &amp;&amp;=””  (time=””&gt;&lt; ‘2017-12-22=”” 18:00:00’))=””&gt;         {             print($0);         }}’ | grep  ‘open.app’ | wc -l</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">运行结果如下图所示：</span><br><span class="line">共检索筛选到71314条。</span><br><span class="line">注：需要注意“2017-12-22 18:00:00”使用的是小于符号，而不是小于等于符号。</span><br><span class="line"> </span><br><span class="line">3sed命令</span><br><span class="line"> </span><br><span class="line">sed是一种流编辑器命令，它是文本处理中非常中的工具，能够完美的配合正则表达式使用。使用sed命令选定行的范围语法，既是逗号语法。</span><br><span class="line">命令如下所示：</span><br></pre></td></tr></table></figure>
+<p>sed -n ‘/2017-12-22  13:30:00/,/2017-12-22 18:00:00/p’ 2017-12-22.log.txt | grep  ‘open.app’ | wc -l</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">运行结果如下图所示：</span><br><span class="line">共检索筛选到71314条。</span><br><span class="line">注：该sed命令含义是选定行范围：从第一行“2017-12-22 13:30:00”开始，到第一行“2017-12-22 18:00:00”结束，包括第一行“2017-12-22 18:00:00”。如果不筛选“open.app”关键字，单纯计数，则sed命令比如上述grep和gawk命令多筛选出一条。</span><br><span class="line">  </span><br><span class="line">4命令比较</span><br><span class="line"> </span><br><span class="line">对命令运行时间和命令编写的复杂性进行对比，结果如下表所示：</span><br><span class="line">命令 耗时（秒） 命令复杂性</span><br><span class="line">grep 50 低</span><br><span class="line">gawk 122 高</span><br><span class="line">sed 61 低</span><br><span class="line">从表中可以看出，grep命令运行时间最短；gawk命令运行时间最长，而且命令编写较为复杂。另外sed命令运行时间跟grep相近，但是sed命令对时间段适应性较好。如果时间段扩大，grep命令修改较大，而sed命令修改较小。</span><br><span class="line"></span><br><span class="line">筛选15:05--15:10期间的日志</span><br><span class="line"> 使用sed</span><br></pre></td></tr></table></figure>
+<p>sed -n ‘/Apr 22 15:05/,/Apr 22 15:10/p’ syslog &gt; test</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用grep，与sed提取的行数有差异，待查验。</span><br></pre></td></tr></table></figure>
+<p>grep -E ‘^Apr 22 15:05|^Apr 22 15:06|^Apr 22 15:07|^Apr 22 15:08|^Apr 22 15:09|^Apr 22 15:10’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用awk，跟grep提取行数一致，不过会因为分隔符原因，时间戳格式被修改，需要额外辨别，待完善。</span><br></pre></td></tr></table></figure>
+<p>awk -F’[:]’ ‘$1 = 15 &amp;&amp; $2 &gt;=5 &amp;&amp; $2 &lt;= 10 {print $0}’ syslog </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">linux下使用awk命令按时间段筛选日志</span><br></pre></td></tr></table></figure>
+<p>zcat com.log20160529.gz | grep ‘dianping_reply’|<br>awk ‘{split($4,array,”[“);if(array[2]&gt;=”29/May/2016:00:00:26” &amp;&amp; array[2]&lt;=”29/May/2016:00:01:14”){print $0}}’ </p>
+<pre><code>扫描gz压缩文件，从中寻找带有`dianping_reply`的行，将改行按照`[`进行拆分，然后直接使用if条件进行判断，比较，最终输出想要的结果。
+zcat 直接读取压缩文件的内容
+grep用来过滤特定字符的行
+awk 用来执行命令
+split用来切分字符串
+</code></pre>
         </div>
 
         <blockquote class="post-copyright">
@@ -207,7 +220,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-11-02T07:22:33.908Z" itemprop="dateUpdated">2020-11-02 15:22:33</time>
+    Last updated: <time datetime="2020-11-02T07:33:08.999Z" itemprop="dateUpdated">2020-11-02 15:33:08</time>
 </span><br>
 
 

@@ -242,9 +242,9 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？
-筛选15:05–15:10期间的日志 使用sed 1sed -n '/Apr 22 15:05/,/Apr 22 15:10/p' syslog &gt; test使用grep，与sed提取的行数有差异，待查验。
-1grep -E '^Apr 22 15:05|^Apr 22 15:06|^Apr 22 15:07|^Apr 22 ...
+        日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、gawk和sed。
+日志筛选需求描述：从2017年12月22日的日志文件中，统计时间段13:30~18:00之间包含筛选词“open.app”的日志行数。
+...
     
 
         <a href="/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-more waves-effect waves-button">
