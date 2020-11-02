@@ -14,24 +14,24 @@
     
     
     
-    <title>redismanager安装失败 | 赵KK的个人博客 | 纠结体本体,同步记录日常笔记，收藏永不停止，实践从未开始</title>
+    <title>Linux按时间筛选日志的方法 | 赵KK的个人博客 | 纠结体本体,同步记录日常笔记，收藏永不停止，实践从未开始</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="redis">
-    <meta name="description" content="关于redis manager安装失败 报错 install it manually and try again 需要下载vc_redist.x86.exe https:&#x2F;&#x2F;support.microsoft.com&#x2F;en-us&#x2F;help&#x2F;2977003&#x2F;the-latest-supported-visual-c-downloads 选择x86">
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？ 筛选15:05–15:10期间的日志 使用sed 1sed -n &#39;&#x2F;Apr 22 15:05&#x2F;,&#x2F;Apr 22 15:10&#x2F;p&#39; syslog &gt; test使用grep，与sed提取的行数有差异，待查验。 1grep -E &#39;^Apr 22 15:05|^Apr 22 15:06|^Apr 22 15:07|^Apr 22 15:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redismanager安装失败">
-<meta property="og:url" content="http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/index.html">
+<meta property="og:title" content="Linux按时间筛选日志的方法">
+<meta property="og:url" content="http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="赵KK的个人博客">
-<meta property="og:description" content="关于redis manager安装失败 报错 install it manually and try again 需要下载vc_redist.x86.exe https:&#x2F;&#x2F;support.microsoft.com&#x2F;en-us&#x2F;help&#x2F;2977003&#x2F;the-latest-supported-visual-c-downloads 选择x86">
+<meta property="og:description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？ 筛选15:05–15:10期间的日志 使用sed 1sed -n &#39;&#x2F;Apr 22 15:05&#x2F;,&#x2F;Apr 22 15:10&#x2F;p&#39; syslog &gt; test使用grep，与sed提取的行数有差异，待查验。 1grep -E &#39;^Apr 22 15:05|^Apr 22 15:06|^Apr 22 15:07|^Apr 22 15:">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-10-29T07:10:44.000Z">
-<meta property="article:modified_time" content="2020-10-29T07:12:27.635Z">
+<meta property="article:published_time" content="2020-11-02T07:21:03.000Z">
+<meta property="article:modified_time" content="2020-11-02T07:22:33.908Z">
 <meta property="article:author" content="赵KK">
-<meta property="article:tag" content="redis">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
     
         <link rel="alternate" type="application/atom+xml" title="赵KK的个人博客" href="/atom.xml">
@@ -127,7 +127,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">redismanager安装失败</div>
+        <div class="flex-col header-title ellipsis">Linux按时间筛选日志的方法</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -149,11 +149,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">redismanager安装失败</h1>
+        <h1 class="title">Linux按时间筛选日志的方法</h1>
         <h5 class="subtitle">
             
-                <time datetime="2020-10-29T07:10:44.000Z" itemprop="datePublished" class="page-time">
-  2020-10-29
+                <time datetime="2020-11-02T07:21:03.000Z" itemprop="datePublished" class="page-time">
+  2020-11-02
 </time>
 
 
@@ -170,13 +170,13 @@
 <div class="container body-wrap">
     
 
-<article id="post-redis   manager   安装失败"
+<article id="post-Linux按时间筛选日志的方法"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">redismanager安装失败</h1>
+        <h1 class="post-card-title">Linux按时间筛选日志的方法</h1>
         <div class="post-meta">
-            <time class="post-time" title="2020-10-29 15:10:44" datetime="2020-10-29T07:10:44.000Z"  itemprop="datePublished">2020-10-29</time>
+            <time class="post-time" title="2020-11-02 15:21:03" datetime="2020-11-02T07:21:03.000Z"  itemprop="datePublished">2020-11-02</time>
 
             
 
@@ -189,11 +189,16 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>关于redis manager安装失败 报错</p>
-<p>install it manually and try again</p>
-<p>需要下载vc_redist.x86.exe</p>
-<p><a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads" target="_blank" rel="noopener">https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads</a></p>
-<p>选择x86</p>
+            <p>日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？</p>
+<p>筛选15:05–15:10期间的日志<br> 使用sed<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'/Apr 22 15:05/,/Apr 22 15:10/p'</span> syslog &gt; test</span><br></pre></td></tr></table></figure><br>使用grep，与sed提取的行数有差异，待查验。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E <span class="string">'^Apr 22 15:05|^Apr 22 15:06|^Apr 22 15:07|^Apr 22 15:08|^Apr 22 15:09|^Apr 22 15:10'</span></span><br></pre></td></tr></table></figure>
+<p>使用awk，跟grep提取行数一致，不过会因为分隔符原因，时间戳格式被修改，需要额外辨别，待完善。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F<span class="string">'[:]'</span> <span class="string">'$1 = 15 &amp;&amp; $2 &gt;=5 &amp;&amp; $2 &lt;= 10 &#123;print $0&#125;'</span> syslog</span><br></pre></td></tr></table></figure>
+
+
+<p>linux下使用awk命令按时间段筛选日志</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zcat com.log20160529.gz | grep <span class="string">'dianping_reply'</span>| </span><br><span class="line">awk <span class="string">'&#123;split($4,array,"[");if(array[2]&gt;="29/May/2016:00:00:26" &amp;&amp; array[2]&lt;="29/May/2016:00:01:14")&#123;print $0&#125;&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>扫描gz压缩文件，从中寻找带有<code>dianping_reply</code>的行，将改行按照<code>[</code>进行拆分，然后直接使用if条件进行判断，比较，最终输出想要的结果。<br>zcat 直接读取压缩文件的内容<br>grep用来过滤特定字符的行<br>awk 用来执行命令<br>split用来切分字符串</p>
 
         </div>
 
@@ -202,12 +207,12 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-10-29T07:12:27.635Z" itemprop="dateUpdated">2020-10-29 15:12:27</time>
+    Last updated: <time datetime="2020-11-02T07:22:33.908Z" itemprop="dateUpdated">2020-11-02 15:22:33</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/" target="_blank" rel="external">http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/" target="_blank" rel="external">http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/</a>
         
     </div>
     
@@ -224,7 +229,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
 
 
             
@@ -234,7 +239,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/&title=《redismanager安装失败》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/&title=《Linux按时间筛选日志的方法》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -244,22 +249,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/&title=《redismanager安装失败》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/&title=《Linux按时间筛选日志的方法》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《redismanager安装失败》 — 赵KK的个人博客&url=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/&via=http://kkget.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux按时间筛选日志的方法》 — 赵KK的个人博客&url=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/&via=http://kkget.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -279,21 +284,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Linux按时间筛选日志的方法</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2020/10/19/Shell%E8%84%9A%E6%9C%AC/" id="post-next" class="post-nav-link">
+      <a href="/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Shell脚本</h4>
+        <h4 class="title">redismanager安装失败</h4>
       </a>
     </div>
   
@@ -430,7 +428,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/&title=《redismanager安装失败》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/&title=《Linux按时间筛选日志的方法》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -440,22 +438,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/&title=《redismanager安装失败》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/&title=《Linux按时间筛选日志的方法》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《redismanager安装失败》 — 赵KK的个人博客&url=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/&via=http://kkget.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux按时间筛选日志的方法》 — 赵KK的个人博客&url=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/&via=http://kkget.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -466,7 +464,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
 </div>
 
 
