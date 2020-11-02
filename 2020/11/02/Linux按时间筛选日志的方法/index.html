@@ -21,15 +21,15 @@
     
     
     <meta name="keywords" content="Linux">
-    <meta name="description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、gawk和sed。 日志筛选需求描述：从2017年12月22日的日志文件中，统计时间段13:30~18:00之间包含筛选词“open.app”的日志行数。 123">
+    <meta name="description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？ 通常我们是用ELK去查询过滤的，如果脱离工具，需要运维导出日志，或者直接用grep  sed  awk 命令搭配正则或者编写shell脚本供运维执行后导出分析 在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux按时间筛选日志的方法">
 <meta property="og:url" content="http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="赵KK的个人博客">
-<meta property="og:description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、gawk和sed。 日志筛选需求描述：从2017年12月22日的日志文件中，统计时间段13:30~18:00之间包含筛选词“open.app”的日志行数。 123">
+<meta property="og:description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？ 通常我们是用ELK去查询过滤的，如果脱离工具，需要运维导出日志，或者直接用grep  sed  awk 命令搭配正则或者编写shell脚本供运维执行后导出分析 在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-02T07:21:03.000Z">
-<meta property="article:modified_time" content="2020-11-02T07:33:08.999Z">
+<meta property="article:modified_time" content="2020-11-02T07:35:50.727Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -189,7 +189,9 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？<br>在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、gawk和sed。</p>
+            <p>日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？</p>
+<p>通常我们是用ELK去查询过滤的，如果脱离工具，需要运维导出日志，或者直接用grep  sed  awk 命令搭配正则或者编写shell脚本供运维执行后导出分析</p>
+<p>在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、gawk和sed。</p>
 <p>日志筛选需求描述：从2017年12月22日的日志文件中，统计时间段13:30~18:00之间包含筛选词“open.app”的日志行数。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">本系统后台日志格式如下图所示：</span><br><span class="line">从图中可以看出每行日志以“yyyy-MM-dd HH:mm:ss”开头，故要筛选一段时间的日志，就要匹配该日志的时间前缀。</span><br><span class="line">接下来文章分别介绍使用grep、gawk和sed命令，如何进行相关的Shell脚本（命令）的编写。</span><br><span class="line">  </span><br><span class="line">1grep命令</span><br><span class="line"> </span><br><span class="line">在日志筛选、搜索中，grep是使用频率较高的命令。对于grep命令来说，如果筛选一段时间的日志，需要进行多条件相并过滤，使用正则表达式进行处理。对于13:30~18:00时间段来说，可以转化为下面表格多个时间相并。</span><br><span class="line">序号 筛选条件 筛选时间段</span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line">1 2017-12-22 13:3 13:30:00~13:39:59</span><br><span class="line">2 2017-12-22 13:4 13:40:00~13:49:59</span><br><span class="line">3 2017-12-22 13:5 13:50:00~13:59:59</span><br><span class="line">4 2017-12-22 14 14:00:00~14:59:59</span><br><span class="line">5 2017-12-22 15 15:00:00~15:59:59</span><br><span class="line">6 2017-12-22 16 16:00:00~16:59:59</span><br><span class="line">7 2017-12-22 17 17:00:00~17:59:59</span><br></pre></td></tr></table></figure>
 <p>命令如下：</p>
@@ -220,7 +222,7 @@ split用来切分字符串
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-11-02T07:33:08.999Z" itemprop="dateUpdated">2020-11-02 15:33:08</time>
+    Last updated: <time datetime="2020-11-02T07:35:50.727Z" itemprop="dateUpdated">2020-11-02 15:35:50</time>
 </span><br>
 
 
