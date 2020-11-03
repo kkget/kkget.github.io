@@ -29,6 +29,7 @@
 <meta property="og:description" content="问题来源https:&#x2F;&#x2F;www.bilibili.com&#x2F;read&#x2F;cv4654469 线程参数的含义？估计是想问线程池参数的含义吧                                                                                              图1              int corePoolSize：常驻线程数in">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/m1.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/Threadpool.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/m2.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/m3.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/m4.png">
@@ -36,7 +37,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/m6.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/640.jpg">
 <meta property="article:published_time" content="2020-06-15T02:48:11.000Z">
-<meta property="article:modified_time" content="2020-10-10T01:40:15.772Z">
+<meta property="article:modified_time" content="2020-11-03T02:55:30.362Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="面经">
 <meta name="twitter:card" content="summary">
@@ -180,7 +181,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线程参数的含义？"><span class="post-toc-number">1.</span> <span class="post-toc-text">线程参数的含义？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis的使用，分布式锁的实现"><span class="post-toc-number">2.</span> <span class="post-toc-text">Redis的使用，分布式锁的实现</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TCP-三次握手和四次挥手"><span class="post-toc-number">3.</span> <span class="post-toc-text">TCP 三次握手和四次挥手</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TCP4次挥手即TCP链接的释放"><span class="post-toc-number">4.</span> <span class="post-toc-text">TCP4次挥手即TCP链接的释放</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#volatile"><span class="post-toc-number">5.</span> <span class="post-toc-text">volatile</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9-乐观锁，悲观锁"><span class="post-toc-number">6.</span> <span class="post-toc-text">9.乐观锁，悲观锁</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#10-HashMap结构，是否线程安全-ConcurrentHashMap如何保证线程安全。"><span class="post-toc-number">7.</span> <span class="post-toc-text">10.HashMap结构，是否线程安全?ConcurrentHashMap如何保证线程安全。</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#之前用过哪些设计模式"><span class="post-toc-number">8.</span> <span class="post-toc-text">之前用过哪些设计模式</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说一下B树和B-树的区别"><span class="post-toc-number">9.</span> <span class="post-toc-text">说一下B树和B+树的区别</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#InnoDb的索引实现"><span class="post-toc-number">10.</span> <span class="post-toc-text">InnoDb的索引实现</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么是用B-tree"><span class="post-toc-number">11.</span> <span class="post-toc-text">为什么是用B+tree</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说一下HashMap的实现，扩容机制，扩容时如何保证操作"><span class="post-toc-number">12.</span> <span class="post-toc-text">说一下HashMap的实现，扩容机制，扩容时如何保证操作</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SpringAop，ioc的原理，如何解决循环依赖"><span class="post-toc-number">13.</span> <span class="post-toc-text">SpringAop，ioc的原理，如何解决循环依赖</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#循环依赖解决"><span class="post-toc-number">14.</span> <span class="post-toc-text">循环依赖解决</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#两个线程对变量i进行加1操作，结果如何？为什么？如何解决？"><span class="post-toc-number">15.</span> <span class="post-toc-text">两个线程对变量i进行加1操作，结果如何？为什么？如何解决？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CAS概念，原子类实现"><span class="post-toc-number">16.</span> <span class="post-toc-text">CAS概念，原子类实现</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#synchronized"><span class="post-toc-number">17.</span> <span class="post-toc-text">synchronized</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线程参数的含义？"><span class="post-toc-number">1.</span> <span class="post-toc-text">线程参数的含义？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线程池大小与-CPU-处理器的利用率之比可以用下面公式估算"><span class="post-toc-number">2.</span> <span class="post-toc-text">线程池大小与 CPU 处理器的利用率之比可以用下面公式估算</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Redis的使用，分布式锁的实现"><span class="post-toc-number">3.</span> <span class="post-toc-text">Redis的使用，分布式锁的实现</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TCP-三次握手和四次挥手"><span class="post-toc-number">4.</span> <span class="post-toc-text">TCP 三次握手和四次挥手</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TCP4次挥手即TCP链接的释放"><span class="post-toc-number">5.</span> <span class="post-toc-text">TCP4次挥手即TCP链接的释放</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#volatile"><span class="post-toc-number">6.</span> <span class="post-toc-text">volatile</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9-乐观锁，悲观锁"><span class="post-toc-number">7.</span> <span class="post-toc-text">9.乐观锁，悲观锁</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#10-HashMap结构，是否线程安全-ConcurrentHashMap如何保证线程安全。"><span class="post-toc-number">8.</span> <span class="post-toc-text">10.HashMap结构，是否线程安全?ConcurrentHashMap如何保证线程安全。</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#之前用过哪些设计模式"><span class="post-toc-number">9.</span> <span class="post-toc-text">之前用过哪些设计模式</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说一下B树和B-树的区别"><span class="post-toc-number">10.</span> <span class="post-toc-text">说一下B树和B+树的区别</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#InnoDb的索引实现"><span class="post-toc-number">11.</span> <span class="post-toc-text">InnoDb的索引实现</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么是用B-tree"><span class="post-toc-number">12.</span> <span class="post-toc-text">为什么是用B+tree</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说一下HashMap的实现，扩容机制，扩容时如何保证操作"><span class="post-toc-number">13.</span> <span class="post-toc-text">说一下HashMap的实现，扩容机制，扩容时如何保证操作</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SpringAop，ioc的原理，如何解决循环依赖"><span class="post-toc-number">14.</span> <span class="post-toc-text">SpringAop，ioc的原理，如何解决循环依赖</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#循环依赖解决"><span class="post-toc-number">15.</span> <span class="post-toc-text">循环依赖解决</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#两个线程对变量i进行加1操作，结果如何？为什么？如何解决？"><span class="post-toc-number">16.</span> <span class="post-toc-text">两个线程对变量i进行加1操作，结果如何？为什么？如何解决？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CAS概念，原子类实现"><span class="post-toc-number">17.</span> <span class="post-toc-text">CAS概念，原子类实现</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#synchronized"><span class="post-toc-number">18.</span> <span class="post-toc-text">synchronized</span></a></li></ol>
         </nav>
     </aside>
 
@@ -209,11 +210,20 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m1.png" alt="图1" title="">
+                    <img src="http://47.105.116.133:8080/upload/m1.png" alt="图1" title>
                 </div>
                 <div class="image-caption">图1</div>
             </figure>
-<p>int corePoolSize：常驻线程数<br>int maximumPoolSize：线程池同时执行的最大线程数，&gt;=1<br>long keepAliveTime:空闲线程的存活时间<br>TimeUnit unit：keepAliveTime的单位<br>BlockingQueueworkQueue：被提交等待被执行的任务<br>ThreadFactory threadFactory：工作线程的线程工厂<br>RejectedExecutionHandler handler：线程池拒绝策略<br>–可能引申线程个数的设置分为CPU密集型和IO密集型<br>CPU密集型多为cpu运算频繁的：设置CPU核数+1<br>IO密集型：设置cpu核数*10</p>
+<p>int corePoolSize：常驻线程数<br>int maximumPoolSize：线程池同时执行的最大线程数，&gt;=1<br>long keepAliveTime:空闲线程的存活时间<br>TimeUnit unit：keepAliveTime的单位<br>BlockingQueueworkQueue：被提交等待被执行的任务<br>ThreadFactory threadFactory：工作线程的线程工厂<br>RejectedExecutionHandler handler：线程池拒绝策略<br>–可能引申线程个数的设置分为CPU密集型和IO密集型</p>
+<h1 id="线程池大小与-CPU-处理器的利用率之比可以用下面公式估算"><a href="#线程池大小与-CPU-处理器的利用率之比可以用下面公式估算" class="headerlink" title="线程池大小与 CPU 处理器的利用率之比可以用下面公式估算"></a>线程池大小与 CPU 处理器的利用率之比可以用下面公式估算</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/Threadpool.png" alt="ThreadPool" title>
+                </div>
+                <div class="image-caption">ThreadPool</div>
+            </figure>
+
+<p>CPU密集型多为cpu运算频繁的：设置CPU核数+1<br>IO密集型：设置cpu核数*10</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Support class for thread pool size</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Nadeem Mohammad</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolUtil</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">ThreadPoolUtil</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Each tasks blocks 90% of the time, and works only 10% of its</span></span><br><span class="line"><span class="comment">	 *	lifetime. That is, I/O intensive pool</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> io intesive Thread pool size</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">ioIntesivePoolSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">double</span> blockingCoefficient = <span class="number">0.9</span>;</span><br><span class="line">		<span class="keyword">return</span> poolSize(blockingCoefficient);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * Number of threads = Number of Available Cores / (1 - Blocking</span></span><br><span class="line"><span class="comment">	 * Coefficient) where the blocking coefficient is between 0 and 1.</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * A computation-intensive task has a blocking coefficient of 0, whereas an</span></span><br><span class="line"><span class="comment">	 * IO-intensive task has a value close to 1,</span></span><br><span class="line"><span class="comment">	 * so we don't have to worry about the value reaching 1.</span></span><br><span class="line"><span class="comment">	 *  <span class="doctag">@param</span> blockingCoefficient the coefficient</span></span><br><span class="line"><span class="comment">	 *  <span class="doctag">@return</span> Thread pool size</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">poolSize</span><span class="params">(<span class="keyword">double</span> blockingCoefficient)</span> </span>&#123;</span><br><span class="line">           <span class="comment">//cpu核数</span></span><br><span class="line">		<span class="keyword">int</span> numberOfCores = Runtime.getRuntime().availableProcessors();</span><br><span class="line">  </span><br><span class="line">		<span class="keyword">int</span> poolSize = (<span class="keyword">int</span>) (numberOfCores / (<span class="number">1</span> - blockingCoefficient));</span><br><span class="line">		<span class="keyword">return</span> poolSize;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="Redis的使用，分布式锁的实现"><a href="#Redis的使用，分布式锁的实现" class="headerlink" title="Redis的使用，分布式锁的实现"></a>Redis的使用，分布式锁的实现</h1><ol>
 <li>数据库乐观锁；</li>
@@ -233,7 +243,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m2.png" alt="图2" title="">
+                    <img src="http://47.105.116.133:8080/upload/m2.png" alt="图2" title>
                 </div>
                 <div class="image-caption">图2</div>
             </figure>
@@ -241,7 +251,7 @@
 <h1 id="TCP4次挥手即TCP链接的释放"><a href="#TCP4次挥手即TCP链接的释放" class="headerlink" title="TCP4次挥手即TCP链接的释放"></a>TCP4次挥手即TCP链接的释放</h1><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m3.png" alt="图3" title="">
+                    <img src="http://47.105.116.133:8080/upload/m3.png" alt="图3" title>
                 </div>
                 <div class="image-caption">图3</div>
             </figure>
@@ -250,7 +260,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m4.png" alt="图4" title="">
+                    <img src="http://47.105.116.133:8080/upload/m4.png" alt="图4" title>
                 </div>
                 <div class="image-caption">图4</div>
             </figure>
@@ -265,7 +275,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m5.png" alt="图5" title="">
+                    <img src="http://47.105.116.133:8080/upload/m5.png" alt="图5" title>
                 </div>
                 <div class="image-caption">图5</div>
             </figure>
@@ -273,7 +283,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/m6.png" alt="图6" title="">
+                    <img src="http://47.105.116.133:8080/upload/m6.png" alt="图6" title>
                 </div>
                 <div class="image-caption">图6</div>
             </figure>
@@ -283,7 +293,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/640.jpg" alt="图" title="">
+                    <img src="http://47.105.116.133:8080/upload/640.jpg" alt="图" title>
                 </div>
                 <div class="image-caption">图</div>
             </figure>
@@ -316,7 +326,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-10-10T01:40:15.772Z" itemprop="dateUpdated">2020-10-10 09:40:15</time>
+    Last updated: <time datetime="2020-11-03T02:55:30.362Z" itemprop="dateUpdated">2020-11-03 10:55:30</time>
 </span><br>
 
 
