@@ -21,15 +21,15 @@
     
     
     <meta name="keywords" content="Linux">
-    <meta name="description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？ 通常我们是用ELK去查询过滤的，如果脱离工具，需要运维导出日志，或者直接用grep  sed  awk 命令搭配正则或者编写shell脚本供运维执行后导出分析 在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、">
+    <meta name="description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？ 通常我们是用ELK去查询过滤的，如果脱离工具，需要运维导出日志，或者直接用grep  sed  awk 命令搭配正则或者编写shell脚本供运维执行后导出分析 通常查找出错误日志 cat error.log | grep ‘nick’ , 这时候我们还有个需求就是输出当前这个日志的前后几行： 123cat error.log | grep">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux按时间筛选日志的方法">
 <meta property="og:url" content="http://kkget.github.io/2020/11/02/Linux%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="赵KK的个人博客">
-<meta property="og:description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？ 通常我们是用ELK去查询过滤的，如果脱离工具，需要运维导出日志，或者直接用grep  sed  awk 命令搭配正则或者编写shell脚本供运维执行后导出分析 在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、">
+<meta property="og:description" content="日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？ 通常我们是用ELK去查询过滤的，如果脱离工具，需要运维导出日志，或者直接用grep  sed  awk 命令搭配正则或者编写shell脚本供运维执行后导出分析 通常查找出错误日志 cat error.log | grep ‘nick’ , 这时候我们还有个需求就是输出当前这个日志的前后几行： 123cat error.log | grep">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-02T07:21:03.000Z">
-<meta property="article:modified_time" content="2020-11-02T07:42:49.942Z">
+<meta property="article:modified_time" content="2020-11-09T06:49:26.644Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -191,6 +191,8 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>日常筛日志时通过ELK去查询的，但是如果脱离工具如何来做？</p>
 <p>通常我们是用ELK去查询过滤的，如果脱离工具，需要运维导出日志，或者直接用grep  sed  awk 命令搭配正则或者编写shell脚本供运维执行后导出分析</p>
+<p>通常查找出错误日志 cat error.log | grep ‘nick’ , 这时候我们还有个需求就是输出当前这个日志的前后几行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat error.log | grep -C <span class="number">5</span> <span class="string">'nick'</span> 显示file文件里匹配foo字串那行以及上下<span class="number">5</span>行</span><br><span class="line">cat error.log | grep -B <span class="number">5</span> <span class="string">'nick'</span> 显示foo及前<span class="number">5</span>行</span><br><span class="line">cat error.log | grep -A <span class="number">5</span> <span class="string">'nick'</span> 显示foo及后<span class="number">5</span>行</span><br></pre></td></tr></table></figure>
 <p>在日常系统维护、问题排查时，经常需要对系统后台日志进行筛选过滤。如果对特定时间段的日志进行筛选，该如何编写Shell脚本（命令）呢？本文给出三种常用的Shell编写方法：grep、gawk和sed。</p>
 <p>日志筛选需求描述：从2017年12月22日的日志文件中，统计时间段13:30~18:00之间包含筛选词“open.app”的日志行数。</p>
 <p>本系统后台日志格式如下图所示：<br>从图中可以看出每行日志以“yyyy-MM-dd HH:mm:ss”开头，故要筛选一段时间的日志，就要匹配该日志的时间前缀。<br>接下来文章分别介绍使用grep、gawk和sed命令，如何进行相关的Shell脚本（命令）的编写。</p>
@@ -231,7 +233,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-11-02T07:42:49.942Z" itemprop="dateUpdated">2020-11-02 15:42:49</time>
+    Last updated: <time datetime="2020-11-09T06:49:26.644Z" itemprop="dateUpdated">2020-11-09 14:49:26</time>
 </span><br>
 
 
