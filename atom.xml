@@ -47,9 +47,9 @@
     <link href="http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/"/>
     <id>http://kkget.github.io/2020/10/29/redis%20%20%20manager%20%20%20%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5/</id>
     <published>2020-10-29T07:10:44.000Z</published>
-    <updated>2020-10-29T07:12:27.635Z</updated>
+    <updated>2020-11-10T06:17:09.073Z</updated>
     
-    <content type="html"><![CDATA[<p>关于redis manager安装失败 报错</p><p>install it manually and try again</p><p>需要下载vc_redist.x86.exe</p><p><a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads" target="_blank" rel="noopener">https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads</a></p><p>选择x86</p>]]></content>
+    <content type="html"><![CDATA[<p>关于redis manager安装失败 报错</p><p>install it manually and try again</p><p>需要下载vc_redist.x86.exe</p><p><a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads" target="_blank" rel="noopener">https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads</a></p><p>选择x86</p><p>另外如果提示需要更新版本的话，可以关闭后，将系统时间调制16年以前即可</p>]]></content>
     
     <summary type="html">
     
