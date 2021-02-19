@@ -194,7 +194,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>想学习CompletableFuture，因此查询资料发现<br>CompletableFuture是JDK8中的新特性，主要用于对JDK5中加入的Future的补充。<br>CompletableFuture实现了CompletionStage和Future接口。<br>需要先了解Future接口<br>什么是Future？<br>简单来说future就是一个Future<T>对象，当执行return await。。。的时候，实际上返回的是一个延迟计算的Future对象，这个Future对象是Dart内置的，有自己的队列策略，它将要操作的事件放入EventQueue中，在队列中的事件按照先进先出的原则去逐一处理事件，当事件处理完成后，将结果返回给Future对象。</p>
+            <p>想学习CompletableFuture，因此查询资料发现<br>CompletableFuture是JDK8中的新特性，主要用于对JDK5中加入的Future的补充。<br>CompletableFuture实现了CompletionStage和Future接口。<br>需要先了解Future接口<br>什么是Future？<br>简单来说future就是一个Future<T>对象，当执行return await。。。的时候，实际上返回的是一个延迟计算的Future对象，这个Future对象是Dart内置的，有自己的队列策略，它将要操作的事件放入EventQueue中，在队列中的事件按照先进先出的原则去逐一处理事件，当事件处理完成后，将结果返回给Future对象。</T></p>
 <p>在这个过程中涉及到了异步和等待：</p>
 <p>异步：就是不用阻塞当前线程，来等待该线程任务处理完成再去执行其他任务。<br>等待：await，声明运算为延迟执行<br>async和await<br>首先看一个例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getData() async&#123;</span><br><span class="line">   <span class="keyword">return</span> await http.get(Uri.encodeFull(url), headers: &#123;<span class="string">"Accept"</span>: <span class="string">"application/json"</span>&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//然后调用函数来获取结果</span></span><br><span class="line">String data = getData();</span><br></pre></td></tr></table></figure>
@@ -264,7 +264,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/complete1.png" alt="" title="">
+                    <img src="http://47.105.116.133:8080/upload/complete1.png" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -303,7 +303,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/complete2.png" alt="" title="">
+                    <img src="http://47.105.116.133:8080/upload/complete2.png" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -311,7 +311,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/complete3.png" alt="" title="">
+                    <img src="http://47.105.116.133:8080/upload/complete3.png" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -320,7 +320,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://47.105.116.133:8080/upload/complete4.png" alt="" title="">
+                    <img src="http://47.105.116.133:8080/upload/complete4.png" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
