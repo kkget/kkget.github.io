@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Redis">
-    <meta name="description" content="1234RLock lock&#x3D;redisson.getLock(&quot;mylock&quot;);lock.lock();lock.unLock();&#96;  支持redis单实例、redis哨兵、redis cluster、redis master-slave等各种部署架构 Redisson实现Redis分布式锁的底层原理（1）加锁机制">
+    <meta name="description" content="123RLock lock&#x3D;redisson.getLock(&quot;mylock&quot;);lock.lock();lock.unLock();  支持redis单实例、redis哨兵、redis cluster、redis master-slave等各种部署架构 Redisson实现Redis分布式锁的底层原理（1）加锁机制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis分布式锁的实现原理">
 <meta property="og:url" content="http://kkget.github.io/2021/02/19/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="赵KK的个人博客">
-<meta property="og:description" content="1234RLock lock&#x3D;redisson.getLock(&quot;mylock&quot;);lock.lock();lock.unLock();&#96;  支持redis单实例、redis哨兵、redis cluster、redis master-slave等各种部署架构 Redisson实现Redis分布式锁的底层原理（1）加锁机制">
+<meta property="og:description" content="123RLock lock&#x3D;redisson.getLock(&quot;mylock&quot;);lock.lock();lock.unLock();  支持redis单实例、redis哨兵、redis cluster、redis master-slave等各种部署架构 Redisson实现Redis分布式锁的底层原理（1）加锁机制">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/211901.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/211902.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/211904.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/211905.png">
 <meta property="article:published_time" content="2021-02-19T07:15:37.000Z">
-<meta property="article:modified_time" content="2021-02-19T07:25:36.175Z">
+<meta property="article:modified_time" content="2021-02-19T08:19:05.641Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
@@ -202,7 +202,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RLock lock=redisson.getLock(<span class="string">"mylock"</span>);</span><br><span class="line">lock.lock();</span><br><span class="line">lock.unLock();</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RLock lock=redisson.getLock(<span class="string">"mylock"</span>);</span><br><span class="line">lock.lock();</span><br><span class="line">lock.unLock();</span><br></pre></td></tr></table></figure>
 
 <p>支持redis单实例、redis哨兵、redis cluster、redis master-slave等各种部署架构</p>
 <h1 id="Redisson实现Redis分布式锁的底层原理"><a href="#Redisson实现Redis分布式锁的底层原理" class="headerlink" title="Redisson实现Redis分布式锁的底层原理"></a>Redisson实现Redis分布式锁的底层原理</h1><p>（1）加锁机制</p>
@@ -272,7 +272,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2021-02-19T07:25:36.175Z" itemprop="dateUpdated">2021-02-19 15:25:36</time>
+    Last updated: <time datetime="2021-02-19T08:19:05.641Z" itemprop="dateUpdated">2021-02-19 16:19:05</time>
 </span><br>
 
 
