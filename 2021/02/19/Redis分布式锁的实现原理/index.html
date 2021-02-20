@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://47.105.116.133:8080/upload/211904.png">
 <meta property="og:image" content="http://47.105.116.133:8080/upload/211905.png">
 <meta property="article:published_time" content="2021-02-19T07:15:37.000Z">
-<meta property="article:modified_time" content="2021-02-19T08:19:05.641Z">
+<meta property="article:modified_time" content="2021-02-20T00:32:49.550Z">
 <meta property="article:author" content="赵KK">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
@@ -213,29 +213,29 @@
                 </div>
                 <div class="image-caption">redis分布式锁</div>
             </figure> 
-
-<p>咱们来看上面那张图，现在某个客户端要加锁。如果该客户端面对的是一个redis cluster集群，他首先会根据hash节点选择一台机器。</p>
-<p>这里注意，仅仅只是选择一台机器！这点很关键！</p>
-<p>紧接着，就会发送一段lua脚本到redis上，那段lua脚本如下所示：</p>
-<p><img src="http://47.105.116.133:8080/upload/211902.png" alt="redis分布式锁"></p>
-<p>为啥要用lua脚本呢？</p>
-<p>因为一大坨复杂的业务逻辑，可以通过封装在lua脚本中发送给redis，保证这段复杂业务逻辑执行的原子性。</p>
-<p>那么，这段lua脚本是什么意思呢？</p>
-<p>KEYS[1]代表的是你加锁的那个key，比如说：</p>
-<p>RLock lock = redisson.getLock(“myLock”);</p>
-<p>这里你自己设置了加锁的那个锁key就是“myLock”。</p>
-<p>ARGV[1]代表的就是锁key的默认生存时间，默认30秒。</p>
-<p>ARGV[2]代表的是加锁的客户端的ID，类似于下面这样：</p>
-<p>8743c9c0-0795-4907-87fd-6c719a6b4586:1</p>
-<p>给大家解释一下，第一段if判断语句，就是用“exists myLock”命令判断一下，如果你要加锁的那个锁key不存在的话，你就进行加锁。</p>
-<p>如何加锁呢？很简单，用下面的命令：</p>
+<p>咱们来看上面那张图，现在某个客户端要加锁。如果该客户端面对的是一个redis cluster集群，他首先会根据hash节点选择一台机器。<br>这里注意，仅仅只是选择一台机器！这点很关键！<br>紧接着，就会发送一段lua脚本到redis上，那段lua脚本如下所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/211902.png" alt="redis分布式锁" title>
+                </div>
+                <div class="image-caption">redis分布式锁</div>
+            </figure>
+<p>为啥要用lua脚本呢？<br>因为一大坨复杂的业务逻辑，可以通过封装在lua脚本中发送给redis，保证这段复杂业务逻辑执行的原子性。<br>那么，这段lua脚本是什么意思呢？<br>KEYS[1]代表的是你加锁的那个key，比如说：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RLock lock = redisson.getLock(<span class="string">"myLock"</span>);</span><br></pre></td></tr></table></figure>
+<p>这里你自己设置了加锁的那个锁key就是“myLock”。<br>ARGV[1]代表的就是锁key的默认生存时间，默认30秒。<br>ARGV[2]代表的是加锁的客户端的ID，类似于下面这样：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8743</span>c9c0<span class="number">-0795</span><span class="number">-4907</span><span class="number">-87</span>fd<span class="number">-6</span>c719a6b4586:<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>给大家解释一下，第一段if判断语句，就是用“exists myLock”命令判断一下，如果你要加锁的那个锁key不存在的话，你就进行加锁。<br>如何加锁呢？很简单，用下面的命令：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hset myLock </span><br><span class="line"></span><br><span class="line">    <span class="number">8743</span>c9c0-<span class="number">0795</span>-<span class="number">4907</span>-<span class="number">87f</span>d-<span class="number">6</span>c719a6b4586:<span class="number">1</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-
 <p>通过这个命令设置一个hash数据结构，这行命令执行后，会出现一个类似下面的数据结构：</p>
-<p><img src="http://47.105.116.133:8080/upload/211903.png" alt="redis分布式锁"></p>
-<p>上述就代表“8743c9c0-0795-4907-87fd-6c719a6b4586:1”这个客户端对“myLock”这个锁key完成了加锁。</p>
-<p>接着会执行“pexpire myLock 30000”命令，设置myLock这个锁key的生存时间是30秒。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/211903.png" alt="redis分布式锁" title>
+                </div>
+                <div class="image-caption">redis分布式锁</div>
+            </figure>
+<p>上述就代表“8743c9c0-0795-4907-87fd-6c719a6b4586:1”这个客户端对“myLock”这个锁key完成了加锁。<br>接着会执行“pexpire myLock 30000”命令，设置myLock这个锁key的生存时间是30秒。</p>
 <p>好了，到此为止，ok，加锁完成了。<br>（2）锁互斥机制</p>
 <p>那么在这个时候，如果客户端2来尝试加锁，执行了同样的一段lua脚本，会咋样呢？<br>很简单，第一个if判断会执行“exists myLock”，发现myLock这个锁key已经存在了。<br>接着第二个if判断，判断一下，myLock锁key的hash数据结构中，是否包含客户端2的ID，但是明显不是的，因为那里包含的是客户端1的ID。<br>所以，客户端2会获取到pttl myLock返回的一个数字，这个数字代表了myLock这个锁key的剩余生存时间。比如还剩15000毫秒的生存时间。<br>此时客户端2会进入一个while循环，不停的尝试加锁。<br>（3）watch dog自动延期机制<br>客户端1加锁的锁key默认生存时间才30秒，如果超过了30秒，客户端1还想一直持有这把锁，怎么办呢？<br>简单！只要客户端1一旦加锁成功，就会启动一个watch dog看门狗，他是一个后台线程，会每隔10秒检查一下，如果客户端1还持有锁key，那么就会不断的延长锁key的生存时间。<br>4）可重入加锁机制<br>那如果客户端1都已经持有了这把锁了，结果可重入的加锁会怎么样呢？<br>比如下面这种代码：</p>
 <figure class="image-bubble">
@@ -272,7 +272,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2021-02-19T08:19:05.641Z" itemprop="dateUpdated">2021-02-19 16:19:05</time>
+    Last updated: <time datetime="2021-02-20T00:32:49.550Z" itemprop="dateUpdated">2021-02-20 08:32:49</time>
 </span><br>
 
 
