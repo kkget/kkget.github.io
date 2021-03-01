@@ -232,7 +232,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2021/02/24/Redis%E9%9D%A2%E8%AF%95/">Redis面试</a>
+      <a class="post-title-link" href="/2021/02/24/Redis%E9%9D%A2%E8%AF%95/">Redis面试专题</a>
     </h3>
   
 
@@ -243,11 +243,7 @@
 
     
         Redis如何做持久化的？bgsave做全量持久化到RDB二进制文件中，aof做增量持久化，存储的是文本协议数据。  
-它们的优缺点呢？rdb二进制文件启动加载速度可以更快，aof要重放命令，所以速度比较慢
-图片
-Redis持久化期间，主进程还能对外提供服务吗？ 能
-那Redis如何处理新写入的数据呢，这个数据也会直接进行持久化吗？。。。这个可能吧!     
-Reids可以设置最大内存大小...
+它们的优缺点呢？rdb二进制文件启动加载速度可以更快，aof要重放命令，所以速度比较慢rdb,aofRDB  快浪费空间  消费性能  会丢失数据AOF  备份稳健   默认取AOF得占用空间   存在bugRDB:Redis默认的持久化机制,将内存数据库快照保存在名字为 ...
     
 
         <a href="/2021/02/24/Redis%E9%9D%A2%E8%AF%95/" class="post-more waves-effect waves-button">
