@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>跟饲养员刷算法 | 赵KK的个人博客 | 纠结体本体,同步记录日常笔记，Write the code, Change the world！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="算法">
+    <meta name="description" content="讲真,偶然发现还是怎么发现的忘记了,我申请了公众号转载,好东西需要分享,我一直以为是个男孩子,万万没想到，是个女孩子~图文并茂，内容丰富,字体喜欢，声音喜欢，内容喜欢，嘻嘻，有针对性的刷题，算法就是你看了可能不懂，但是你不看必然不懂，多刷，多练因为我也是笔记，就图文形式记录，图片偏多，建议大家去观看视频坚持刷他娘的，放过我的服务器吧，我都重装好几次了，每次还得重新找回，上传git也行，就是图片">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跟饲养员刷算法">
+<meta property="og:url" content="http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="赵KK的个人博客">
+<meta property="og:description" content="讲真,偶然发现还是怎么发现的忘记了,我申请了公众号转载,好东西需要分享,我一直以为是个男孩子,万万没想到，是个女孩子~图文并茂，内容丰富,字体喜欢，声音喜欢，内容喜欢，嘻嘻，有针对性的刷题，算法就是你看了可能不懂，但是你不看必然不懂，多刷，多练因为我也是笔记，就图文形式记录，图片偏多，建议大家去观看视频坚持刷他娘的，放过我的服务器吧，我都重装好几次了，每次还得重新找回，上传git也行，就是图片">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc1.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc2.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc3.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc4.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc5.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc6.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc7.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc8.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc9.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc10.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc11.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc12.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc13.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc14.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc15.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc16.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc17.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc18.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc19.png">
+<meta property="og:image" content="http://47.105.116.133:8080/upload/lc20.png">
+<meta property="article:published_time" content="2021-04-21T03:14:47.000Z">
+<meta property="article:modified_time" content="2021-04-21T03:33:15.099Z">
+<meta property="article:author" content="赵KK">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://47.105.116.133:8080/upload/lc1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="赵KK的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵KK</h5>
+          <a href="mailto:1462018576@qq.com" title="1462018576@qq.com" class="mail">1462018576@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://47.105.116.133:8080/upload/258.jpg" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                微信公众号
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">跟饲养员刷算法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">跟饲养员刷算法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-04-21T03:14:47.000Z" itemprop="datePublished" class="page-time">
+  2021-04-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#时间复杂度"><span class="post-toc-number">1.</span> <span class="post-toc-text">时间复杂度</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#空间复杂度："><span class="post-toc-number">2.</span> <span class="post-toc-text">空间复杂度：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-跟饲养员刷算法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">跟饲养员刷算法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-04-21 11:14:47" datetime="2021-04-21T03:14:47.000Z"  itemprop="datePublished">2021-04-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>  讲真,偶然发现还是怎么发现的忘记了,我申请了公众号转载,好东西需要分享,我一直以为是个男孩子,万万没想到，是个女孩子~<br>图文并茂，内容丰富,字体喜欢，声音喜欢，内容喜欢，嘻嘻<del>，有针对性的刷题，算法就是你看了可能不懂，但是你不看必然不懂，多刷，多练</del>因为我也是笔记，就图文形式记录，图片偏多，建议大家去观看视频<del>坚持刷<br>他娘的，放过我的服务器吧，我都重装好几次了，每次还得重新找回，上传git也行，就是图片不太清晰，不支持放大。<br>个人git仓库,不定期更新,因为时间只能是晚上,时间上尽量更吧,因为毕竟还有还多也要更,公众号和博客更不过来滴</del></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//github.com/kkget/LeetcodeDemo.git</span></span><br></pre></td></tr></table></figure>
+<h1 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h1><p>算法的执行效率，算法的执行时间与算法的输入值之间的关系<br>O(N) 大O表示法<br>O(1)<br>O(log N):二分查找</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc1.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc2.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc3.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc4.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc5.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc6.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<p>1.先看里面是否有循环，有循环不看常量<br>没有循环基本就是O(1)</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc7.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<h1 id="空间复杂度："><a href="#空间复杂度：" class="headerlink" title="空间复杂度："></a>空间复杂度：</h1><p>算法的存储空间与输入值之间的关系</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc8.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<p>1.永远都是占用int类型的空间O(1)<br>2.站空间的都是变量O(N)<br>看空间复杂度要找的就是变量，array随着nums变化而变化</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc9.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<p>如果是递归也是O(N)</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc10.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<p>时间换空间，空间换时间<br>面试官喜欢哪一种？</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc11.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<p>数组：连续空间存储相同类型的元素，必须都要满足<br>数组的<br>访问<br>搜索<br>插入<br>删除<br>时间复杂度<br>访问是O(1),其他是O(N)<br>特点:适合读多写少</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc12.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<p>P10【数据结构】【链表Linked List】知识点讲解<br>存储了元素和下一个元素的指针next index<br>单端链表<br>双端链表：还存储了前一个元素的next index<br>插入和删除快 O(1) O(1)<br>访问<br>搜索</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc13.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<p>特点:读少写多</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc14.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<p>new LinkedList<br>add<br>list.get(i)<br>iter<br>remove<br>.size</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc15.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc16.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<ol start="14">
+<li>【数据结构】【队列Queue】知识点讲解<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc17.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc18.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc19.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">java中定义队列 一般这样定义： Queue queue = <span class="keyword">new</span> LinkedList();</span><br><span class="line"></span><br><span class="line">当采用LinkedList来实现时，api的使用和对用关系如下：</span><br><span class="line"></span><br><span class="line">队列方法       等效方法</span><br><span class="line"></span><br><span class="line">offer(e)      offer(e)/offerLast(e)  <span class="comment">//进队列，将元素加入队列末尾</span></span><br><span class="line"></span><br><span class="line">poll()        poll()/pollFirst()  <span class="comment">//获取队列头的元素并移除</span></span><br><span class="line"></span><br><span class="line">peek()        peek()/peekFirst()  <span class="comment">//获取队列头的元素       isEmpty() //判断是否为空</span></span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://47.105.116.133:8080/upload/lc20.png" alt="图1" title>
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-04-21T03:33:15.099Z" itemprop="dateUpdated">2021-04-21 11:33:15</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/" target="_blank" rel="external">http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://kkget.github.io">
+            <img src="/img/avatar.jpg" alt="赵KK">
+            赵KK
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/&title=《跟饲养员刷算法》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/&title=《跟饲养员刷算法》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《跟饲养员刷算法》 — 赵KK的个人博客&url=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/&via=http://kkget.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/04/14/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1100%E9%97%AE/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">分布式服务100问</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "5qofQKP6PLlRGj9AKdN2wFy8-gzGzoHsz",
+            appKey: "MUjdIW5XaUutRWAdIFu4IdxP",
+            avatar: "mm",
+            placeholder: "Just do it",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+			<span style="text-align: center" id="sitetime"></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>赵KK &copy; 2018 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/&title=《跟饲养员刷算法》 — 赵KK的个人博客&pic=http://kkget.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/&title=《跟饲养员刷算法》 — 赵KK的个人博客&source=致力于技术分享，日常技术记录，日常bug记录等" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《跟饲养员刷算法》 — 赵KK的个人博客&url=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/&via=http://kkget.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://kkget.github.io/2021/04/21/%E8%B7%9F%E9%A5%B2%E5%85%BB%E5%91%98%E5%88%B7%E7%AE%97%E6%B3%95/" alt="微信分享二维码">
+</div>
+
+
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你给我回来!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+	<script type="text/javascript" src="/js/clicklove.js"></script>
+	<!--单击显示文字-->
+    <script type="text/javascript" src="/js/clicksocialvalue.js"></script>
+	<script type="text/javascript" src="/js/click_show_text.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/01/assets/haru01.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
